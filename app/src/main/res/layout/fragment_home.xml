@@ -39,5 +39,24 @@
             android:layout_height="wrap_content"
             android:id="@+id/button2" />
 
+        <LinearLayout
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Write Interview Review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button7" />
+
+            <Button
+                android:text="Write Company Review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3"/>
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

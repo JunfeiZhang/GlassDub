@@ -16,12 +16,12 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
-    private String[] searchResults = new String[] {
-            "Amazon", "Microsoft", "Boeing"
+public class Job extends Fragment {
+    private String[] jobReviews = new String[] {
+            "Job Review 1", "Job Review 2", "Job Review 3"
     };
 
-    public SearchFragment() {
+    public Job() {
         // Required empty public constructor
     }
 
@@ -30,27 +30,22 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_job, container, false);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, jobReviews);
+        ListView companyReviewList = (ListView) view.findViewById(R.id.listView4);
+        companyReviewList.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, searchResults);
-        ListView results = (ListView) view.findViewById(R.id.listView);
-        results.setAdapter(adapter);
-
-        results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                //Check if item is interview or company
-                Fragment company = new Company();
-                Fragment reviews = new ReviewList();
+                Fragment companyReview = new CompanyReview();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_placeholder, company);
-                fragmentTransaction.replace(R.id.list_Fragment, reviews);
+                fragmentTransaction.replace(R.id.list_Fragment, companyReview);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
-
         return view;
     }
 

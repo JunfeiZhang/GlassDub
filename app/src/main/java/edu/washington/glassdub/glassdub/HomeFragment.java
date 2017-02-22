@@ -3,6 +3,7 @@ package edu.washington.glassdub.glassdub;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -18,6 +19,8 @@ import android.widget.Button;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private Button searchBtn;
+    private Button writeReview;
+    private Button writeInterview;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -31,12 +34,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         searchBtn = (Button) view.findViewById(R.id.button5);
         searchBtn.setOnClickListener(this);
 
+        writeInterview = (Button) view.findViewById(R.id.button7);
+        writeInterview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), WriteInterview.class);
+                startActivity(intent);
+            }
+        });
+
+        writeReview = (Button) view.findViewById(R.id.button3);
+        writeReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), WriteReview.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        Log.i("HomeFragment", "Button clicked");
         Fragment searchResults = new SearchFragment();
 
         FragmentManager fragmentManager = getFragmentManager();

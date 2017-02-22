@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Review"></activity>
+        <activity android:name=".Review" />
+        <activity android:name=".WriteReview" />
+        <activity android:name=".WriteInterview"></activity>
     </application>
 
 </manifest>

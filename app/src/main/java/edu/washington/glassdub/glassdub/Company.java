@@ -5,11 +5,13 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 
@@ -17,14 +19,13 @@ import android.widget.ListView;
  * A simple {@link Fragment} subclass.
  */
 public class Company extends Fragment {
-    private String[] companyReviews = new String[] {
-            "Job Review 1", "Job Review 2", "Job Review 3"
-    };
+    private Button review;
+    private Button interview;
+    private Button jobs;
 
     public Company() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,23 +33,47 @@ public class Company extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company, container, false);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, companyReviews);
-        ListView companyReviewList = (ListView) view.findViewById(R.id.reviews);
-        companyReviewList.setAdapter(adapter);
-
-        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        review = (Button) view.findViewById(R.id.button3);
+        review.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                //Check if item is interview or company
-                Fragment companyReview = new CompanyReview();
+            public void onClick(View v) {
+                Fragment reviewList = new ReviewList();
+
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_placeholder, companyReview);
+                fragmentTransaction.replace(R.id.list_Fragment, reviewList);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
 
+        interview = (Button) view.findViewById(R.id.button6);
+        interview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment interviewList = new InterviewList();
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.list_Fragment, interviewList);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        jobs = (Button) view.findViewById(R.id.button4);
+        jobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment jobList = new JobList();
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.list_Fragment, jobList);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         return view;
     }
 
