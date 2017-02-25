@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+repositories{
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -10,6 +16,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                kumulos_gcm_sender_id: ''
+        ]
     }
     buildTypes {
         release {
@@ -17,10 +26,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -28,4 +42,12 @@ dependencies {
     compile 'com.android.support:design:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
     testCompile 'junit:junit:4.12'
+    // Kumulos dependencies
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.8.5'
+    // Required for push notifications
+    compile 'com.google.android.gms:play-services-gcm:+'
+    // Kumulos debug & release libraries
+    debugCompile(name: 'kumulos-2.4.0-debug', ext: 'aar')
+    releaseCompile(name: 'kumulos-2.4.0-release', ext: 'aar')
 }
