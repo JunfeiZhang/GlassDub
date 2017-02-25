@@ -49,13 +49,21 @@
                 android:text="Write Interview Review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button7" />
+                android:id="@+id/button7"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"
+                android:layout_margin="10dp"/>
 
             <Button
                 android:text="Write Company Review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"/>
+                android:id="@+id/button3"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
 
     </LinearLayout>

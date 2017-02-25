@@ -44,21 +44,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
-                android:layout_weight="1" />
+                android:layout_weight="0.9"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"
+                android:layout_marginRight="10dp"/>
 
             <Button
                 android:text="Interviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button6"
-                android:layout_weight="1" />
+                android:layout_weight="0.9"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"
+                android:layout_marginRight="10dp"/>
 
             <Button
                 android:text="Jobs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button4"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"/>
 
         </LinearLayout>
 
