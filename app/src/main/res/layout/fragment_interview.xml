@@ -4,61 +4,195 @@
     android:layout_height="match_parent"
     tools:context="edu.washington.glassdub.glassdub.Interview">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:textSize="@string/font_size_regular"
+        android:padding="17dp"
+        android:background="@color/colorBackground">
 
         <TextView
-            android:text="Role/position/job"
+            android:text="Google - Interaction Designer (Interview)"
+            android:theme="@style/ReviewTitleTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView18"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:id="@+id/interview_job"/>
 
-        <TextView
-            android:text="Type (full, part, internship)"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView16" />
+            style="@style/CardTheme"
+            android:orientation="vertical">
 
-        <TextView
-            android:text="Interview Experience (pos, neg, neutr)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14" />
+            <TextView
+                android:text="Difficult But Interesting"
+                android:textAppearance="@style/SubtitleTheme"
+                android:theme="@style/DefaultTheme"
+                android:textColor="@color/darkpurple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/interview_title" />
 
-        <TextView
-            android:text="Difficulty (1-5)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView15" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:textSize="@string/font_size_regular"
+                android:theme="@style/DefaultTheme">
 
-        <TextView
-            android:text="Got Offer? (Y/N/pending)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView17" />
+                <TextView
+                    android:text="Anonymous:    "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/interview_author" />
 
-        <TextView
-            android:text="Body (Qs, Pros/Cons)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView19" />
+                <TextView
+                    android:text="- Feb 22, 2017"
+                    android:fontFamily="@string/font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/interview_info_created" />
+            </LinearLayout>
 
-        <TextView
-            android:text="Username/Anonymous"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView20" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textSize="@string/font_size_small"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:theme="@style/DefaultTheme"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp">
 
-        <TextView
-            android:text="Created Date/Time"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Interview Date:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text="Feb 21, 2017"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Recieved Offer:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text="Pending"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Interview Experience Rating:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text="Neutral"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Difficulty:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text="4"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView21" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:orientation="vertical"
+            style="@style/CardTheme">
+
+            <TextView
+                android:text="Overall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/SubtitleTheme"/>
+
+            <TextView
+                android:text="Applied online, process took 2 weeks, phone interview followed by 3 rounds of interviews on campus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:style="@style/ContentTheme"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardTheme"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/SubtitleTheme" />
+
+            <TextView
+                android:text="- Describe a project from your portfolio
+\n- What app/tool/thing you use often would you re-design if you could?
+\n- If you were a startup CEO, what other members/roles of your team would you need around you?
+\n- Design prompt"
+                android:textColor="@color/mediumgrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ContentTheme" />
+        </LinearLayout>
 
     </LinearLayout>
 </FrameLayout>

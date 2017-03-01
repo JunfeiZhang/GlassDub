@@ -394,6 +394,14 @@
                     android:layout_weight="0.7"
                     android:maxLines="100"
                     android:scrollHorizontally="false"/>
+
+                <Button
+                    android:text="Submit"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightgrey"
+                    android:id="@+id/submit_button" />
             </LinearLayout>
 
         </LinearLayout>

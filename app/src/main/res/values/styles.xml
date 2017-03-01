@@ -8,4 +8,49 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CardTheme">
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="DefaultTheme">
+        <item name="android:background">@color/white</item>
+
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+    <style name="SubtitleTheme" parent="@style/DefaultTheme">
+        <item name="android:fontFamily">@string/font_family_bold</item>
+        <item name="android:textColor">@color/gold</item>
+        <item name="android:textSize">@string/font_size_regular</item>
+    </style>
+
+    <style name="ContentTheme" parent="@style/DefaultTheme">
+        <item name="android:textSize">@string/font_size_regular</item>
+        <item name="android:textColor">@color/mediumgrey</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingRight">7dp</item>
+    </style>
+
+    <style name="ReviewTitleTheme" parent="@style/DefaultTheme">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
 </resources>

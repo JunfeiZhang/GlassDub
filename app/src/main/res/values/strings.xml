@@ -20,7 +20,11 @@
 
     <!-- style-->
     <string name="font_family_regular">sans-serif</string>
-    <string name="font_size_accent">14sp</string>
+    <string name="font_family_light">sans-serif-light</string>
+    <string name="font_family_bold">sans-serif-bold</string>
+    <string name="font_family_medium">sans-serif-medium</string>
+    <string name="font_size_small">12sp</string>
+    <string name="font_size_medium">14sp</string>
     <string name="font_size_regular">16sp</string>
     <string name="font_size_title">36sp</string>
 </resources>
