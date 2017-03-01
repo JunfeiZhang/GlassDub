@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the chosen job review from Kumulos and all of their data (review title, rating, etc.)
+ */
+
 public class CompanyReview extends Fragment {
     public CompanyReview() {
         // Required empty public constructor

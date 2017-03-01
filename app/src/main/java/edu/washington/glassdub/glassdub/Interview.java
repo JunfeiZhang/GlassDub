@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the chosen interview review from Kumulos and all of their data (role, difficulty, etc.)
+ */
+
 public class Interview extends Fragment {
 
 

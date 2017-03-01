@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * TODO: Save all the data user inputted onto Kumulos server
+ */
+
 public class WriteReview extends Activity {
     private Button submit;
 

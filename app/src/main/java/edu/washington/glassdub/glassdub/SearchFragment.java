@@ -16,6 +16,11 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Fetch data from Kumulos based on user input and display list of companies/jobs
+ */
+
 public class SearchFragment extends Fragment {
     private String[] searchResults = new String[] {
             "Amazon", "Microsoft", "Boeing"

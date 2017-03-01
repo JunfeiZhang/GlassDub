@@ -16,6 +16,11 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched)
+ */
+
 public class InterviewList extends Fragment {
     private String[] interviewReviews = new String[] {
             "Interview Review 1", "Interview Review 2", "Interview Review 3"

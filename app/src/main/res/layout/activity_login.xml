@@ -10,10 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.washington.glassdub.glassdub.LoginActivity">
 
-    <!--TO DOs
-    Change color of validation messages
-    -->
-
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"

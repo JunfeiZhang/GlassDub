@@ -17,6 +17,13 @@ import android.widget.Button;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+
+/*
+ * TODO: Implement search query (save the user input from the search bar and pass it to SearchFragment)
+ * TODO: Fix search bar to include searching jobs or searching companies (Michael will be in charge of this)
+ */
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private Button searchBtn;
     private Button writeReview;
