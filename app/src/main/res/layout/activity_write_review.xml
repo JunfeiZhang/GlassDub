@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/company"
                 android:hint="Company*" />
         </android.support.design.widget.TextInputLayout>
 
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/pjb"
                 android:hint="Job*" />
         </android.support.design.widget.TextInputLayout>
 
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/rating"
                 android:hint="Rating (1-5)*" />
         </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText4"
+                android:id="@+id/salary"
                 android:hint="Salary (estimated)" />
         </android.support.design.widget.TextInputLayout>
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:ems="10"
-                android:id="@+id/editText6"
+                android:id="@+id/startDate"
                 android:hint="StartDate*" />
         </android.support.design.widget.TextInputLayout>
 
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:ems="10"
-                android:id="@+id/editText7"
+                android:id="@+id/endDate"
                 android:hint="EndDate (if applicable)" />
         </android.support.design.widget.TextInputLayout>
 
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/title"
                 android:hint="Review Title*" />
         </android.support.design.widget.TextInputLayout>
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText8"
+                android:id="@+id/body"
                 android:hint="Review Body*" />
         </android.support.design.widget.TextInputLayout>
 
@@ -124,13 +124,13 @@
             android:text="Include your NetID*"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox" />
+            android:id="@+id/anonymous" />
 
         <Button
             android:text="Submit Job  Review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button9"
+            android:id="@+id/submit"
             android:background="#b7a57a"
             android:textColor="#ffffff"/>
 
