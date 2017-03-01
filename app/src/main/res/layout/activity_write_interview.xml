@@ -35,7 +35,7 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:orientation="vertical"
-            android:textSize="@string/font_size_regular"
+            android:textSize="@string/font_size_large"
             android:fontFamily="@string/font_family_regular">
 
             <LinearLayout
@@ -46,8 +46,7 @@
 
                 <TextView
                     android:text="*Review For:"
-                    android:textStyle="bold"
-                    android:textColor="@color/gold"
+                    android:textAppearance="@style/SubtitleTheme"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="0.75"
@@ -115,8 +114,7 @@
 
                 <TextView
                     android:text="*Interview Date"
-                    android:textStyle="bold"
-                    android:textColor="@color/gold"
+                    android:textAppearance="@style/SubtitleTheme"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"
@@ -161,8 +159,7 @@
 
                 <TextView
                     android:text="*Received offer?"
-                    android:textStyle="bold"
-                    android:textColor="@color/gold"
+                    android:textAppearance="@style/SubtitleTheme"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
@@ -192,8 +189,7 @@
 
                 <TextView
                     android:text="*Overall Experience?"
-                    android:textStyle="bold"
-                    android:textColor="@color/gold"
+                    android:textAppearance="@style/SubtitleTheme"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:layout_weight="0.3"
@@ -271,16 +267,16 @@
 
                     <TextView
                         android:text="*Difficulty?"
-                        android:textStyle="bold"
-                        android:textColor="@color/gold"
+                        android:textAppearance="@style/SubtitleTheme"
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
                         android:layout_weight="0.2"
                         android:id="@+id/difficulty_text"/>
 
                     <TextView
-                        android:text="(1 = easy, 5 = difficult)"
-                        android:textColor="@color/gold"
+                        android:text="  (1 = easy, 5 = difficult)"
+                        android:textAppearance="@style/SubtitleTheme"
+                        android:textStyle="normal"
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
                         android:layout_weight="0.6"
@@ -379,8 +375,7 @@
 
                 <TextView
                     android:text="Overall"
-                    android:textStyle="bold"
-                    android:textColor="@color/gold"
+                    android:textAppearance="@style/SubtitleTheme"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:layout_weight="0.3"

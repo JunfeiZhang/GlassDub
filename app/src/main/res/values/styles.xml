@@ -8,16 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="CardTheme">
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">15dp</item>
-        <item name="android:paddingTop">7dp</item>
-        <item name="android:paddingBottom">7dp</item>
-
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
-    </style>
-
     <style name="DefaultTheme">
         <item name="android:background">@color/white</item>
 
@@ -33,14 +23,32 @@
         <item name="android:layout_marginRight">0dp</item>
     </style>
 
+
+    <style name="ScreenTheme" parent="@style/DefaultTheme">
+        <item name="android:padding">17dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
+    <style name="CardTheme">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
+
+        <item name="android:layout_marginTop">13.5dp</item>
+        <item name="android:layout_marginBottom">13.5dp</item>
+
+        <item name="android:background">@drawable/common_google_signin_btn_text_light_normal_background</item>
+    </style>
+
     <style name="SubtitleTheme" parent="@style/DefaultTheme">
-        <item name="android:fontFamily">@string/font_family_bold</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/gold</item>
-        <item name="android:textSize">@string/font_size_regular</item>
+        <item name="android:textSize">@string/font_size_medium</item>
     </style>
 
     <style name="ContentTheme" parent="@style/DefaultTheme">
-        <item name="android:textSize">@string/font_size_regular</item>
+        <item name="android:textSize">@string/font_size_medium</item>
         <item name="android:textColor">@color/mediumgrey</item>
         <item name="android:paddingLeft">7dp</item>
         <item name="android:paddingRight">7dp</item>
