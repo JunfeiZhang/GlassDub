@@ -7,7 +7,7 @@ repositories{
 }
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 'Google Inc.:Google APIs:24'
     buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "edu.washington.glassdub.glassdub"
