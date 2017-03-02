@@ -8,14 +8,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="@string/font_size_large"
+        android:textSize="@dimen/font_size_large"
         android:background="@color/colorBackground"
         style="@style/ScreenTheme"
         android:elevation="1dp">
 
         <TextView
-            android:text="Google - Interaction Designer (Interview)"
-            android:theme="@style/ReviewTitleTheme"
+            android:text="Google - Interaction Designer (Job)"
+            android:theme="@style/WriteReviewTitleTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/interview_job"/>
@@ -38,9 +38,14 @@
                     android:layout_weight="0.6"
                     android:layout_height="wrap_content"
                     android:id="@+id/interview_title" />
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_weight="0.1"
+                    android:layout_height="match_parent" />
                 <TextView
                     android:layout_width="0dip"
-                    android:layut_weight="0.4"
+                    android:layout_weight="0.3"
                     android:layout_height="match_parent" />
             </LinearLayout>
 
@@ -48,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:textSize="@string/font_size_large"
+                android:textSize="@dimen/font_size_large"
                 android:theme="@style/DefaultTheme">
 
                 <TextView
@@ -69,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:textSize="@string/font_size_small"
+                android:textSize="@dimen/font_size_small"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:paddingTop="5dp"
@@ -154,7 +159,7 @@
                 android:text="Great, positive community of people, lots of opportunities to work with other teams of artists and engineers. "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:style="@style/ContentTheme"/>
+                style="@style/ContentTheme"/>
 
         </LinearLayout>
 

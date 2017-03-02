@@ -14,7 +14,7 @@ public class WriteReview extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review);
 
-        submit = (Button) findViewById(R.id.button9);
+        submit = (Button) findViewById(R.id.job_submit_button);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

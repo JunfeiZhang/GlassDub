@@ -8,13 +8,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="@string/font_size_large"
+        android:textSize="@dimen/font_size_large"
         android:background="@color/colorBackground"
-        android:style="@style/ScreenTheme">
+        style="@style/ScreenTheme">
 
         <TextView
-            android:text="Google - Interaction Designer (Interview)"
-            android:theme="@style/ReviewTitleTheme"
+            android:text="Google - Interaction Designer (Job)"
+            android:theme="@style/WriteReviewTitleTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/interview_job"/>
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:textSize="@string/font_size_large"
+                android:textSize="@dimen/font_size_large"
                 android:theme="@style/DefaultTheme">
 
                 <TextView
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:textSize="@string/font_size_small"
+                android:textSize="@dimen/font_size_small"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:paddingTop="5dp"
@@ -163,7 +163,7 @@
                 android:text="Applied online, process took 2 weeks, phone interview followed by 3 rounds of interviews on campus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:style="@style/ContentTheme"/>
+                style="@style/ContentTheme"/>
 
         </LinearLayout>
 

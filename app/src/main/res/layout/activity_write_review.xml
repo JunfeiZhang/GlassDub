@@ -4,135 +4,355 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="edu.washington.glassdub.glassdub.WriteReview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/colorBackground">
 
     <LinearLayout
-        android:id="@+id/activity_write_review"
+        android:id="@+id/activity_write_interview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
         <TextView
             android:text="Job Review"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14" />
-
-        <android.support.design.widget.TextInputLayout
+            android:textSize="@dimen/font_size_title"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/purple"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+            android:layout_height="0dip"
+            android:layout_weight="0.075"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="0.6"
+            android:orientation="vertical"
+            style="@style/ScreenTheme">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText"
-                android:hint="Company*" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:text="*Review For:"
+                    android:theme="@style/WriteReviewSubtitleTheme"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:id="@+id/review_for_text"
+                    android:background="@color/colorBackground"/>
 
-            <EditText
+                <TextView
+                    android:text="* = required"
+                    android:textColor="@color/purple"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:id="@+id/required_text"
+                    android:background="@color/colorBackground"/>
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText5"
-                android:hint="Job*" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal"
+                android:id="@+id/company_job_input_fields">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:hint="Company"
+                    android:textColor="@color/lightgrey"
+                    android:id="@+id/company_request"
+                    android:background="@drawable/edittext_bottom_line"
+                    />
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+
+                <EditText
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:hint="Job"
+                    android:textColor="@color/lightgrey"
+                    android:id="@+id/job_request"
+                    android:background="@drawable/edittext_bottom_line"/>
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editText3"
-                android:hint="Rating (1-5)*" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+                <TextView
+                    android:text="*Start Date:"
+                    android:theme="@style/WriteReviewSubtitleTheme"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"/>
+
+
+
+                <Spinner
+                    android:id="@+id/job_start_month"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+                <Spinner
+                    android:id="@+id/job_start_year"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editText4"
-                android:hint="Salary (estimated)" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+                <TextView
+                    android:text="*End Date:"
+                    android:theme="@style/WriteReviewSubtitleTheme"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:id="@+id/interview_dates_text"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"/>
+
+                <Spinner
+                    android:id="@+id/month_dropdown"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+
+                <Spinner
+                    android:id="@+id/year_dropdown"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/editText6"
-                android:hint="StartDate*" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+                <TextView
+                    android:text="Annual Salary"
+                    style="@style/WriteReviewSubtitleTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/offer_text"/>
+
+                <TextView
+                    android:text="$  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:id="@+id/job_salary_text"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_bottom_line"/>
+
+                <!--
+                <TextView
+                    android:text="  /  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <Spinner
+                    android:id="@+id/job_salary_time_dropdown"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+                -->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:text="*Rating"
+                    android:theme="@style/WriteReviewSubtitleTheme"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/difficulty_text"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:icon="@drawable/edittext_bottom_line"
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:id="@+id/difficulty_1"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:icon="@drawable/ic_add_black_24dp"
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:id="@+id/difficulty_2"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:icon="@drawable/ic_add_black_24dp"
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:id="@+id/difficulty_3"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:icon="@drawable/ic_add_black_24dp"
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:id="@+id/difficulty_4"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:icon="@drawable/ic_add_black_24dp"
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:id="@+id/difficulty_5"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/editText7"
-                android:hint="EndDate (if applicable)" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:text="*Title:"
+                    android:theme="@style/WriteReviewSubtitleTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <EditText
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/job_title_input"
+                    style="@style/EditTextTheme"
+                    android:maxLines="2" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="*Overall Comments:"
+                    android:theme="@style/WriteReviewSubtitleTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/EditTextTheme"
+                    android:id="@+id/job_comments_input"
+                    android:scrollHorizontally="false"/>
+            </LinearLayout>
+
+            <Button
+                android:text="Submit"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText2"
-                android:hint="Review Title*" />
-        </android.support.design.widget.TextInputLayout>
+                android:background="@color/lightgrey"
+                android:id="@+id/job_submit_button" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editText8"
-                android:hint="Review Body*" />
-        </android.support.design.widget.TextInputLayout>
-
-        <CheckBox
-            android:text="Include your NetID*"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox" />
-
-        <Button
-            android:text="Submit Job  Review"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button9"
-            android:background="#b7a57a"
-            android:textColor="#ffffff"/>
-
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

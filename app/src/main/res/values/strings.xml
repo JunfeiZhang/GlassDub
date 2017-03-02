@@ -23,8 +23,4 @@
     <string name="font_family_light">sans-serif-light</string>
     <string name="font_family_bold">sans-serif-bold</string>
     <string name="font_family_medium">sans-serif-medium</string>
-    <string name="font_size_small">12sp</string>
-    <string name="font_size_medium">14sp</string>
-    <string name="font_size_large">16sp</string>
-    <string name="font_size_title">36sp</string>
 </resources>
