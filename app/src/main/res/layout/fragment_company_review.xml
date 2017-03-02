@@ -14,56 +14,51 @@
             android:text="Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
+            android:id="@+id/CRtitle"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:text="Rating (1-5)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView7" />
+            android:id="@+id/CRrating" />
 
         <TextView
             android:text="Salary (estimated)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView11" />
+            android:id="@+id/CRsalary" />
 
         <TextView
             android:text="Role/position/job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6" />
+            android:id="@+id/CRposition" />
 
         <TextView
             android:text="StartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView9" />
+            android:id="@+id/CRstart" />
 
         <TextView
             android:text="EndDate (if applicable)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView10" />
+            android:id="@+id/CRend" />
 
         <TextView
             android:text="Review Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView8" />
+            android:id="@+id/CRbody" />
 
         <TextView
             android:text="Username/Anonymous"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView13" />
+            android:id="@+id/CRanonymous" />
 
-        <TextView
-            android:text="Created Date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView12" />
     </LinearLayout>
 
 </FrameLayout>

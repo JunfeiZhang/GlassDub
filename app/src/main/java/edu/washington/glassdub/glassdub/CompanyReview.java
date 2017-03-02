@@ -7,6 +7,9 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -26,6 +29,18 @@ public class CompanyReview extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_company_review, container, false);
+        View view = inflater.inflate(R.layout.fragment_company_review, container, false);
+
+        TextView title = (TextView)view.findViewById(R.id.CRtitle);
+        TextView rating = (TextView) view.findViewById(R.id.CRrating);
+        TextView salary = (TextView) view.findViewById(R.id.CRsalary);
+        TextView position = (TextView) view.findViewById(R.id.CRposition);
+        TextView start = (TextView) view.findViewById(R.id.CRstart);
+        TextView end = (TextView) view.findViewById(R.id.CRend);
+        TextView review = (TextView) view.findViewById(R.id.CRbody);
+        TextView anonymous = (TextView) view.findViewById(R.id.CRanonymous);
+
+
+        return view;
     }
 }
