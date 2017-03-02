@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     tools:context="edu.washington.glassdub.glassdub.HomeFragment">
 
-    <LinearLayout
+    <!-- TODO: Implement search interface with magnify glass icon -->
+
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,21 +31,21 @@
                 android:text="Search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button5" />
+                android:id="@+id/button5"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"/>
+
         </LinearLayout>
 
-
-        <Button
-            android:text="Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button2" />
 
         <LinearLayout
             android:gravity="bottom"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
             <Button
                 android:text="Write Interview Review"
@@ -55,7 +57,7 @@
                 android:layout_margin="10dp"/>
 
             <Button
-                android:text="Write Company Review"
+                android:text="Write Job Review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
@@ -66,5 +68,5 @@
                 android:layout_marginRight="10dp"/>
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

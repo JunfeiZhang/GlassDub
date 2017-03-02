@@ -18,6 +18,11 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the chosen company from Kumulos and all of their data (company name, job reviews, interview reviews , jobs, etc.)
+ */
+
 public class Company extends Fragment {
     private Button review;
     private Button interview;

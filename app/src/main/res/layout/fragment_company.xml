@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="edu.washington.glassdub.glassdub.Company">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Implement slide tab navigation -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -37,7 +37,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:text="Reviews"

@@ -11,6 +11,10 @@ import com.kumulos.android.*;
 
 import java.util.*;
 
+/**
+ * TODO: Save all the data user inputted onto Kumulos server
+ */
+
 public class WriteReview extends Activity {
     private Button submit;
 

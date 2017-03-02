@@ -16,6 +16,11 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the chosen job from Kumulos and all of its data (company, type, etc.)
+ */
+
 public class Job extends Fragment {
     private String[] jobReviews = new String[] {
             "Job Review 1", "Job Review 2", "Job Review 3"

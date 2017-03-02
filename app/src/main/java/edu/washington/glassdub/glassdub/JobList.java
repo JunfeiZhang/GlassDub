@@ -16,6 +16,11 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the list of fetched jobs from Kumulos (after the user has searched)
+ */
+
 public class JobList extends Fragment {
     private String[] jobs = new String[] {
             "Job 1", "Job 2", "Job 3"

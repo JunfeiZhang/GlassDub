@@ -18,6 +18,11 @@ import edu.washington.glassdub.glassdub.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+/**
+ * TODO: Load the list of fetched job reviews from Kumulos (after the user has chosen a company or a job)
+ */
+
 public class ReviewList extends Fragment {
     private String[] companyReviews = new String[] {
             "Job Review 1", "Job Review 2", "Job Review 3"
