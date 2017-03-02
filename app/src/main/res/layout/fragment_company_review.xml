@@ -1,69 +1,201 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.washington.glassdub.glassdub.CompanyReview">
+    tools:context="edu.washington.glassdub.glassdub.Interview">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:textSize="@string/font_size_large"
+        android:background="@color/colorBackground"
+        style="@style/ScreenTheme"
+        android:elevation="1dp">
 
         <TextView
-            android:text="Title"
+            android:text="Google - Interaction Designer (Interview)"
+            android:theme="@style/ReviewTitleTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:id="@+id/interview_job"/>
 
-        <TextView
-            android:text="Rating (1-5)"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView7" />
+            style="@style/CardTheme"
+            android:orientation="vertical">
 
-        <TextView
-            android:text="Salary (estimated)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView11" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Wonderful Place to Work"
+                    android:textAppearance="@style/SubtitleTheme"
+                    android:textColor="@color/darkpurple"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.6"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/interview_title" />
+                <TextView
+                    android:layout_width="0dip"
+                    android:layut_weight="0.4"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
-        <TextView
-            android:text="Role/position/job"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:textSize="@string/font_size_large"
+                android:theme="@style/DefaultTheme">
 
-        <TextView
-            android:text="StartDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView9" />
+                <TextView
+                    android:text="Anonymous:    "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/interview_author" />
 
-        <TextView
-            android:text="EndDate (if applicable)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView10" />
+                <TextView
+                    android:text="- Feb 22, 2017"
+                    android:fontFamily="@string/font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/interview_info_created" />
+            </LinearLayout>
 
-        <TextView
-            android:text="Review Body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView8" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textSize="@string/font_size_small"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:theme="@style/DefaultTheme"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp">
 
-        <TextView
-            android:text="Username/Anonymous"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView13" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:text="Created Date"
+                    <TextView
+                        android:text="Start Date:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="March 2013"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="End Date:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text="June 2016"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Salary:    "
+                        android:textColor="@color/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:text="$70,000 / year"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView12" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:orientation="vertical"
+            style="@style/CardTheme">
+
+            <TextView
+                android:text="Overall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/SubtitleTheme"/>
+
+            <TextView
+                android:text="Great, positive community of people, lots of opportunities to work with other teams of artists and engineers. "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:style="@style/ContentTheme"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardTheme"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Pros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/SubtitleTheme" />
+
+            <TextView
+                android:text="- Food, food, food\n- Benefits/perks\n- Compensation\n- Flexibility"
+                android:textColor="@color/mediumgrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ContentTheme" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardTheme"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Cons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/SubtitleTheme" />
+
+            <TextView
+                android:text="-You may not get the work you want\n-Large company politics\ninconsistency and inefficiency can be frustrating"
+                android:textColor="@color/mediumgrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ContentTheme" />
+        </LinearLayout>
     </LinearLayout>
-
-</FrameLayout>
+</ScrollView>

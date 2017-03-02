@@ -117,7 +117,7 @@
                     android:textAppearance="@style/SubtitleTheme"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.5"
                     android:id="@+id/interview_dates_text"
                     android:maxLines="100"
                     android:scrollHorizontally="false"/>
@@ -167,7 +167,8 @@
 
                 <Spinner
                     android:id="@+id/offer_dropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.3"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
 
