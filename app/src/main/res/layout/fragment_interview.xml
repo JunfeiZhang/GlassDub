@@ -15,50 +15,50 @@
             android:text="Role/position/job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView18"
+            android:id="@+id/Iposition"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:text="Type (full, part, internship)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView16" />
+            android:id="@+id/Itype" />
 
         <TextView
             android:text="Interview Experience (pos, neg, neutr)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView14" />
+            android:id="@+id/Iexperience" />
 
         <TextView
             android:text="Difficulty (1-5)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView15" />
+            android:id="@+id/Idifficulty" />
 
         <TextView
             android:text="Got Offer? (Y/N/pending)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView17" />
+            android:id="@+id/Ioffer" />
 
         <TextView
             android:text="Body (Qs, Pros/Cons)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView19" />
+            android:id="@+id/Ibody" />
 
         <TextView
             android:text="Username/Anonymous"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView20" />
+            android:id="@+id/Iuser" />
 
         <TextView
             android:text="Created Date/Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView21" />
+            android:id="@+id/Icreated" />
 
     </LinearLayout>
 </FrameLayout>

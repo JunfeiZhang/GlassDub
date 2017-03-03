@@ -82,7 +82,7 @@ public class WriteReview extends Activity {
                             reviewParams.put("end_date", endDate.getText().toString());
                             reviewParams.put("title", reviewTitle.getText().toString());
                             reviewParams.put("body", reviewBody.getText().toString());
-                            // Get this from the application object once we have implemented login
+                            // TODO: Get this from the application object once we have implemented login
                             reviewParams.put("employee", "1");
                             if(anonymous.isChecked()) {
                                 reviewParams.put("anonymous", "true");
@@ -110,56 +110,14 @@ public class WriteReview extends Activity {
                                         AlertDialog alertDialog = alertDialogBuilder.create();
                                         alertDialog.show();
                                     } else {
-                                        // pop up a window saying there was an issue and try again
-                                        Log.i("testing", "didnt get that back");
                                         Intent intent = new Intent(WriteReview.this, MainActivity.class);
                                         startActivity(intent);
                                     }
                                 }
                             });
                         }
-
-
                     }
                 });
-
-                // if nothing came back from kumulos then alert saying there isnt a company under that name
-                // check spelling or contact Dean to add new company
-
-                if(companyID != null) {
-//                    Map<String, String> reviewParams = new HashMap<>();
-//                    reviewParams.put("companyID", companyID);
-//                    reviewParams.put("position", pjb.getText().toString());
-//                    reviewParams.put("rating", rating.getText().toString());
-//                    reviewParams.put("pay_rate", salary.getText().toString());
-//                    reviewParams.put("start_date", startDate.getText().toString());
-//                    reviewParams.put("end_date", endDate.getText().toString());
-//                    reviewParams.put("title", reviewTitle.getText().toString());
-//                    reviewParams.put("body", reviewBody.getText().toString());
-//                    if(anonymous.isChecked()) {
-//                        reviewParams.put("anonymous", "true");
-//                    } else {
-//                        reviewParams.put("anonymous", "false");
-//                    }
-//                    reviewParams.put("employee", "1");
-//
-//                    Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {
-//                        @Override
-//                        public void didCompleteWithResult(Object result) {
-//                            Log.i("testing", result.toString());
-//                            // Do updates to UI/data models based on result
-//                            if (result.toString().equals("17")) {
-//
-//                            } else {
-//                                // pop up a window saying there was an issue and try again
-//                                Log.i("testing", "didnt get that back");
-//                            }
-//                        }
-//                    });
-//
-//                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
-//                    startActivity(intent);
-                }
             }
         });
     }
