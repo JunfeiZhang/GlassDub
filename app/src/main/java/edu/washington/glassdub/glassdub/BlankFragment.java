@@ -1,7 +1,5 @@
 package edu.washington.glassdub.glassdub;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,13 +10,11 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
+public class BlankFragment extends Fragment {
 
-/**
- * TODO: Load the chosen job review from Kumulos and all of their data (review title, rating, etc.)
- */
 
-public class CompanyReview extends Fragment {
-    public CompanyReview() {
+
+    public BlankFragment() {
         // Required empty public constructor
     }
 
@@ -26,6 +22,6 @@ public class CompanyReview extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_company_review, container, false);
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 }

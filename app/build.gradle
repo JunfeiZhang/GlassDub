@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-repositories{
+repositories {
     flatDir {
         dirs 'libs'
     }
@@ -38,16 +38,16 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:design:25.1.1'
-    compile 'com.android.support:support-v4:25.1.1'
-    testCompile 'junit:junit:4.12'
     // Kumulos dependencies
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.8.5'
     // Required for push notifications
-    compile 'com.google.android.gms:play-services-gcm:+'
     // Kumulos debug & release libraries
     debugCompile(name: 'kumulos-2.4.0-debug', ext: 'aar')
     releaseCompile(name: 'kumulos-2.4.0-release', ext: 'aar')
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+    compile 'com.android.support:support-v4:25.1.1'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.8.5'
+    compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    testCompile 'junit:junit:4.12'
 }

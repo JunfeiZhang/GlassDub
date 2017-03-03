@@ -1,10 +1,9 @@
 package edu.washington.glassdub.glassdub;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ public class InterviewList extends Fragment {
     private String[] interviewReviews = new String[] {
             "Interview Review 1", "Interview Review 2", "Interview Review 3"
     };
+    //private ViewPagerAdapter vpAdapter;
 
     public InterviewList() {
         // Required empty public constructor
@@ -45,12 +45,8 @@ public class InterviewList extends Fragment {
         interviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Fragment interviewReview = new Interview();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, interviewReview);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+            Intent intent = new Intent(getContext(), InterviewPage.class);
+            startActivity(intent);
             }
         });
 

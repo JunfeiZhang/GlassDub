@@ -2,10 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.washington.glassdub.glassdub.JobList">
+    tools:context="edu.washington.glassdub.glassdub.CompanyList">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView1" />
+        android:paddingTop="10dp"
+        android:id="@+id/listView4" />
+
 </FrameLayout>

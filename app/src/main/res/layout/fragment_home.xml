@@ -2,71 +2,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="edu.washington.glassdub.glassdub.HomeFragment">
 
-    <!-- TODO: Implement search interface with magnify glass icon -->
-
-    <RelativeLayout
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
 
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <AutoCompleteTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/autoCompleteTextView"
-                android:hint="Job Title or Company"
-                android:layout_weight="1"/>
-
-            <Button
-                android:text="Search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button5"
-                android:background="#b7a57a"
-                android:textColor="#ffffff"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:gravity="bottom"
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:id="@+id/relativeLayout">
 
-            <Button
-                android:text="Write Interview Review"
+            <SearchView
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button7"
-                android:background="#b7a57a"
-                android:textColor="#ffffff"
-                android:layout_margin="10dp"/>
+                android:queryHint="Search Companies and Jobs"
+            />
+            <!--android:iconifiedByDefault="false"-->
+
+            <TextView
+                android:text="Search Companies and Jobs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </RelativeLayout>
+
+
+        <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_margin="10dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:gravity="bottom|center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="3">
 
             <Button
-                android:text="Write Job Review"
-                android:layout_width="match_parent"
+                android:text="Add Job Review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
                 android:background="#b7a57a"
                 android:textColor="#ffffff"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"/>
+                android:padding="10dp"/>
+            <Button
+                android:text="Add Interview Review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button7"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="25dp"
+                android:padding="10dp"/>
         </LinearLayout>
+    </LinearLayout>
 
-    </RelativeLayout>
+    <!--<ListView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@+id/search"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:id="@+id/results"-->
+            <!--android:paddingBottom="150dp"/>-->
+
+    <!--<android.support.design.widget.TabLayout-->
+                <!--android:id="@+id/tabs"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
 </FrameLayout>
