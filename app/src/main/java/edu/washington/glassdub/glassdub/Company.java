@@ -1,19 +1,13 @@
 package edu.washington.glassdub.glassdub;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,9 +18,8 @@ import android.widget.ListView;
  */
 
 public class Company extends Fragment {
-    private Button review;
-    private Button interview;
-    private Button jobs;
+    private ViewPager mViewPager;
+    private TabLayout tabLayout;
 
     public Company() {
         // Required empty public constructor
@@ -38,47 +31,18 @@ public class Company extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company, container, false);
 
-        review = (Button) view.findViewById(R.id.button3);
-        review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment reviewList = new ReviewList();
+//        mViewPager = (ViewPager) view.findViewById(R.id.container);
 
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, reviewList);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getFragmentManager());
+        vpAdapter.addFragments(new ReviewList(), "Reviews");
+        vpAdapter.addFragments(new InterviewList(), "Interviews");
+        vpAdapter.addFragments(new JobList(), "Jobs");
 
-        interview = (Button) view.findViewById(R.id.button6);
-        interview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment interviewList = new InterviewList();
+        mViewPager.setAdapter(vpAdapter);
 
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, interviewList);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+//        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
-        jobs = (Button) view.findViewById(R.id.button4);
-        jobs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment jobList = new JobList();
-
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, jobList);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
         return view;
     }
 

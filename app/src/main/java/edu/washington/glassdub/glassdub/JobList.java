@@ -1,10 +1,9 @@
 package edu.washington.glassdub.glassdub;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,8 @@ import android.widget.ListView;
 
 public class JobList extends Fragment {
     private String[] jobs = new String[] {
-            "Job 1", "Job 2", "Job 3"
+            // TODO: determine if we need one fragment for search activity and one fragment for company activity
+            "Job 1 Title - Company", "Job 2 Title - Company", "Job 3 Title - Company"
     };
 
     public JobList() {
@@ -43,12 +43,8 @@ public class JobList extends Fragment {
         jobList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Fragment jobItem = new Job();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, jobItem);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+            Intent intent = new Intent(getContext(), JobPage.class);
+            startActivity(intent);
             }
         });
         return view;

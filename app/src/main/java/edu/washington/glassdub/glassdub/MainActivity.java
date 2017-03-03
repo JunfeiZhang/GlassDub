@@ -1,7 +1,7 @@
 package edu.washington.glassdub.glassdub;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -17,10 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragToDisplay = new HomeFragment();
 
-        FragmentTransaction tx = getFragmentManager().beginTransaction();
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.fragment_placeholder, fragToDisplay);
         tx.commit();
     }
 
-    
 }

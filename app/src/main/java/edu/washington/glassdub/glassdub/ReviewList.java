@@ -1,10 +1,11 @@
 package edu.washington.glassdub.glassdub;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,12 +46,8 @@ public class ReviewList extends Fragment {
         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Fragment companyReview = new CompanyReview();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, companyReview);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+            Intent intent = new Intent(getContext(), ReviewPage.class);
+            startActivity(intent);
             }
         });
         return view;
