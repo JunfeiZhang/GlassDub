@@ -18,10 +18,12 @@
             android:id="@+id/relativeLayout">
 
             <SearchView
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/search"
-                android:queryHint="Search Companies and Jobs" />
+                android:queryHint="Search Companies and Jobs"
+            />
+            <!--android:iconifiedByDefault="false"-->
 
             <TextView
                 android:text="Search Companies and Jobs"

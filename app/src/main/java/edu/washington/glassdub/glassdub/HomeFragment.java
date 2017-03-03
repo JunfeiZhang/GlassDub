@@ -1,6 +1,7 @@
 package edu.washington.glassdub.glassdub;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import static android.view.View.VISIBLE;
 
 /*
  * TODO: Implement search query (save the user input from the search bar and pass it to SearchFragment) and set the filter for jobs/companies
+ * TODO: Improve UI, make search bar retain search query, if time permits query on query text change
  */
 
 public class HomeFragment extends Fragment {
@@ -56,7 +58,7 @@ public class HomeFragment extends Fragment {
         //First fill in both tabs with empty fragment
         vpAdapter.addFragments(new BlankFragment(), "Companies");
         vpAdapter.addFragments(new BlankFragment(), "Jobs");
-
+        
 
         mViewPager.setAdapter(vpAdapter);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
@@ -72,10 +74,10 @@ public class HomeFragment extends Fragment {
                 Fragment newJobsFrag = new JobList();
 
                 ViewPager afterSearch = (ViewPager) view.findViewById(R.id.container);
-                ViewPagerAdapter test = new ViewPagerAdapter(getFragmentManager());
-                test.addFragments(newCompaniesFrag, "Companies");
-                test.addFragments(newJobsFrag, "Jobs");
-                afterSearch.setAdapter(test);
+                ViewPagerAdapter searchAdapter = new ViewPagerAdapter(getFragmentManager());
+                searchAdapter.addFragments(newCompaniesFrag, "Companies");
+                searchAdapter.addFragments(newJobsFrag, "Jobs");
+                afterSearch.setAdapter(searchAdapter);
                 tabLayout.setupWithViewPager(afterSearch);
                 return false;
             }
