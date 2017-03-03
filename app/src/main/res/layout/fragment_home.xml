@@ -18,10 +18,10 @@
             android:id="@+id/relativeLayout">
 
             <SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/search"
-                    android:queryHint="Search Companies and Jobs" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search"
+                android:queryHint="Search Companies and Jobs" />
 
             <TextView
                 android:text="Search Companies and Jobs"
@@ -45,39 +45,36 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_margin="10dp"
-            android:layout_weight="0.6"/>
+            android:layout_weight="1"/>
 
         <LinearLayout
-            android:gravity="bottom"
-            android:orientation="vertical"
+            android:gravity="bottom|center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_weight="1">
+            android:layout_weight="3">
 
             <Button
-                android:text="Write Interview Review"
-                android:layout_width="match_parent"
+                android:text="Add Job Review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3"
+                android:background="#b7a57a"
+                android:textColor="#ffffff"
+                android:padding="10dp"/>
+            <Button
+                android:text="Add Interview Review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button7"
                 android:background="#b7a57a"
                 android:textColor="#ffffff"
-                android:layout_margin="10dp"/>
-
-            <Button
-                    android:text="Write Job Review"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button3"
-                    android:background="#b7a57a"
-                    android:textColor="#ffffff"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"/>
+                android:layout_marginLeft="25dp"
+                android:padding="10dp"/>
         </LinearLayout>
-
     </LinearLayout>
 
     <!--<ListView-->
