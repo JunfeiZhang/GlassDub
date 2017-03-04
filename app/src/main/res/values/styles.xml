@@ -62,6 +62,7 @@
         <item name="android:scrollHorizontally">false</item>
         <item name="android:hint">    </item>
         <item name="android:background">@drawable/edittext_bottom_line</item>
+        <item name="android:textColor">@color/mediumgrey</item>
     </style>
 
     <!-- Write Review Apps -->
@@ -74,6 +75,29 @@
     <style name="WriteReviewSubtitleTheme" parent="@style/SubtitleTheme">
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WriteReviewSubtitleHalfTheme" parent="@style/WriteReviewSubtitleTheme">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">0.3</item>
+    </style>
+
+    <style name="NumButtonTheme" parent="@style/DefaultTheme">
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/mediumgrey</item>
+    </style>
+
+    <style name="ExperienceTheme" parent="@style/DefaultTheme">
+        <item name="android:background">@color/white</item>
+        <item name="android:scaleY">1.8</item>
+        <item name="android:scaleX">1.6</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">0.3</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:tint">@color/darkgrey</item>
     </style>
 
 

@@ -63,7 +63,7 @@
                 android:text="Add Job Review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
+                android:id="@+id/submit_interview_button"
                 android:background="#b7a57a"
                 android:textColor="#ffffff"
                 android:padding="10dp"/>

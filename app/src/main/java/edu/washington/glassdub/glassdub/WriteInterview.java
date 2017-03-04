@@ -1,10 +1,30 @@
 package edu.washington.glassdub.glassdub;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * TODO: Save all the data user inputted onto Kumulos server
@@ -13,18 +33,239 @@ import android.widget.Button;
 public class WriteInterview extends AppCompatActivity {
     private Button submit;
 
+
+    Calendar calendar;
+
+    String[] offer_list = {"yes", "no", "pending"};
+
+    String company_job = null;
+    String date = null;
+    String offer = null;
+    String comments = null;
+
+    int difficulty = -1;
+    int[] difficulty_ids = {R.id.difficulty_1, R.id.difficulty_2, R.id.difficulty_3,
+            R.id.difficulty_4, R.id.difficulty_5};
+
+    String experience = null;
+    int[] experience_ids = {R.id.positive_button, R.id.neutral_button, R.id.negative_button};
+
+    int grey;
+    int purple;
+
+    public static final String TAG = "WriteInterview";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_interview);
 
-        submit = (Button) findViewById(R.id.button3);
+        fillOfferList();
+
+        grey =  ResourcesCompat.getColor(getResources(), R.color.mediumgrey, null);
+        purple = ResourcesCompat.getColor(getResources(), R.color.purple, null);
+
+        submit = (Button) findViewById(R.id.submit_interview_button);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WriteInterview.this, MainActivity.class);
-                startActivity(intent);
+                boolean filled = fetchData();
+
+                if (filled) {
+                    Intent intent = new Intent(WriteInterview.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+
+        for (int i = 0; i < difficulty_ids.length; i++) {
+            ((Button) findViewById(difficulty_ids[i])).setOnClickListener(difficultyListener);
+        }
+
+        for (int i = 0; i < experience_ids.length; i++) {
+            ((ImageButton) findViewById(experience_ids[i])).setOnClickListener(experienceListener);
+        }
+
+        Spinner offer_spinner = ((Spinner) findViewById(R.id.write_interview_offer));
+        offer = offer_spinner.getItemAtPosition(0).toString();
+        offer_spinner.setOnItemSelectedListener(spinnerListener);
+
+        calendar = Calendar.getInstance();
+        ((TextView) findViewById(R.id.write_interview_date)).setOnTouchListener(dateTouchListener);
+        ((ImageButton) findViewById(R.id.write_interview_date_icon)).setOnTouchListener(dateTouchListener);
     }
+
+    public String getJob() {
+        return company_job;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    private void fillOfferList() {
+        List<String> spinnerArray =  new ArrayList<String>();
+
+        for (int i = 0; i < offer_list.length; i++) {
+            spinnerArray.add(offer_list[i]);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, R.layout.spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ((Spinner) findViewById(R.id.write_interview_offer)).setAdapter(adapter);
+    }
+
+    private boolean fetchData() {
+        CustomEditText company_view = ((CustomEditText) findViewById(R.id.write_interview_company));
+        CustomEditText job_view = ((CustomEditText) findViewById(R.id.write_interview_job));
+        CustomEditText content_view = ((CustomEditText) findViewById(R.id.write_interview_body));
+        TextView date_view = ((TextView) findViewById(R.id.write_interview_date));
+        Spinner offer_view = ((Spinner) findViewById(R.id.write_interview_offer));
+        CustomEditText comments_view = ((CustomEditText) findViewById(R.id.write_interview_body));
+
+
+        String company = company_view.getText().toString();
+        String job = job_view.getText().toString();
+        comments = comments_view.getText().toString();
+
+        boolean submit = true;
+
+        // check if values are valid - prevent submission if not
+        if (offer_view.getSelectedView() != null) {
+            offer = offer_view.getSelectedView().toString();
+        } else {
+            ((TextView) offer_view.getSelectedView()).setError("");
+            submit = false;
+        }
+        if (company == null || company.trim().length() == 0) {
+            company_view.setError("");
+            submit = false;
+        }
+        if (job == null || job.trim().length() == 0) {
+            job_view.setError("");
+            submit = false;
+        }
+        if (comments == null || comments.trim().length() == 0) {
+            comments_view.setError("");
+            submit = false;
+        }
+
+        if (difficulty == -1) {
+            ((TextView) findViewById(R.id.write_interview_difficulty_subtitle)).setError("");
+            submit = false;
+        }
+        if (experience == null) {
+            ((TextView) findViewById(R.id.write_interview_experience_title)).setError("");
+            submit = false;
+        }
+
+        if (submit) {
+            company_job = company + " - " + job;
+            date = date_view.getText().toString();
+
+            Log.d(TAG, "fetchData:\n company:" + company + "\n job:" + job + "\n " + date +
+                   "\n offer:" + offer + "\n comments:" + comments);
+        }
+
+        return submit;
+    }
+
+    AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            offer = parent.getItemAtPosition(position).toString();
+            Log.d(TAG, "offer clicked: " + offer);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, monthOfYear);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+
+    };
+
+    private View.OnTouchListener dateTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                new DatePickerDialog(WriteInterview.this, dateListener, calendar
+                        .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+            return true;
+        }
+    };
+
+    private void updateLabel() {
+
+        String myFormat = "MMMM dd, yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        ((TextView) findViewById(R.id.write_interview_date)).setText(sdf.format(calendar.getTime()));
+    }
+
+    private View.OnClickListener difficultyListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Button clicked = (Button) v;
+            difficulty = Integer.parseInt(v.getTag().toString());
+            clicked.setTextColor(purple);
+
+            Log.d(TAG, "difficulty clicked: " + difficulty);
+
+            int grey = ResourcesCompat.getColor(getResources(), R.color.mediumgrey, null);
+
+            for (int i = 0; i < difficulty_ids.length; i++) {
+                if (i != difficulty - 1) {
+                    ((Button) findViewById(difficulty_ids[i])).setTextColor(grey);
+                }
+            }
+        }
+    };
+
+    private View.OnClickListener experienceListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            ImageButton clicked = (ImageButton) v;
+            experience = v.getTag().toString();
+            clicked.setColorFilter(purple);
+
+            Log.d(TAG, "experience clicked: " + experience);
+
+            for (int i = 0; i < experience_ids.length; i++) {
+                ImageButton button = (ImageButton) findViewById(experience_ids[i]);
+                if (!button.getTag().toString().equals(experience)) {
+                    button.setColorFilter(grey);
+                    Log.d(TAG, "changed " + button.getTag() + " to grey");
+                }
+            }
+        }
+    };
 }

@@ -1,7 +1,6 @@
 package edu.washington.glassdub.glassdub;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -115,7 +114,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        writeReview = (Button) view.findViewById(R.id.button3);
+        writeReview = (Button) view.findViewById(R.id.submit_interview_button);
         writeReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
