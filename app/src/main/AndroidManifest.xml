@@ -39,5 +39,4 @@
         <activity android:name=".JobPage" />
         <activity android:name=".CompanyActivity"></activity>
     </application>
-
 </manifest>

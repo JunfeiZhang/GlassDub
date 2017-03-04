@@ -15,13 +15,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Company Title" />
+        android:text="Company Title"
+        android:id="@+id/cTitle"/>
 
     <TextView
         android:text="Basic Descr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/cDescr" />
 
     <TextView
         android:text="Company Rating"
