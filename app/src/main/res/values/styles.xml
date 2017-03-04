@@ -1,11 +1,80 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="DefaultTheme">
+        <item name="android:background">@color/white</item>
+
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+
+    <style name="ScreenTheme" parent="@style/DefaultTheme">
+        <item name="android:paddingTop">17dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:fontFamily">@string/font_family_regular</item>
+    </style>
+
+    <style name="CardTheme">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
+
+        <item name="android:layout_marginTop">13.5dp</item>
+
+        <item name="android:background">@drawable/common_google_signin_btn_icon_light_normal</item>
+    </style>
+
+    <style name="SubtitleTheme" parent="@style/DefaultTheme">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gold</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+    </style>
+
+    <style name="ContentTheme" parent="@style/DefaultTheme">
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/mediumgrey</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingRight">7dp</item>
+    </style>
+
+    <style name="EditTextTheme" parent="@style/DefaultTheme">
+        <item name="android:inputType">text</item>
+        <item name="android:maxLines">100</item>
+        <item name="android:scrollHorizontally">false</item>
+        <item name="android:hint">    </item>
+        <item name="android:background">@drawable/edittext_bottom_line</item>
+    </style>
+
+    <!-- Write Review Apps -->
+    <style name="WriteReviewTitleTheme" parent="@style/DefaultTheme">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="WriteReviewSubtitleTheme" parent="@style/SubtitleTheme">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
 
 </resources>

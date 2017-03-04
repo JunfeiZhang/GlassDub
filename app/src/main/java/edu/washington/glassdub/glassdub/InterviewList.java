@@ -21,7 +21,7 @@ import android.widget.ListView;
  */
 
 public class InterviewList extends Fragment {
-    private String[] interviewReviews = new String[] {
+    private String[] interviewReviews = new String[]{
             "Interview Review 1", "Interview Review 2", "Interview Review 3"
     };
     //private ViewPagerAdapter vpAdapter;
@@ -45,8 +45,8 @@ public class InterviewList extends Fragment {
         interviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-            Intent intent = new Intent(getContext(), InterviewPage.class);
-            startActivity(intent);
+                Intent intent = new Intent(getContext(), InterviewPage.class);
+                startActivity(intent);
             }
         });
 

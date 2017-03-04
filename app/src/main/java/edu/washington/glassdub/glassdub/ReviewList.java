@@ -46,8 +46,8 @@ public class ReviewList extends Fragment {
         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-            Intent intent = new Intent(getContext(), ReviewPage.class);
-            startActivity(intent);
+                Intent intent = new Intent(getContext(), ReviewPage.class);
+                startActivity(intent);
             }
         });
         return view;
