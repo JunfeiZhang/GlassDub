@@ -27,8 +27,8 @@
     <style name="ScreenTheme" parent="@style/DefaultTheme">
         <item name="android:paddingTop">17dp</item>
         <item name="android:paddingBottom">0dp</item>
-        <item name="android:paddingLeft">17dp</item>
-        <item name="android:paddingRight">17dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
         <item name="android:textSize">@dimen/font_size_large</item>
         <item name="android:fontFamily">@string/font_family_regular</item>
     </style>

@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_placeholder, company);
-                fragmentTransaction.replace(R.id.list_Fragment, reviews);
+                fragmentTransaction.replace(R.id.list_fragment, reviews);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

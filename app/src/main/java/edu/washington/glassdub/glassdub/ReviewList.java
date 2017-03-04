@@ -12,9 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import edu.washington.glassdub.glassdub.CompanyReview;
-import edu.washington.glassdub.glassdub.R;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -43,7 +40,7 @@ public class ReviewList extends Fragment {
                 Fragment companyReview = new CompanyReview();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.list_Fragment, companyReview);
+                fragmentTransaction.replace(R.id.list_fragment, companyReview);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

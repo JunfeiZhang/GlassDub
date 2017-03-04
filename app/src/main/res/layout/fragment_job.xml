@@ -9,46 +9,115 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/ScreenTheme">
 
-        <TextView
-            android:text="Position/Job/Role Title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView14"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:orientation="horizontal"
+            style="@style/CardTheme">
 
-        <TextView
-            android:text="Company"
+            <ImageView
+                android:id="@+id/imageview_company_logo"
+                android:layout_width="0dip"
+                android:layout_weight="0.15"
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_weight="0.85"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Google - Interaction Designer"
+                    android:textAppearance="@style/SubtitleTheme"
+                    android:textColor="@color/mediumgrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView16" />
+
+                <TextView
+                    android:text="747 6th St S, Kirkland, WA 98033"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView17" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:background="@drawable/ic_star_gold_24dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView16" />
+            android:orientation="vertical"
+            style="@style/CardTheme">
 
-        <TextView
-            android:text="Type (full, part, internship)"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                style="@style/SubtitleTheme"
+                android:textColor="@color/mediumgrey"/>
+
+            <TextView
+                android:text="Design and user experience (UX) are at the forefront of everything we do. The job of an Interaction Designer is to envision how people experience our products and bring that vision to life in a way that feels inspired, refined ..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/job_description_text"
+                style="@style/ContentTheme"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView17" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView15"
-            android:text="Description" />
+            <Space
+                android:layout_width="0dip"
+                android:layout_weight="0.15"
+                android:layout_height="match_parent" />
+            <Button
+                android:text="Reviews"
+                android:layout_width="0dip"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent" />
 
-        <TextView
-            android:text="Reviews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView19"
-            android:paddingTop="20dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <Space
+                android:layout_width="0dip"
+                android:layout_weight="0.05"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:text="Interviews"
+                android:layout_width="0dip"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent" />
+            <Space
+                android:layout_width="0dip"
+                android:layout_weight="0.15"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="10dp"
             android:id="@+id/listView4" />
-
-    </LinearLayout>
+        </LinearLayout>
 </FrameLayout>
