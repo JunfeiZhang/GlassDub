@@ -2,8 +2,6 @@ package edu.washington.glassdub.glassdub;
 
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -38,14 +36,14 @@ public class Job extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_job, container, false);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, searchResults);
-        ListView companyReviewList = (ListView) view.findViewById(R.id.listView4);
+        ListView companyReviewList = (ListView) view.findViewById(R.id.company_listview);
         companyReviewList.setAdapter(adapter);
 
         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-            Intent intent = new Intent(getActivity(), CompanyActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getActivity(), CompanyActivity.class);
+                startActivity(intent);
             }
         });
         return view;

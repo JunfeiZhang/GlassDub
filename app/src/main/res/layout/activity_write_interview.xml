@@ -2,100 +2,391 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.washington.glassdub.glassdub.WriteReview"
+    tools:context="edu.washington.glassdub.glassdub.WriteInterview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/colorBackground"
+    android:id="@+id/activity_write_interview">
+
 
     <LinearLayout
-        android:id="@+id/activity_write_interview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
-
         <TextView
-            android:text="Write your interview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14" />
-
-        <android.support.design.widget.TextInputLayout
+            android:text="Interview Info"
+            android:textSize="@dimen/font_size_title"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/purple"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+            android:layout_height="0dip"
+            android:layout_weight="0.075"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="0.6"
+            style="@style/ScreenTheme"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Review For:"
+                style="@style/SubtitleTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/review_for_text"
+                android:background="@color/colorBackground"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/company_job_input_fields">
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_interview_company"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:hint="Company"
+                    style="@style/EditTextTheme"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    />
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_interview_job"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:hint="Job"
+                    style="@style/EditTextTheme"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:background="@drawable/edittext_bottom_line"/>
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Date:    "
+                    android:id="@+id/write_interview_date_title" />
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:id="@+id/write_interview_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jan 1, 2017 "
+                    android:textColor="@color/purple"
+                    android:textStyle="normal"
+                    android:layout_toEndOf="@id/write_interview_date_title" />
+
+                <ImageButton
+                    android:id="@+id/write_interview_date_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_date_range_24dp"
+                    android:background="@color/white"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/purple"
+                    android:layout_toEndOf="@id/write_interview_date"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Received offer?"
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/write_interview_offer_title" />
+
+                <Spinner
+                    android:layout_width="0dip"
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:id="@+id/write_interview_offer"
+                    android:textColor="@color/purple"/>
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_weight="0.2"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Overall Experience?"
+                    style="@style/SubtitleTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.3"
+                    android:id="@+id/write_interview_experience_title"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal"
+                    android:id="@+id/write_interview_experience">
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.03"/>
+
+                    <ImageButton
+                        android:id="@+id/negative_button"
+                        style="@style/ExperienceTheme"
+                        android:src="@drawable/ic_negative"
+                        android:tag="negative" />
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.03"/>
+
+                    <ImageButton
+                        android:id="@+id/neutral_button"
+                        style="@style/ExperienceTheme"
+                        android:src="@drawable/ic_neutral"
+                        android:tag="neutral" />
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.03"/>
+
+                    <ImageButton
+                        android:id="@+id/positive_button"
+                        style="@style/ExperienceTheme"
+                        android:src="@drawable/ic_positive"
+                        android:tag="positive" />
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                android:textColor="@color/lightgrey">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Difficulty?"
+                        style="@style/SubtitleTheme"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.2" />
+
+                    <TextView
+                        android:text="  (1 = easy, 5 = difficult)"
+                        style="@style/SubtitleTheme"
+                        android:textStyle="normal"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.6"
+                        android:id="@+id/write_interview_difficulty_subtitle"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:id="@+id/difficulty_1"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:tag="1"
+                        android:text="1"
+                        style="@style/NumButtonTheme"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:tag="2"
+                        android:text="2"
+                        android:id="@+id/difficulty_2"
+                        style="@style/NumButtonTheme"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:tag="3"
+                        android:text="3"
+                        android:id="@+id/difficulty_3"
+                        style="@style/NumButtonTheme"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:tag="4"
+                        android:text="4"
+                        android:id="@+id/difficulty_4"
+                        style="@style/NumButtonTheme"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15"/>
+
+                    <Button
+                        android:background="@color/white"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:tag="5"
+                        android:text="5"
+                        android:id="@+id/difficulty_5"
+                        style="@style/NumButtonTheme"/>
+
+                    <Space
+                        android:layout_width="0dip"
+                        android:maxWidth="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Comments"
+                        style="@style/SubtitleTheme"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.23"/>
+
+                    <TextView
+                        android:text="  (Pros, Cons, Sample Qs, etc.)"
+                        style="@style/SubtitleTheme"
+                        android:textStyle="normal"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.6"/>
+
+                </LinearLayout>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_interview_body"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_weight="0.7"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"/>
+            </LinearLayout>
+
+            <CheckBox
+                android:text="Include your NetID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox" />
+
+            <Button
+                android:text="Submit"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText"
-                android:hint="Job/Position Title" />
-        </android.support.design.widget.TextInputLayout>
+                android:textColor="@color/white"
+                android:background="@color/mediumgrey"
+                android:id="@+id/submit_interview_button" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText4"
-                android:hint="Interview Experience (pos, neg, neutral)" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editText3"
-                android:hint="Difficulty (1-5)" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText2"
-                android:hint="Got Offer? (Y/N/Pending)" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editText5"
-                android:hint="Interview Body (pros/cons, Qs)" />
-        </android.support.design.widget.TextInputLayout>
-
-        <CheckBox
-            android:text="Include your NetID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox" />
-
-        <Button
-            android:text="Submit Interview Review"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button3"
-            android:background="#b7a57a"
-            android:textColor="#ffffff"/>
-
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

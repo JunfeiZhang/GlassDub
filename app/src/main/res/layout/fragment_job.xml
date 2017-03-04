@@ -12,43 +12,43 @@
         android:layout_height="match_parent">
 
         <!--<TextView-->
-            <!--android:text="Position/Job/Role Title"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/textView14"-->
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Large" />-->
+        <!--android:text="Position/Job/Role Title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView14"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Large" />-->
 
         <!--<TextView-->
-            <!--android:text="Company"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/textView16" />-->
+        <!--android:text="Company"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView16" />-->
 
         <!--<TextView-->
-            <!--android:text="Type (full, part, internship)"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/textView17" />-->
+        <!--android:text="Type (full, part, internship)"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView17" />-->
 
         <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/textView15"-->
-            <!--android:text="Description" />-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView15"-->
+        <!--android:text="Description" />-->
 
         <!--<TextView-->
-            <!--android:text="Reviews"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/textView19"-->
-            <!--android:paddingTop="20dp"-->
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Medium" />-->
+        <!--android:text="Reviews"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView19"-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Medium" />-->
 
         <!--<ListView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:id="@+id/listView4" />-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:id="@+id/listView4" />-->
 
     </LinearLayout>
 </FrameLayout>
