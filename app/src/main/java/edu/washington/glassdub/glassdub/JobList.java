@@ -37,7 +37,7 @@ public class JobList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_job_list, container, false);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, jobs);
-        ListView jobList = (ListView) view.findViewById(R.id.listView1);
+        ListView jobList = (ListView) view.findViewById(R.id.job_listview);
         jobList.setAdapter(adapter);
 
         jobList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
