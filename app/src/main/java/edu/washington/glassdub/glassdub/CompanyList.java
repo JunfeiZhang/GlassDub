@@ -79,7 +79,7 @@ public class CompanyList extends Fragment {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else {
-                    ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
                     if (objects.size() == 0) {
                         // TODO: tell the user that their query didnt return any results
@@ -92,7 +92,8 @@ public class CompanyList extends Fragment {
                         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                                Intent intent = new Intent(getActivity(), ReviewPage.class);
+                                Intent intent = new Intent(getActivity(), CompanyActivity.class);
+                                intent.putExtra("reviewID", objects.get(position).get("companyID").toString());
                                 startActivity(intent);
                             }
                         });

@@ -2,6 +2,7 @@ package edu.washington.glassdub.glassdub;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,9 +37,10 @@ public class ReviewPage extends AppCompatActivity {
         created = (TextView) findViewById(R.id.CRcreated);
 
         // TODO: get info sent to fragment (comapny ID)
-        int companyRevID = 24; // getArguments().getInt("comapnyRevID");
+        Intent intent = getIntent();
+        String companyRevID = intent.getStringExtra("reviewID");
         Map<String,String> revParams = new HashMap<>();
-        revParams.put("job_reviewID", String.valueOf(companyRevID));
+        revParams.put("job_reviewID", companyRevID);
 
         Kumulos.call("getCompanyReview", revParams, new ResponseHandler() {
             @Override
