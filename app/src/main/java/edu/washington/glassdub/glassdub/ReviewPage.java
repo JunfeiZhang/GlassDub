@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class ReviewPage extends AppCompatActivity {
     private Activity act = this;
-    private TextView title, rating, salary, position, start, end, review, anonymous;
+    private TextView title, rating, salary, position, start, end, review, anonymous, created;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class ReviewPage extends AppCompatActivity {
         end = (TextView) findViewById(R.id.CRend);
         review = (TextView) findViewById(R.id.CRbody);
         anonymous = (TextView) findViewById(R.id.CRanonymous);
+        created = (TextView) findViewById(R.id.CRcreated);
 
         // TODO: get info sent to fragment (comapny ID)
         int companyRevID = 24; // getArguments().getInt("comapnyRevID");
@@ -72,6 +73,7 @@ public class ReviewPage extends AppCompatActivity {
                         end.setText(object.get("end_date").toString());
                         // TODO: if it is anonymous just print anonymous, otherwise print username
                         anonymous.setText(object.get("anonymous").toString());
+                        created.setText(object.get("timeCreated").toString());
                     }
                 }
             }
