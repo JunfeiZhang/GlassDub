@@ -55,7 +55,7 @@ public class InterviewList extends Fragment {
             companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                    Intent intent = new Intent(getActivity(), CompanyActivity.class);
+                    Intent intent = new Intent(getActivity(), InterviewPage.class);
                     startActivity(intent);
                 }
             });
