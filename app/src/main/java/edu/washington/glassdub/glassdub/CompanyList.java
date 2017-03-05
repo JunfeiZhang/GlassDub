@@ -55,8 +55,6 @@ public class CompanyList extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_company_list, container, false);
 
-
-
         Map<String, String> queryParam = new HashMap<>();
         queryParam.put("name", getArguments().getString("user_query"));
 
@@ -82,7 +80,7 @@ public class CompanyList extends Fragment {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
                     if (objects.size() == 0) {
-                        // TODO: tell the user that their query didnt return any results
+                        // TODO: tell the user that their query didn't return any results
                     } else {
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
@@ -93,7 +91,7 @@ public class CompanyList extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), CompanyActivity.class);
-                                intent.putExtra("reviewID", objects.get(position).get("companyID").toString());
+                                intent.putExtra("companyID", objects.get(position).get("companyID").toString());
                                 startActivity(intent);
                             }
                         });
@@ -109,7 +107,8 @@ public class CompanyList extends Fragment {
         CustomItem data[] = new CustomItem[objects.size()];
 
         for (int i = 0; i < objects.size(); i++) {
-            data[i] = new CustomItem(objects.get(i).get("name").toString(), objects.get(i).get("description").toString(), objects.get(i).get("description").toString(), Integer.valueOf(objects.get(i).get("rating").toString()));
+            LinkedHashMap<String, Object> obj = objects.get(i);
+            data[i] = new CustomItem(obj.get("name").toString(), obj.get("description").toString(), obj.get("description").toString(), Integer.valueOf(obj.get("rating").toString()));
         }
 
         return data;
