@@ -5,6 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/GlassDub.iml" filepath="$PROJECT_DIR$/GlassDub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kumulos-2.4.0-debug/kumulos-2.4.0-debug.iml" filepath="$PROJECT_DIR$/kumulos-2.4.0-debug/kumulos-2.4.0-debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kumulos-2.4.0-debug/kumulos-2.4.0-debug.iml" filepath="$PROJECT_DIR$/kumulos-2.4.0-debug/kumulos-2.4.0-debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kumulos-2.4.0-debug/kumulos-2.4.0-debug.iml" filepath="$PROJECT_DIR$/kumulos-2.4.0-debug/kumulos-2.4.0-debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kumulos-2.4.0-release/kumulos-2.4.0-release.iml" filepath="$PROJECT_DIR$/kumulos-2.4.0-release/kumulos-2.4.0-release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kumulos-2.4.0-release/kumulos-2.4.0-release.iml" filepath="$PROJECT_DIR$/kumulos-2.4.0-release/kumulos-2.4.0-release.iml" />
       <module fileurl="file://$PROJECT_DIR$/kumulos-2.4.0-release/kumulos-2.4.0-release.iml" filepath="$PROJECT_DIR$/kumulos-2.4.0-release/kumulos-2.4.0-release.iml" />
     </modules>
   </component>

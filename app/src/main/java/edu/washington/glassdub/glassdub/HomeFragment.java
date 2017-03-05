@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
 
-        //First fill in both tabs with empty fragment
+        //TODO: fill in both tabs with a last 5 recently added items
         vpAdapter.addFragments(new BlankFragment(), "Companies");
         vpAdapter.addFragments(new BlankFragment(), "Jobs");
         

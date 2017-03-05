@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="Interview Info"
+            android:text="Interview Review"
             android:textSize="@dimen/font_size_title"
             android:textStyle="bold"
             android:gravity="center"
@@ -359,7 +359,6 @@
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
                         android:layout_weight="0.6"/>
-
                 </LinearLayout>
 
                 <edu.washington.glassdub.glassdub.CustomEditText
@@ -386,6 +385,16 @@
                 android:textColor="@color/white"
                 android:background="@color/mediumgrey"
                 android:id="@+id/submit_interview_button" />
+
+            <!--<EditText-->
+                <!--android:id="@+id/editText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:ems="10"-->
+                <!--android:lines="4"-->
+                <!--android:inputType="textMultiLine"-->
+                <!--android:background="@drawable/border"-->
+                <!--android:gravity="top|left"/>-->
 
         </LinearLayout>
     </LinearLayout>
