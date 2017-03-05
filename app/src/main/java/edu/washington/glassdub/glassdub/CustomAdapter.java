@@ -43,7 +43,7 @@ public class CustomAdapter extends ArrayAdapter<CustomItem> {
 
         if(view == null)
         {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             convertView = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new CustomHolder();
