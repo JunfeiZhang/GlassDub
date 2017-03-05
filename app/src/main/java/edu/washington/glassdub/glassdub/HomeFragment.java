@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.view.View.VISIBLE;
 
 
@@ -71,6 +74,10 @@ public class HomeFragment extends Fragment {
                 // TODO: Grab information from Kumulos and save it to fragment
                 Fragment newCompaniesFrag = new CompanyList();
                 Fragment newJobsFrag = new JobList();
+                Bundle b = new Bundle();
+                b.putString("user_query", query);
+                newCompaniesFrag.setArguments(b);
+                newJobsFrag.setArguments(b);
 
                 ViewPager afterSearch = (ViewPager) view.findViewById(R.id.container);
                 ViewPagerAdapter searchAdapter = new ViewPagerAdapter(getFragmentManager());
