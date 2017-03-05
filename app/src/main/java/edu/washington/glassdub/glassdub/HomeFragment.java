@@ -77,12 +77,12 @@ public class HomeFragment extends Fragment {
                 Bundle b = new Bundle();
                 b.putString("user_query", query);
                 newCompaniesFrag.setArguments(b);
-                newJobsFrag.setArguments(b);
+                //newJobsFrag.setArguments(b);
 
                 ViewPager afterSearch = (ViewPager) view.findViewById(R.id.container);
                 ViewPagerAdapter searchAdapter = new ViewPagerAdapter(getFragmentManager());
                 searchAdapter.addFragments(newCompaniesFrag, "Companies");
-                searchAdapter.addFragments(newJobsFrag, "Jobs");
+                //searchAdapter.addFragments(newJobsFrag, "Jobs");
                 afterSearch.setAdapter(searchAdapter);
                 tabLayout.setupWithViewPager(afterSearch);
                 return false;

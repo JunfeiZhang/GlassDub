@@ -1,9 +1,11 @@
 package edu.washington.glassdub.glassdub;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.kumulos.android.Kumulos;
+import com.kumulos.android.ResponseHandler;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -40,35 +50,62 @@ public class JobList extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_job_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_job_list, container, false);
 
-        if ((titles.length == subtitles.length) && (titles.length == contents.length) &&
-                (titles.length == counts.length)) {
+        Map<String, String> jobParam = new HashMap<>();
+        jobParam.put("company", getArguments().getString("companyID"));
 
-            // Populate with data
-            CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData());
+        Kumulos.call("getJobsForCompany", jobParam, new ResponseHandler() {
 
-            ListView companyReviewList = (ListView) view.findViewById(R.id.job_listview);
-            companyReviewList.setAdapter(adapter);
+            @Override
+            public void didCompleteWithResult(Object result) {
+                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            getActivity());
+                    alertDialogBuilder
+                            .setTitle("Error")
+                            .setMessage("We were unable to fetch the jobs jobs. Try searching again.")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
-            companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                    Intent intent = new Intent(getActivity(), JobPage.class);
-                    startActivity(intent);
+                    if (objects.size() == 0) {
+                        // TODO: show the user that there were no results
+                    } else {
+                        // Populate with data
+                        CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
+
+                        ListView companyReviewList = (ListView) view.findViewById(R.id.job_listview);
+                        companyReviewList.setAdapter(adapter);
+
+                        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                                Intent intent = new Intent(getActivity(), JobPage.class);
+                                intent.putExtra("jobID", objects.get(position).get("jobID").toString());
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
-            });
-        } else {
-            Log.d(TAG, "arrays don't have same length");
-        }
+            }
+        });
         return view;
     }
 
-    private CustomItem[] getData() {
-        CustomItem data[] = new CustomItem[titles.length];
+    private CustomItem[] getData(ArrayList<LinkedHashMap<String, Object>> objects) {
+        CustomItem data[] = new CustomItem[objects.size()];
 
-        for (int i = 0; i < titles.length; i++) {
-            data[i] = new CustomItem(titles[i], subtitles[i], contents[i], counts[i]);
+        for (int i = 0; i < objects.size(); i++) {
+            LinkedHashMap<String, Object> obj = objects.get(i);
+            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(), "", 5);
         }
 
         return data;

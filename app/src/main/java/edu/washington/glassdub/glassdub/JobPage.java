@@ -18,6 +18,10 @@ public class JobPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_page);
 
+        Intent intent = getIntent();
+        String jobID = intent.getStringExtra("jobID");
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, jobReviews);
         ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
         companyReviewList.setAdapter(adapter);

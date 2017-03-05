@@ -1,9 +1,11 @@
 package edu.washington.glassdub.glassdub;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.kumulos.android.Kumulos;
+import com.kumulos.android.ResponseHandler;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -41,35 +51,64 @@ public class ReviewList extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_review_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_review_list, container, false);
 
-        if ((titles.length == subtitles.length) && (titles.length == contents.length) &&
-                (titles.length == counts.length)) {
+        String companyID = getArguments().getString("companyID", "22");
 
-            // Populate with data
-            CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData());
+        Map<String, String> reviewParam = new HashMap<>();
+        reviewParam.put("companyID", companyID);
 
-            ListView companyReviewList = (ListView) view.findViewById(R.id.review_listview);
-            companyReviewList.setAdapter(adapter);
+        Kumulos.call("getReviewsForCompany", reviewParam, new ResponseHandler() {
 
-            companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                    Intent intent = new Intent(getActivity(), ReviewPage.class);
-                    startActivity(intent);
+            @Override
+            public void didCompleteWithResult(Object result) {
+                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            getActivity());
+                    alertDialogBuilder
+                            .setTitle("Error")
+                            .setMessage("We were unable to fetch the reviews for this company.")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+
+                    if(objects.size() == 0) {
+                        // TODO: tell the user that there are no reviews for the company yet.
+                    } else {
+                        CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
+
+                        ListView companyReviewList = (ListView) view.findViewById(R.id.review_listview);
+                        companyReviewList.setAdapter(adapter);
+
+                        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                                Intent intent = new Intent(getActivity(), ReviewPage.class);
+                                intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
-            });
-        } else {
-            Log.d(TAG, "arrays don't have same length");
-        }
+            }
+        });
+
         return view;
     }
 
-    private CustomItem[] getData() {
-        CustomItem data[] = new CustomItem[titles.length];
+    private CustomItem[] getData(ArrayList<LinkedHashMap<String, Object>> objects) {
+        CustomItem data[] = new CustomItem[objects.size()];
 
-        for (int i = 0; i < titles.length; i++) {
-            data[i] = new CustomItem(titles[i], subtitles[i], contents[i], counts[i]);
+        for (int i = 0; i < objects.size(); i++) {
+            LinkedHashMap<String, Object> obj = objects.get(i);
+            data[i] = new CustomItem(obj.get("title").toString(), obj.get("timeCreated").toString(), obj.get("body").toString(), Integer.valueOf(obj.get("rating").toString()));
         }
 
         return data;
