@@ -56,10 +56,19 @@ public class CompanyList extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_company_list, container, false);
 
         Map<String, String> queryParam = new HashMap<>();
-        queryParam.put("name", getArguments().getString("user_query"));
+        Bundle bundle = getArguments();
+//        if (bundle.) {
+//
+//
+//        }
+        if(getArguments().getString("user_query") == "none"){
+            queryParam.put("name","");
+        }else{
+            queryParam.put("name", getArguments().getString("user_query"));
+        }
+
 
         Kumulos.call("searchCompanies", queryParam, new ResponseHandler() {
-
             @Override
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {

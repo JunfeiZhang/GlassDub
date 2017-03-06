@@ -61,7 +61,6 @@ public class CustomAdapter extends ArrayAdapter<CustomItem> {
 
         setContents(position);
 
-
         return convertView;
     }
 

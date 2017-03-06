@@ -58,13 +58,24 @@ public class HomeFragment extends Fragment {
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
 
         //First fill in both tabs with empty fragment
-        vpAdapter.addFragments(new BlankFragment(), "Companies");
-        vpAdapter.addFragments(new BlankFragment(), "Jobs");
-        
+//        vpAdapter.addFragments(new BlankFragment(), "Companies");
 
+        Fragment defaultCompanysFrag = new CompanyList();
+        Bundle bundle = new Bundle();
+        bundle.putString("user_query","none");
+        defaultCompanysFrag.setArguments(bundle);
+        vpAdapter.addFragments(defaultCompanysFrag,"Companies");
+
+
+        vpAdapter.addFragments(new BlankFragment(), "Jobs");
         mViewPager.setAdapter(vpAdapter);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+
+
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -140,4 +151,8 @@ public class HomeFragment extends Fragment {
         searchView.setQuery(query, false);
         hintText.setVisibility(VISIBLE);
     }
+
+
+
+
 }
