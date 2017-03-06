@@ -2,6 +2,7 @@ package edu.washington.glassdub.glassdub;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,10 +35,11 @@ public class InterviewPage extends AppCompatActivity {
         created = (TextView) findViewById(R.id.Icreated);
 
         // TODO: get info sent to fragment (comapny ID)
-        int interviewID = 2; // getArguments().getInt("interviewID");
-
+        //int interviewID = 2; // getArguments().getInt("interviewID");
+        Intent intent = getIntent();
+        String interviewID = intent.getStringExtra("interviewID");
         Map<String,String> interviewParams = new HashMap<>();
-        interviewParams.put("interview_reviewID", String.valueOf(interviewID));
+        interviewParams.put("interview_reviewID", interviewID);
 
         Kumulos.call("getInterview", interviewParams, new ResponseHandler() {
             @Override
