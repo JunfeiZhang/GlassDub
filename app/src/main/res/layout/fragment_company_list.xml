@@ -14,15 +14,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:text="Your search did not match any company names"
             android:textAlignment="center"
-            android:visibility="invisible"
-            android:text="Your search did not match any company names" />
+            android:visibility="invisible" />
 
         <ListView
-        android:id="@+id/JPlistview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="10dp" />
+            android:id="@+id/JPlistview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp" />
 
     </RelativeLayout>
 </FrameLayout>

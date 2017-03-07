@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static android.view.View.VISIBLE;
 
 
 /**
@@ -37,6 +40,7 @@ public class InterviewList extends Fragment {
     private String[] subtitles = {"User 1 - Date 1", "User 2 - Date 2", "User 3 - Date 3"};
     private String[] contents = {"Contents 1", "Contents 2", "Contents 3"};
     private int[] counts = {2, 1, 4};
+    private TextView noInterviews;
 
     private static String TAG = "InterviewList";
 
@@ -54,6 +58,7 @@ public class InterviewList extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_interview_list, container, false);
 
+        noInterviews = (TextView) view.findViewById(R.id.noInterviews);
         String companyID = getArguments().getString("companyID", "22");
 
         Map<String, String> reviewParam = new HashMap<>();
@@ -81,8 +86,9 @@ public class InterviewList extends Fragment {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
                     if(objects.size() == 0) {
-                        // TODO: tell the user that there are no reviews for the company yet.
+                        noInterviews.setVisibility(VISIBLE);
                     } else {
+                        noInterviews.setVisibility(View.INVISIBLE);
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
                         ListView InterviewList = (ListView) view.findViewById(R.id.interview_listview);
