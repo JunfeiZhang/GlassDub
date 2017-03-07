@@ -50,11 +50,19 @@ public class JobList extends Fragment {
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_job_list, container, false);
+        String api_function;
 
         Map<String, String> jobParam = new HashMap<>();
-        jobParam.put("company", getArguments().getString("companyID"));
+        if (getArguments().getString("companyID") != null ) {
+            jobParam.put("company", getArguments().getString("companyID"));
+            api_function = "getJobsForCompany";
+        } else {
+            jobParam.put("title", getArguments().getString("user_query"));
+            api_function = "searchJob";
+        }
 
-        Kumulos.call("getJobsForCompany", jobParam, new ResponseHandler() {
+
+        Kumulos.call(api_function, jobParam, new ResponseHandler() {
 
             @Override
             public void didCompleteWithResult(Object result) {
