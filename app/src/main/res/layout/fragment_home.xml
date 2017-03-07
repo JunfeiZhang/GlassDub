@@ -6,76 +6,79 @@
     tools:context="edu.washington.glassdub.glassdub.HomeFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:orientation="vertical"
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout">
+            android:orientation="vertical">
 
             <SearchView
                 android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Search Companies and Jobs"
-            />
+                android:queryHint="Search Companies and Jobs" />
 
             <TextView
-                android:text="Search Companies and Jobs"
+                android:id="@+id/search_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:layout_marginEnd="23dp"
+                android:text="Search Companies and Jobs"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"/>
+                <!--android:layout_centerHorizontal="true"-->
         </RelativeLayout>
 
 
         <android.support.design.widget.TabLayout
-                android:id="@+id/company_tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/CustomTabLayout"/>
+            android:id="@+id/company_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CustomTabLayout"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/company_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_margin="10dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <LinearLayout
-            android:gravity="bottom|center"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:gravity="bottom|center"
+            android:orientation="horizontal">
 
             <Button
-                android:text="Add Job Review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/submit_interview_button"
-                android:background="#b7a57a"
-                android:textColor="#ffffff"
-                android:padding="10dp"/>
-            <Button
-                android:text="Add Interview Review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button7"
                 android:background="#b7a57a"
-                android:textColor="#ffffff"
+                android:padding="10dp"
+                android:text="Add Job Review"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:padding="10dp"/>
+                android:background="#b7a57a"
+                android:padding="10dp"
+                android:text="Add Interview Review"
+                android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     tools:context="edu.washington.glassdub.glassdub.CompanyList">
 
-    <ListView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noResultstext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            android:text="Your search did not match any company names" />
+
+        <ListView
+        android:id="@+id/JPlistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:id="@+id/JPlistview" />
+        android:paddingTop="10dp" />
 
+    </RelativeLayout>
 </FrameLayout>

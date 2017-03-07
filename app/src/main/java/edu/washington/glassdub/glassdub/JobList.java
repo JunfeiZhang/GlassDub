@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +42,7 @@ public class JobList extends Fragment {
     private int[] counts = {4, 3, 2, 3, 5, 2};
 
     private static final String TAG = "JobList";
+    private TextView noJobResults;
 
     public JobList() {
         // Required empty public constructor
@@ -61,9 +65,9 @@ public class JobList extends Fragment {
             api_function = "searchJob";
         }
 
+        noJobResults = (TextView) view.findViewById(R.id.noJobResults);
 
         Kumulos.call(api_function, jobParam, new ResponseHandler() {
-
             @Override
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
@@ -85,7 +89,9 @@ public class JobList extends Fragment {
 
                     if (objects.size() == 0) {
                         // TODO: show the user that there were no results
+                        noJobResults.setVisibility(View.VISIBLE);
                     } else {
+                        noJobResults.setVisibility(View.INVISIBLE);
                         // Populate with data
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 

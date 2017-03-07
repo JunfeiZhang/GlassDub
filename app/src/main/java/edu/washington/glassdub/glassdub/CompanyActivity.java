@@ -27,6 +27,8 @@ public class CompanyActivity extends AppCompatActivity {
     private TextView title, descr;
     private LinearLayout rating;
     private Activity act = this;
+    private ImageView companyImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,9 @@ public class CompanyActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String companyID = intent.getStringExtra("companyID");
 
+        //companyImage = (ImageView) findViewById(R.id.companyImage);
         mViewPager = (ViewPager) findViewById(R.id.company_container);
+
 
         Bundle b = new Bundle();
         b.putString("companyID", companyID);
@@ -89,7 +93,21 @@ public class CompanyActivity extends AppCompatActivity {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String,Object>>) result;
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
-                        title.setText(object.get("name").toString());
+                        String companyName = object.get("name").toString();
+                        title.setText(companyName);
+//                        if(companyName.equals("Amazon")) {
+//                            companyImage.setImageResource(R.drawable.amazon);
+//                        } else if (companyName.equals("Google")) {
+//                            companyImage.setImageResource(R.drawable.google);
+//                        } else if (companyName.equals("Tableau")) {
+//                            companyImage.setImageResource(R.drawable.tableau);
+//                        } else if (companyName.equals("Zillow")) {
+//                            companyImage.setImageResource(R.drawable.zillow);
+//                        } else if (companyName.equals("Starbucks")) {
+//                            companyImage.setImageResource(R.drawable.starbucks);
+//                        } else {
+//                            companyImage.setImageResource(R.drawable.facebook);
+//                        }
                         descr.setText(object.get("description").toString());
                         // TODO: Show rating with stars
                         setRating(Integer.parseInt(object.get("rating").toString()));
