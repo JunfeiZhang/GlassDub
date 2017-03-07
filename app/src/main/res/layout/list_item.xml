@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     style="@style/CardTheme">
 
-    <include android:id="@+id/stars" layout="@layout/list_of_stars" />
+    <include android:id="@+id/stars" layout="@layout/title_stars" />
 
     <TextView
         android:text="subtitle"

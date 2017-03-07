@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.kumulos.android.Kumulos;
@@ -93,7 +91,7 @@ public class CompanyList extends Fragment {
                     } else {
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
-                        ListView companyReviewList = (ListView) view.findViewById(R.id.company_listview);
+                        ListView companyReviewList = (ListView) view.findViewById(R.id.JPlistview);
                         companyReviewList.setAdapter(adapter);
 
                         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

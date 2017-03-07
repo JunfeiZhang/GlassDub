@@ -95,30 +95,6 @@ public class WriteInterview extends AppCompatActivity {
         ((ImageButton) findViewById(R.id.write_interview_date_icon)).setOnTouchListener(dateTouchListener);
     }
 
-    public String getJob() {
-        return company_job;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getOffer() {
-        return offer;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public String getExperience() {
-        return experience;
-    }
-
     private void fillOfferList() {
         List<String> spinnerArray =  new ArrayList<String>();
 
