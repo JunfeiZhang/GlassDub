@@ -67,11 +67,14 @@ public class HomeFragment extends Fragment {
         vpAdapter.addFragments(defaultCompanysFrag,"Companies");
 
 
-        vpAdapter.addFragments(new BlankFragment(), "Jobs");
+        Fragment defaultJobsFrag = new jobListHome();
+        bundle.putString("job","none");
+        defaultJobsFrag.setArguments(bundle);
+        vpAdapter.addFragments(defaultJobsFrag, "Jobs");
+
         mViewPager.setAdapter(vpAdapter);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
 
 
 
