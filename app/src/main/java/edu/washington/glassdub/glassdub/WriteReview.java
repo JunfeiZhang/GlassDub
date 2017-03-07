@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.Spinner;
@@ -50,11 +51,11 @@ public class WriteReview extends Activity {
     String review_title;
     String review_body;
     String anonymous = "false";
-    String rating = "3";
+    String rating = "";
 
     int[] star_ids = new int[5];
 
-    int grey;
+    int lightgrey;
     int purple;
 
     EditText company_view;
@@ -92,12 +93,15 @@ public class WriteReview extends Activity {
         ((ImageButton) findViewById(R.id.write_review_end_date_icon)).setOnTouchListener(endDateTouchListener);
 
 
-        grey =  ResourcesCompat.getColor(getResources(), R.color.mediumgrey, null);
+        lightgrey =  ResourcesCompat.getColor(getResources(), R.color.lightgrey, null);
         purple = ResourcesCompat.getColor(getResources(), R.color.purple, null);
 
-        LinearLayout rating = (LinearLayout) findViewById(R.id.write_review_rating);
-        int[] temp = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_4};
+        rating_view = (LinearLayout) findViewById(R.id.write_review_rating);
+        int[] temp = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
         star_ids = temp;
+        for (int i = 0; i < star_ids.length; i++) {
+            rating_view.findViewById(star_ids[i]).setOnClickListener(ratingListener);
+        }
 
         submit = (Button) findViewById(R.id.write_review_submit_button);
         submit.setOnClickListener(submitListener);
@@ -360,17 +364,19 @@ public class WriteReview extends Activity {
 
     private View.OnClickListener ratingListener = new View.OnClickListener() {
         public void onClick(View v) {
-            ImageButton clicked = (ImageButton) v;
+            ImageView clicked = (ImageView) v;
+            Log.d(TAG, "rating set to: " + rating);
             rating = v.getTag().toString();
             clicked.setColorFilter(purple);
 
             Log.d(TAG, "rating clicked: " + rating);
 
             for (int i = 0; i < star_ids.length; i++) {
-                ImageButton button = (ImageButton) findViewById(star_ids[i]);
-                if (!button.getTag().toString().equals(rating)) {
-                    button.setColorFilter(grey);
-                    Log.d(TAG, "changed " + button.getTag() + " to grey");
+                ImageView button = (ImageView) findViewById(star_ids[i]);
+                if (Integer.parseInt(button.getTag().toString()) <= Integer.parseInt(rating)) {
+                    button.setColorFilter(purple);
+                } else {
+                    button.setColorFilter(lightgrey);
                 }
             }
         }

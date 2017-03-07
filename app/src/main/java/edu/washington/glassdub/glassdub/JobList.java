@@ -111,7 +111,7 @@ public class JobList extends Fragment {
                                 intent.putExtra("title",objects.get(position).get("title").toString());
                                 intent.putExtra("type",objects.get(position).get("type").toString());
                                 intent.putExtra("companyID", getArguments().getString("companyID"));
-                                intent.putExtra("companyName",companyName);
+                                intent.putExtra("companyName", objects.get(position).get("company").toString());
                                 startActivity(intent);
                             }
                         });
@@ -128,7 +128,8 @@ public class JobList extends Fragment {
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
             Log.d(TAG, "object: " + obj.toString());
-            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(), obj.get("company").toString(), new Random().nextInt(5) + 1);
+            data[i] = new CustomItem(obj.get("title").toString(),
+                    obj.get("type").toString(), obj.get("company").toString(), new Random().nextInt(5) + 1);
         }
 
         return data;

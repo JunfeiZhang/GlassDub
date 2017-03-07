@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     style="@style/CardTheme">
 
-    <include android:id="@+id/stars" layout="@layout/title_stars" />
+    <include android:id="@+id/stars" layout="@layout/title_stars"
+        android:layout_height="13dp" />
 
     <TextView
         android:text="subtitle"
@@ -24,5 +25,6 @@
         android:textSize="@dimen/font_size_medium"
         android:id="@+id/list_item_main"
         android:ellipsize="end"
-        android:maxLines="2"/>
+        android:maxLines="2"
+        android:padding="0dp"/>
 </LinearLayout>

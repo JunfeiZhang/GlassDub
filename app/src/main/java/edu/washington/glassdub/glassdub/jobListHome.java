@@ -112,7 +112,9 @@ public class jobListHome extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(), "", 5);
+            LinkedHashMap<String, Object> company = (LinkedHashMap<String, Object>) obj.get("company");
+            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(),
+                    company.get("name").toString(),Integer.parseInt(company.get("rating").toString()));
         }
 
         return data;
