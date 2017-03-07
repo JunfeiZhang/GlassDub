@@ -54,6 +54,9 @@ public class JobList extends Fragment {
         Map<String, String> jobParam = new HashMap<>();
         jobParam.put("company", getArguments().getString("companyID"));
 
+        final String companyName = getArguments().getString("title");
+
+
         Kumulos.call("getJobsForCompany", jobParam, new ResponseHandler() {
 
             @Override
@@ -87,8 +90,13 @@ public class JobList extends Fragment {
                         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                                // here goes to job page
                                 Intent intent = new Intent(getActivity(), JobPage.class);
                                 intent.putExtra("jobID", objects.get(position).get("jobID").toString());
+                                intent.putExtra("title",objects.get(position).get("title").toString());
+                                intent.putExtra("type",objects.get(position).get("type").toString());
+                                intent.putExtra("companyID", getArguments().getString("companyID"));
+                                intent.putExtra("companyName",companyName);
                                 startActivity(intent);
                             }
                         });

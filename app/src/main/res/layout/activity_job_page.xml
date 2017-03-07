@@ -22,18 +22,18 @@
         android:text="Company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView16" />
+        android:id="@+id/company" />
 
     <TextView
         android:text="Type (full, part, internship)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView17" />
+        android:id="@+id/type" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView15"
+        android:id="@+id/des"
         android:text="Description" />
 
     <TextView

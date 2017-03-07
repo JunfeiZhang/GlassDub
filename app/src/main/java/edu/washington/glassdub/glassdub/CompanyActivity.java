@@ -36,28 +36,16 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
 
         Intent intent = getIntent();
-        String companyID = intent.getStringExtra("companyID");
+        String companyID = intent.getStringExtra("companyID");  // companyID
 
         mViewPager = (ViewPager) findViewById(R.id.container);
 
-        Bundle b = new Bundle();
+        // initialize bundle
+        final Bundle b = new Bundle();
         b.putString("companyID", companyID);
 
-        Fragment reviewList = new ReviewList();
-        reviewList.setArguments(b);
 
-        Fragment interviewList = new InterviewList();
-        interviewList.setArguments(b);
 
-        Fragment jobList = new JobList();
-        jobList.setArguments(b);
-
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        vpAdapter.addFragments(reviewList, "Reviews");
-        vpAdapter.addFragments(interviewList, "Interviews");
-        vpAdapter.addFragments(jobList, "Jobs");
-
-        mViewPager.setAdapter(vpAdapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -91,6 +79,7 @@ public class CompanyActivity extends AppCompatActivity {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String,Object>>) result;
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
+                        b.putString("tile",object.get("name").toString());
                         title.setText(object.get("name").toString());
                         descr.setText(object.get("description").toString());
                         // TODO: Show rating with stars
@@ -101,5 +90,25 @@ public class CompanyActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        // put bundle into three different fragments
+
+        Fragment reviewList = new ReviewList();
+        reviewList.setArguments(b);
+
+        Fragment interviewList = new InterviewList();
+        interviewList.setArguments(b);
+
+        Fragment jobList = new JobList();
+        jobList.setArguments(b);
+
+
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        vpAdapter.addFragments(reviewList, "Reviews");
+        vpAdapter.addFragments(interviewList, "Interviews");
+        vpAdapter.addFragments(jobList, "Jobs");
+        mViewPager.setAdapter(vpAdapter);
+
     }
 }

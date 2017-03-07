@@ -61,7 +61,7 @@ public class CompanyList extends Fragment {
 //
 //
 //        }
-        if(getArguments().getString("user_query") == "none"){
+        if(getArguments().getString("user_query").equals("none")){
             queryParam.put("name","");
         }else{
             queryParam.put("name", getArguments().getString("user_query"));
