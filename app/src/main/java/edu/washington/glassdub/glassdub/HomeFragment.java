@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,6 +42,7 @@ public class HomeFragment extends Fragment {
     private ViewPagerAdapter vpAdapter;
     private String query;
     private View view;
+    private BottomNavigationView botNavigation;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -56,6 +60,26 @@ public class HomeFragment extends Fragment {
 
 
         query = "";
+
+        botNavigation = (BottomNavigationView) view.findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(getActivity(), WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(getActivity(), WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
+
         searchView = (SearchView) view.findViewById(R.id.search);
         hintText = (TextView) view.findViewById(R.id.search_title);
         hintText.setOnClickListener(new View.OnClickListener() {
@@ -135,23 +159,23 @@ public class HomeFragment extends Fragment {
         });
 
 
-        writeInterview = (Button) view.findViewById(R.id.button7);
-        writeInterview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), WriteInterview.class);
-                startActivity(intent);
-            }
-        });
-
-        writeReview = (Button) view.findViewById(R.id.submit_interview_button);
-        writeReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), WriteReview.class);
-                startActivity(intent);
-            }
-        });
+//        writeInterview = (Button) view.findViewById(R.id.button7);
+//        writeInterview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), WriteInterview.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        writeReview = (Button) view.findViewById(R.id.submit_interview_button);
+//        writeReview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), WriteReview.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return view;
     }

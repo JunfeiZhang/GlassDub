@@ -24,12 +24,6 @@
             android:layout_alignParentStart="true"
             android:id="@+id/fragment_placeholder">
         </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/list_Fragment">
-        </FrameLayout>
     </LinearLayout>
 
 </LinearLayout>
