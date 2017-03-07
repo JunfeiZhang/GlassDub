@@ -15,4 +15,4 @@ User stories:
 - Post internship
 
 Optional Users:
-- iSchool Advisors: Manages app by adding companies
+- iSchool Advisors: Manages app by adding companiesz
