@@ -5,12 +5,15 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +39,7 @@ public class CompanyActivity extends AppCompatActivity {
     private ImageView companyImage;
     private ProgressBar progressBar;
     private LinearLayout companyLayout;
+    private BottomNavigationView botNavigation;
 
 
     @Override
@@ -53,6 +57,25 @@ public class CompanyActivity extends AppCompatActivity {
         // initialize bundle
         final Bundle b = new Bundle();
         b.putString("companyID", companyID);
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(CompanyActivity.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(CompanyActivity.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
 
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -103,7 +126,9 @@ public class CompanyActivity extends AppCompatActivity {
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         b.putString("tile",object.get("name").toString());
-                        title.setText(object.get("name").toString());
+
+                        String cName = object.get("name").toString();
+                        title.setText(cName);
                         String companyName = object.get("name").toString();
                         title.setText(companyName);
 
@@ -111,7 +136,20 @@ public class CompanyActivity extends AppCompatActivity {
                         // TODO: Show rating with stars
                         setRating(Integer.parseInt(object.get("rating").toString()));
                         // TODO: Do image stuff here
-                        //String imgUrl = object.get("logo_url").toString();
+//                        ImageView cImage = (ImageView) findViewById(R.id.cImage);
+//                        if(cName.equals("Facebook")) {
+//                            cImage.setImageResource(R.drawable.facebook);
+//                        } else if (cName.equals("Amazon")) {
+//                            cImage.setImageResource(R.drawable.amazon);
+//                        } else if (cName.equals("Google")) {
+//                            cImage.setImageResource(R.drawable.google);
+//                        } else if (cName.equals("Tableau")) {
+//                            cImage.setImageResource(R.drawable.tableau);
+//                        } else if (cName.equals("Zillow")) {
+//                            cImage.setImageResource(R.drawable.zillow);
+//                        } else if (cName.equals("Starbucks")) {
+//                            cImage.setImageResource(R.drawable.starbucks);
+//                        }
                     }
                 }
             }

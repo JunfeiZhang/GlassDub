@@ -5,10 +5,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +37,7 @@ public class ReviewPage extends AppCompatActivity {
     private static final String TAG = "ReviewPage";
     private ProgressBar progressBar;
     private LinearLayout reviewLayout;
+    private BottomNavigationView botNavigation;
 
 
     @Override
@@ -110,6 +114,25 @@ public class ReviewPage extends AppCompatActivity {
                         created.setText(object.get("timeCreated").toString());
                     }
                 }
+            }
+        });
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(ReviewPage.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(ReviewPage.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(ReviewPage.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
             }
         });
     }

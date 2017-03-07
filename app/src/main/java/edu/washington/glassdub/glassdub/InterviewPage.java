@@ -5,10 +5,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -36,6 +39,7 @@ public class InterviewPage extends AppCompatActivity {
     private Activity act = this;
     private ProgressBar progressBar;
     private LinearLayout interviewLayout;
+    private BottomNavigationView botNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +113,25 @@ public class InterviewPage extends AppCompatActivity {
 
                     }
                 }
+            }
+        });
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(InterviewPage.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(InterviewPage.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(InterviewPage.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
             }
         });
     }

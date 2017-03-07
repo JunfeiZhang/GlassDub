@@ -33,8 +33,6 @@ import static android.view.View.VISIBLE;
  */
 
 public class HomeFragment extends Fragment {
-    private Button writeReview;
-    private Button writeInterview;
     private SearchView searchView;
     private TextView hintText;
     private ViewPager mViewPager;
@@ -92,9 +90,6 @@ public class HomeFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.company_container);
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
 
-
-        //First fill in both tabs with empty fragment
-//        vpAdapter.addFragments(new BlankFragment(), "Companies");
 
         Fragment defaultCompanysFrag = new CompanyList();
         Bundle bundle = new Bundle();

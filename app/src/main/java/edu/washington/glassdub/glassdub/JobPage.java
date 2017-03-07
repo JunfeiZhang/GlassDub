@@ -5,9 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +36,7 @@ public class JobPage extends AppCompatActivity {
     private TextView company, type,des;
     private ProgressBar progressBar;
     private LinearLayout jobLayout;
+    private BottomNavigationView botNavigation;
 
 //    private String[] jobReviews = new String[] {
 //            "Job Review 1", "Job Review 2", "Job Review 3"
@@ -117,6 +121,25 @@ public class JobPage extends AppCompatActivity {
                         });
                     }
                 }
+            }
+        });
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(JobPage.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(JobPage.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(JobPage.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
             }
         });
 
