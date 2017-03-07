@@ -28,7 +28,8 @@ import java.util.Map;
  */
 
 /**
- * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched)
+ * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched or after user goes to a job page)
+ * TODO: If there are no interviews, make noInterviews textview visible.
  */
 
 public class InterviewList extends Fragment {

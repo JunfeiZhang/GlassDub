@@ -1,7 +1,9 @@
 package edu.washington.glassdub.glassdub;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,11 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static android.view.View.VISIBLE;
 
@@ -50,12 +50,24 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Log.i("test", settings.getString("username", "hi"));
+
+
         query = "";
         searchView = (SearchView) view.findViewById(R.id.search);
-        hintText = (TextView) view.findViewById(R.id.textView5);
+        hintText = (TextView) view.findViewById(R.id.search_title);
+        hintText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
+            }
+        });
 
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
+        mViewPager = (ViewPager) view.findViewById(R.id.company_container);
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
+
 
         //First fill in both tabs with empty fragment
 //        vpAdapter.addFragments(new BlankFragment(), "Companies");
@@ -73,11 +85,8 @@ public class HomeFragment extends Fragment {
         vpAdapter.addFragments(defaultJobsFrag, "Jobs");
 
         mViewPager.setAdapter(vpAdapter);
-        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) view.findViewById(R.id.company_tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
-
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -91,12 +100,12 @@ public class HomeFragment extends Fragment {
                 Bundle b = new Bundle();
                 b.putString("user_query", query);
                 newCompaniesFrag.setArguments(b);
-                //newJobsFrag.setArguments(b);
+                newJobsFrag.setArguments(b);
 
-                ViewPager afterSearch = (ViewPager) view.findViewById(R.id.container);
+                ViewPager afterSearch = (ViewPager) view.findViewById(R.id.company_container);
                 ViewPagerAdapter searchAdapter = new ViewPagerAdapter(getFragmentManager());
                 searchAdapter.addFragments(newCompaniesFrag, "Companies");
-                //searchAdapter.addFragments(newJobsFrag, "Jobs");
+                searchAdapter.addFragments(newJobsFrag, "Jobs");
                 afterSearch.setAdapter(searchAdapter);
                 tabLayout.setupWithViewPager(afterSearch);
                 return false;

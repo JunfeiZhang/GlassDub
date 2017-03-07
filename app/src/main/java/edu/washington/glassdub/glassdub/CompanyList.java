@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
@@ -45,6 +44,8 @@ public class CompanyList extends Fragment {
 
     private static final String TAG = "CompanyList";
 
+    private TextView noSearchResults;
+
     public CompanyList() { }
 
 
@@ -67,6 +68,7 @@ public class CompanyList extends Fragment {
             queryParam.put("name", getArguments().getString("user_query"));
         }
 
+        noSearchResults = (TextView) view.findViewById(R.id.noResultstext);
 
         Kumulos.call("searchCompanies", queryParam, new ResponseHandler() {
             @Override
@@ -90,10 +92,12 @@ public class CompanyList extends Fragment {
 
                     if (objects.size() == 0) {
                         // TODO: tell the user that their query didn't return any results
+                        noSearchResults.setVisibility(View.VISIBLE);
                     } else {
+                        noSearchResults.setVisibility(View.INVISIBLE);
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
-                        ListView companyReviewList = (ListView) view.findViewById(R.id.company_listview);
+                        ListView companyReviewList = (ListView) view.findViewById(R.id.JPlistview);
                         companyReviewList.setAdapter(adapter);
 
                         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

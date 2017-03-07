@@ -1,5 +1,7 @@
 package edu.washington.glassdub.glassdub;
 
+import android.util.Log;
+
 /**
  * Created by Diana on 3/3/2017.
  */
@@ -9,7 +11,6 @@ public class CustomItem {
     private String subtitle;
     private String main;
     private int starCount;
-
 
     public CustomItem() {
         super();

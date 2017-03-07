@@ -36,7 +36,7 @@ public class WriteInterview extends AppCompatActivity {
 
     Calendar calendar;
 
-    String[] offer_list = {"yes", "no", "pending"};
+    String[] offer_list = {"Yes", "No", "Pending"};
 
     String company_job = null;
     String date = null;
@@ -95,30 +95,6 @@ public class WriteInterview extends AppCompatActivity {
         ((ImageButton) findViewById(R.id.write_interview_date_icon)).setOnTouchListener(dateTouchListener);
     }
 
-    public String getJob() {
-        return company_job;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getOffer() {
-        return offer;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public String getExperience() {
-        return experience;
-    }
-
     private void fillOfferList() {
         List<String> spinnerArray =  new ArrayList<String>();
 
@@ -136,10 +112,9 @@ public class WriteInterview extends AppCompatActivity {
     private boolean fetchData() {
         CustomEditText company_view = ((CustomEditText) findViewById(R.id.write_interview_company));
         CustomEditText job_view = ((CustomEditText) findViewById(R.id.write_interview_job));
-        CustomEditText content_view = ((CustomEditText) findViewById(R.id.write_interview_body));
         TextView date_view = ((TextView) findViewById(R.id.write_interview_date));
         Spinner offer_view = ((Spinner) findViewById(R.id.write_interview_offer));
-        CustomEditText comments_view = ((CustomEditText) findViewById(R.id.write_interview_body));
+        EditText comments_view = ((EditText) findViewById(R.id.write_interview_body));
 
 
         String company = company_view.getText().toString();
