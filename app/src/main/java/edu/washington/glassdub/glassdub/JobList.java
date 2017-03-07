@@ -70,7 +70,7 @@ public class JobList extends Fragment {
 
         noJobResults = (TextView) view.findViewById(R.id.noJobResults);
 
-        Kumulos.call("getJobsForCompany", jobParam, new ResponseHandler() {
+        Kumulos.call(api_function, jobParam, new ResponseHandler() {
             @Override
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
