@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     tools:context=".ReviewList">
 
+    <TextView
+        android:id="@+id/noReviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:text="There are no job reviews for this (company or job)." />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

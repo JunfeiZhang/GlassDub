@@ -39,25 +39,21 @@
                     android:textColor="@color/mediumgrey"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/JPtitle" />
+                    android:id="@+id/JPjob" />
 
-                <LinearLayout
+
+                <TextView
+                    android:text="Full Time"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/JPtype"
+                    style="@style/ContentTheme"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitCenter"
-                        android:text="1"
-                        android:id="@+id/JPrating"
-                        android:background="@drawable/ic_star_gold_24dp"/>
-                </LinearLayout>
+                <include android:id="@+id/JPrating" layout="@layout/list_of_stars"/>
             </LinearLayout>
         </LinearLayout>
 
-        <!--<LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -76,19 +72,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/JPdescription"
                 style="@style/ContentTheme"/>
-        </LinearLayout>-->
+        </LinearLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/job_tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/CustomTabLayout"/>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/job_container"
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_marginTop="10dp"/>
+            android:paddingTop="10dp"
+            android:id="@+id/company_listview" />
     </LinearLayout>
 </FrameLayout>

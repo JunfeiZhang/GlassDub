@@ -16,25 +16,24 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="Interview Info"
+            android:text="Interview Review"
             android:textSize="@dimen/font_size_title"
             android:textStyle="bold"
             android:gravity="center"
             android:background="@color/purple"
             android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.075"/>
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
             style="@style/ScreenTheme"
             android:orientation="vertical">
 
             <TextView
-                android:text="Review For:"
+                android:text="Interview Review For:"
                 style="@style/SubtitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,8 +59,7 @@
                     android:hint="Company"
                     style="@style/EditTextTheme"
                     android:inputType="textCapWords"
-                    android:maxLines="1"
-                    />
+                    android:maxLines="1" />
 
                 <Space
                     android:layout_width="0dip"
@@ -87,14 +85,15 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
 
                 <TextView
                     style="@style/WriteReviewSubtitleHalfTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="Date:    "
+                    android:text="Interview Date:    "
                     android:id="@+id/write_interview_date_title" />
 
                 <TextView
@@ -110,60 +109,53 @@
                 <ImageButton
                     android:id="@+id/write_interview_date_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/ic_date_range_24dp"
                     android:background="@color/white"
-                    android:layout_centerVertical="true"
                     android:tint="@color/purple"
-                    android:layout_toEndOf="@id/write_interview_date"/>
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="8dp"
+                    android:layout_toEndOf="@+id/write_interview_date" />
 
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
                 <TextView
-                    android:text="Received offer?"
+                    android:text="Received job offer?    "
                     style="@style/WriteReviewSubtitleHalfTheme"
-                    android:layout_width="0dip"
-                    android:layout_weight="0.3"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/write_interview_offer_title" />
 
                 <Spinner
-                    android:layout_width="0dip"
-                    android:layout_weight="0.3"
+                    android:layout_width="130dp"
                     android:layout_height="match_parent"
                     android:id="@+id/write_interview_offer"
                     android:textColor="@color/purple"/>
-
-                <Space
-                    android:layout_width="0dip"
-                    android:layout_weight="0.2"
-                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
 
                 <TextView
-                    android:text="Overall Experience?"
+                    android:text="Overall Interview Experience?"
                     style="@style/SubtitleTheme"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dip"
-                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
                     android:id="@+id/write_interview_experience_title"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="0.7"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     android:id="@+id/write_interview_experience">
 
@@ -213,31 +205,29 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingTop="10dp"
                 android:textColor="@color/lightgrey">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="Difficulty?"
+                        android:text="Interview Difficulty?"
                         style="@style/SubtitleTheme"
                         android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.2" />
+                        android:layout_width="wrap_content"/>
 
                     <TextView
                         android:text="  (1 = easy, 5 = difficult)"
                         style="@style/SubtitleTheme"
                         android:textStyle="normal"
                         android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.6"
+                        android:layout_width="wrap_content"
                         android:id="@+id/write_interview_difficulty_subtitle"/>
                 </LinearLayout>
 
@@ -336,56 +326,59 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.6"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:text="Describe the Interview Process"
+                    style="@style/SubtitleTheme"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_width="wrap_content"/>
 
-                    <TextView
-                        android:text="Comments"
-                        style="@style/SubtitleTheme"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.23"/>
-
-                    <TextView
-                        android:text="  (Pros, Cons, Sample Qs, etc.)"
-                        style="@style/SubtitleTheme"
-                        android:textStyle="normal"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.6"/>
-
-                </LinearLayout>
+                <TextView
+                    android:text="  (Pros, Cons, Sample Questions, Tips, etc.)"
+                    style="@style/SubtitleTheme"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingBottom="2dp"/>
 
                 <edu.washington.glassdub.glassdub.CustomEditText
-                    android:id="@+id/write_interview_body"
-                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:gravity="top|left"
+                    android:id ="@+id/write_interview_body"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
-                    android:inputType="text"
-                    android:layout_weight="0.7"
-                    android:maxLines="100"
-                    android:scrollHorizontally="false"/>
+                    android:layout_height ="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:maxLines ="2000"
+                    android:minLines="4"
+                    android:scrollHorizontally="false"
+                    android:background="@drawable/border"/>
             </LinearLayout>
 
             <CheckBox
-                android:text="Include your NetID"
+                android:text="Include your NetID in your review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/checkBox" />
+                android:id="@+id/checkBox"
+                android:layout_marginTop="5dp"/>
 
             <Button
-                android:text="Submit"
+                android:text="Submit Review"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:background="@color/mediumgrey"
-                android:id="@+id/submit_interview_button" />
+                android:id="@+id/submit_interview_button"
+                android:layout_marginBottom="30dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"/>
 
         </LinearLayout>
     </LinearLayout>

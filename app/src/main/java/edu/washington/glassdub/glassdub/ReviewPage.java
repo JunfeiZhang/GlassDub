@@ -48,6 +48,7 @@ public class ReviewPage extends AppCompatActivity {
 
         // TODO: get info sent to fragment (comapny ID)
         Intent intent = getIntent();
+
         String companyRevID = intent.getStringExtra("reviewID");
         Map<String,String> revParams = new HashMap<>();
         revParams.put("job_reviewID", companyRevID);

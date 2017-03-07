@@ -27,6 +27,8 @@ public class CompanyActivity extends AppCompatActivity {
     private TextView title, descr;
     private LinearLayout rating;
     private Activity act = this;
+    private ImageView companyImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,28 +36,18 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
 
         Intent intent = getIntent();
-        String companyID = intent.getStringExtra("companyID");
+        String companyID = intent.getStringExtra("companyID");  // companyID
 
+        //companyImage = (ImageView) findViewById(R.id.companyImage);
         mViewPager = (ViewPager) findViewById(R.id.company_container);
 
-        Bundle b = new Bundle();
+
+        // initialize bundle
+        final Bundle b = new Bundle();
         b.putString("companyID", companyID);
 
-        Fragment reviewList = new ReviewList();
-        reviewList.setArguments(b);
 
-        Fragment interviewList = new InterviewList();
-        interviewList.setArguments(b);
 
-        Fragment jobList = new JobList();
-        jobList.setArguments(b);
-
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        vpAdapter.addFragments(reviewList, "Reviews");
-        vpAdapter.addFragments(interviewList, "Interviews");
-        vpAdapter.addFragments(jobList, "Jobs");
-
-        mViewPager.setAdapter(vpAdapter);
 
         tabLayout = (TabLayout) findViewById(R.id.company_tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -89,7 +81,11 @@ public class CompanyActivity extends AppCompatActivity {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String,Object>>) result;
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
+                        b.putString("tile",object.get("name").toString());
                         title.setText(object.get("name").toString());
+                        String companyName = object.get("name").toString();
+                        title.setText(companyName);
+
                         descr.setText(object.get("description").toString());
                         // TODO: Show rating with stars
                         setRating(Integer.parseInt(object.get("rating").toString()));
@@ -99,6 +95,26 @@ public class CompanyActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        // put bundle into three different fragments
+
+        Fragment reviewList = new ReviewList();
+        reviewList.setArguments(b);
+
+        Fragment interviewList = new InterviewList();
+        interviewList.setArguments(b);
+
+        Fragment jobList = new JobList();
+        jobList.setArguments(b);
+
+
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        vpAdapter.addFragments(reviewList, "Reviews");
+        vpAdapter.addFragments(interviewList, "Interviews");
+        vpAdapter.addFragments(jobList, "Jobs");
+        mViewPager.setAdapter(vpAdapter);
+
     }
 
     private void setRating(int count) {

@@ -135,6 +135,7 @@ public class WriteReview extends Activity {
                     } else {
                         Log.i("testing", objects.get(0).toString());
                         companyID = objects.get(0).get("companyID").toString();
+                        GlassDub app = (GlassDub) getApplication();
 
                         Map<String, String> reviewParams = new HashMap<>();
                         reviewParams.put("companyID", companyID);
@@ -146,7 +147,7 @@ public class WriteReview extends Activity {
                         reviewParams.put("title", review_title);
                         reviewParams.put("body", review_body);
                         // TODO: Get this from the application object once we have implemented login
-                        reviewParams.put("employee", "1");
+                        reviewParams.put("employee", app.getUsernumber());
                         reviewParams.put("anonymous", anonymous);
 
                         Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {

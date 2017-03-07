@@ -3,19 +3,14 @@ package edu.washington.glassdub.glassdub;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,21 +20,14 @@ import com.kumulos.android.ResponseHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JobPage extends AppCompatActivity {
-    private static final String TAG = "JobPage";
-
-    private String[] jobReviews = new String[] {
-            "Job Review 1", "Job Review 2", "Job Review 3"
-    };
-
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;
     private Activity act = this;
+    private TextView job, type,des;
 
-    TextView title;
-    TextView rating;
+    LinearLayout rating;
     ImageView logo;
     //TextView description;
 
@@ -49,58 +37,27 @@ public class JobPage extends AppCompatActivity {
         setContentView(R.layout.activity_job_page);
 
         Intent intent = getIntent();
-        String jobID = intent.getStringExtra("jobID");
-
-        /*
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, jobReviews);
-        ListView companyReviewList = (ListView) findViewById(R.id.JPlistview);
-        companyReviewList.setAdapter(adapter);
-
-        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Intent intent = new Intent(JobPage.this, ReviewPage.class);
-                startActivity(intent);
-
-            }
-        });
-
-        */
-        // initialize with job data (title/rating/logo/description)
-
-
-
-        mViewPager = (ViewPager) findViewById(R.id.job_container);
-
-        Bundle b = new Bundle();
-        b.putString("jobID", jobID);
-
-        /*
-        Fragment reviewList = new ReviewList();
-        reviewList.setArguments(b);
-
-        Fragment interviewList = new InterviewList();
-        interviewList.setArguments(b);
-        */
-
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        vpAdapter.addFragments(new BlankFragment(), "Reviews");
-        vpAdapter.addFragments(new BlankFragment(), "Interviews");
-        mViewPager.setAdapter(vpAdapter);
-
-        tabLayout = (TabLayout) findViewById(R.id.job_tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        title = (TextView) findViewById(R.id.JPtitle);
-        //description = (TextView) findViewById(R.id.JPdescription);
-        logo = (ImageView) findViewById(R.id.JPlogo);
-        rating = (TextView) findViewById(R.id.JPrating);
+        final String jobID = intent.getStringExtra("jobID");
+        String companyName = intent.getStringExtra("companyName");
+        String typeJob = intent.getStringExtra("type");
+        String jobName = intent.getStringExtra("title");
 
         Map<String,String> jobParams = new HashMap<>();
-        jobParams.put("jobID", jobID);
+        jobParams.put("job",jobID);
 
-        Kumulos.call("getJob", jobParams, new ResponseHandler() {
+        job = (TextView) findViewById(R.id.JPjob);
+        type = (TextView) findViewById(R.id.JPtype);
+        des = (TextView) findViewById(R.id.JPdescription);
+        logo = (ImageView) findViewById(R.id.JPlogo);
+        rating = (LinearLayout) findViewById(R.id.JPrating);
+
+        type.setText(typeJob);
+        job.setText(companyName + " - " + jobName);
+        updateRating(Integer.parseInt(intent.getStringExtra("rating")));
+        //type.setText(intent.getStringExtra("type"));
+        //description = (TextView) findViewById(R.id.JPdescription);
+
+        Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
             @Override
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
@@ -108,7 +65,7 @@ public class JobPage extends AppCompatActivity {
                             act);
                     alertDialogBuilder
                             .setTitle("Error")
-                            .setMessage("We We were unable to retrieve information about the selected company. Try again.")
+                            .setMessage("We were unable to retrieve information about the selected review. Try again.")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -119,29 +76,54 @@ public class JobPage extends AppCompatActivity {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else {
-                    ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String,Object>>) result;
+                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                    // TODO: go through and update all the fields
                     if (objects.size() > 0) {
-                        LinkedHashMap<String, Object> object = objects.get(0);
-                        Log.d(TAG, object.toString());
-                        LinkedHashMap<String, Object> companyMap = (LinkedHashMap<String,Object>) object.get("company");
-                        title.setText(companyMap.get("name").toString() + " - " +
-                                object.get("title").toString());
-                        /*description.setText(object.get("description").toString());
-                        // TODO: Show rating with stars
-                        //TODO: set image
-                        rating.setText(object.get("rating").toString());*/
-                        // TODO: Do image stuff here
-                        //String imgUrl = object.get("logo_url").toString();
 
+                        String[] jobReviews = new String[objects.size()];
+                        int i =0;
+                        for(LinkedHashMap object: objects){
+                            jobReviews[i++] = object.get("title").toString();
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(act, android.R.layout.simple_list_item_1, jobReviews);
+                        ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
+                        companyReviewList.setAdapter(adapter);
+
+
+                        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                                Intent intent = new Intent(JobPage.this, ReviewPage.class);
+                                intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
+//                                intent.putExtra("reviewID",jobID);
+                                startActivity(intent);
+
+                            }
+                        });
                     }
                 }
             }
         });
+    }
+    private void updateRating(int count) {
+        int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
 
+        for (int i = 0; i < count; i++) {
+            ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
+        }
     }
 
 
 
-    // initialize with reviews
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, jobReviews);
+//        ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
+//        companyReviewList.setAdapter(adapter);
+
+
 }
+
+
+
 

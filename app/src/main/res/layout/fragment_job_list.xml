@@ -4,8 +4,23 @@
     android:layout_height="match_parent"
     tools:context="edu.washington.glassdub.glassdub.JobList">
 
-    <ListView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/job_listview" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noJobResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your search did not match any Job titles"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+
+        <ListView
+            android:id="@+id/job_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 </FrameLayout>

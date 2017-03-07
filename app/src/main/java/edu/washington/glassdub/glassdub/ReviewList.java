@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
@@ -26,6 +27,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import static android.view.View.VISIBLE;
 
 
 /**
@@ -43,6 +46,7 @@ public class ReviewList extends Fragment {
     private int[] counts = {2, 1, 4};
 
     private static String TAG = "ReviewList";
+    private TextView noReviews;
 
     //private ViewPagerAdapter vpAdapter;
 
@@ -57,6 +61,8 @@ public class ReviewList extends Fragment {
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_review_list, container, false);
+
+        noReviews = (TextView) view.findViewById(R.id.noReviews);
 
         String companyID = getArguments().getString("companyID", "22");
 
@@ -86,6 +92,7 @@ public class ReviewList extends Fragment {
 
                     if(objects.size() == 0) {
                         // TODO: tell the user that there are no reviews for the company yet.
+                        noReviews.setVisibility(VISIBLE);
                     } else {
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
