@@ -3,163 +3,181 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.washington.glassdub.glassdub.ReviewPage">
-
-    <LinearLayout
-        android:orientation="vertical"
+    
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="@dimen/font_size_large"
-        android:background="@color/colorBackground"
-        style="@style/ScreenTheme">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:text="Google - Interaction Designer (Job)"
-            android:theme="@style/WriteReviewTitleTheme"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/CRposition"/>
+            android:layout_gravity="top|center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/CardTheme"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Difficult But Interesting"
-                    android:textAppearance="@style/SubtitleTheme"
-                    android:theme="@style/DefaultTheme"
-                    android:textColor="@color/darkpurple"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/CRtitle" />
-
-                <include android:id="@+id/CRrating" layout="@layout/list_of_stars"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:textSize="@dimen/font_size_large"
-                android:theme="@style/DefaultTheme">
-
-                <TextView
-                    android:text="Anonymous:    "
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/CRanonymous" />
-
-                <TextView
-                    android:text="- Feb 22, 2017"
-                    android:fontFamily="@string/font_family_light"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/CRcreated" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:textSize="@dimen/font_size_small"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginTop="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="Start Date:    "
-                        android:textColor="@color/gold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-
-                    <TextView
-                        android:text="Feb 21, 2016"
-                        android:fontFamily="@string/font_family_light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/CRstart"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="End Date:    "
-                        android:textColor="@color/gold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-
-                    <TextView
-                        android:text="March 5, 2017"
-                        android:fontFamily="@string/font_family_light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/CRend"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="Salary:    "
-                        android:textColor="@color/gold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-
-                    <TextView
-                        android:text="66666"
-                        android:fontFamily="@string/font_family_light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/CRsalary"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat"
             android:orientation="vertical"
-            style="@style/CardTheme">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/font_size_large"
+            android:background="@color/colorBackground"
+            style="@style/ScreenTheme"
+            android:id="@+id/reviewLayout"
+            android:visibility="visible">
 
             <TextView
-                android:text="Overall"
+                android:text="Google - Interaction Designer (Job)"
+                android:theme="@style/WriteReviewTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/SubtitleTheme"/>
+                android:id="@+id/CRposition"/>
 
-            <TextView
-                android:text="Applied online, process took 2 weeks, phone interview followed by 3 rounds of interviews on campus"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ContentTheme"
-                android:id="@+id/CRbody"/>
+                style="@style/CardTheme"
+                android:orientation="vertical">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Difficult But Interesting"
+                        android:textAppearance="@style/SubtitleTheme"
+                        android:theme="@style/DefaultTheme"
+                        android:textColor="@color/darkpurple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/CRtitle" />
+
+                    <include android:id="@+id/CRrating" layout="@layout/list_of_stars"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="@dimen/font_size_large"
+                    android:theme="@style/DefaultTheme">
+
+                    <TextView
+                        android:text="Anonymous:    "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/CRanonymous" />
+
+                    <TextView
+                        android:text="- Feb 22, 2017"
+                        android:fontFamily="@string/font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/CRcreated" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:textSize="@dimen/font_size_small"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="Start Date:    "
+                            android:textColor="@color/gold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:text="Feb 21, 2016"
+                            android:fontFamily="@string/font_family_light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/CRstart"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="End Date:    "
+                            android:textColor="@color/gold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:text="March 5, 2017"
+                            android:fontFamily="@string/font_family_light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/CRend"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="Salary:    "
+                            android:textColor="@color/gold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:text="66666"
+                            android:fontFamily="@string/font_family_light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/CRsalary"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:orientation="vertical"
+                style="@style/CardTheme">
+
+                <TextView
+                    android:text="Overall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/SubtitleTheme"/>
+
+                <TextView
+                    android:text="Applied online, process took 2 weeks, phone interview followed by 3 rounds of interviews on campus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ContentTheme"
+                    android:id="@+id/CRbody"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 </ScrollView>

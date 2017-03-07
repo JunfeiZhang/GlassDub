@@ -12,12 +12,23 @@
     tools:context="edu.washington.glassdub.glassdub.CompanyActivity"
     style="@style/ScreenTheme">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center|top"
+        android:visibility="invisible"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/companyLayout"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"

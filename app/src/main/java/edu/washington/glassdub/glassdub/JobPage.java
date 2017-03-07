@@ -1,5 +1,7 @@
 package edu.washington.glassdub.glassdub;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,7 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -21,9 +25,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class JobPage extends AppCompatActivity {
     private Activity act = this;
     private TextView company, type,des;
+    private ProgressBar progressBar;
+    private LinearLayout jobLayout;
 
 //    private String[] jobReviews = new String[] {
 //            "Job Review 1", "Job Review 2", "Job Review 3"
@@ -48,6 +57,19 @@ public class JobPage extends AppCompatActivity {
         company.setText(companyName);
         type.setText(intent.getStringExtra("type"));
 
+        jobLayout = (LinearLayout) findViewById(R.id.jobLayout);
+        jobLayout.setVisibility(View.INVISIBLE);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.animate().setDuration(shortAnimTime).alpha(true ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                progressBar.setVisibility(GONE);
+                jobLayout.setVisibility(VISIBLE);
+            }
+        });
 
         Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
             @Override

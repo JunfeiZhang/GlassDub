@@ -1,5 +1,7 @@
 package edu.washington.glassdub.glassdub;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,8 +11,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -21,6 +25,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static android.view.View.VISIBLE;
+
 public class CompanyActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout tabLayout;
@@ -28,6 +34,8 @@ public class CompanyActivity extends AppCompatActivity {
     private LinearLayout rating;
     private Activity act = this;
     private ImageView companyImage;
+    private ProgressBar progressBar;
+    private LinearLayout companyLayout;
 
 
     @Override
@@ -47,7 +55,7 @@ public class CompanyActivity extends AppCompatActivity {
         b.putString("companyID", companyID);
 
 
-
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         tabLayout = (TabLayout) findViewById(R.id.company_tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -58,6 +66,19 @@ public class CompanyActivity extends AppCompatActivity {
 
         Map<String,String> companyParams = new HashMap<>();
         companyParams.put("companyID", companyID);
+
+        companyLayout = (LinearLayout) findViewById(R.id.companyLayout);
+        companyLayout.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(VISIBLE);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
+
+        progressBar.animate().setDuration(shortAnimTime).alpha(true ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                companyLayout.setVisibility(VISIBLE);
+                super.onAnimationEnd(animation);
+            }
+        });
 
         Kumulos.call("getCompany", companyParams, new ResponseHandler() {
             @Override
