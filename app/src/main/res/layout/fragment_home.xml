@@ -24,24 +24,27 @@
                 android:queryHint="Search Companies and Jobs" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/search_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="23dp"
                 android:text="Search Companies and Jobs"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"/>
+                <!--android:layout_centerHorizontal="true"-->
         </RelativeLayout>
 
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/company_tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/CustomTabLayout"/>
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/container"
+            android:id="@+id/company_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"

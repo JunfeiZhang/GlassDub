@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -59,12 +57,20 @@ public class CompanyList extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_company_list, container, false);
 
         Map<String, String> queryParam = new HashMap<>();
-        queryParam.put("name", getArguments().getString("user_query"));
+        Bundle bundle = getArguments();
+//        if (bundle.) {
+//
+//
+//        }
+        if(getArguments().getString("user_query") == "none"){
+            queryParam.put("name","");
+        }else{
+            queryParam.put("name", getArguments().getString("user_query"));
+        }
 
         noSearchResults = (TextView) view.findViewById(R.id.noResultstext);
 
         Kumulos.call("searchCompanies", queryParam, new ResponseHandler() {
-
             @Override
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
@@ -91,7 +97,7 @@ public class CompanyList extends Fragment {
                         noSearchResults.setVisibility(View.INVISIBLE);
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
-                        ListView companyReviewList = (ListView) view.findViewById(R.id.company_listview);
+                        ListView companyReviewList = (ListView) view.findViewById(R.id.JPlistview);
                         companyReviewList.setAdapter(adapter);
 
                         companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

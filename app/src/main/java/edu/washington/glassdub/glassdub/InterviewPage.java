@@ -2,21 +2,30 @@ package edu.washington.glassdub.glassdub;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class InterviewPage extends AppCompatActivity {
-    private TextView position, type, experience, difficulty, offer, body, user, created;
+    private static final String TAG = "InterviewPage";
+
+    private TextView position, title, type, experience, difficulty, offer, body, user, created;
     private Activity act = this;
 
     @Override
@@ -25,7 +34,8 @@ public class InterviewPage extends AppCompatActivity {
         setContentView(R.layout.activity_interview_page);
 
         position = (TextView) findViewById(R.id.Iposition);
-        type = (TextView) findViewById(R.id.Itype);
+        title = (TextView) findViewById(R.id.Ititle);
+        //type = (TextView) findViewById(R.id.Itype);
         experience = (TextView) findViewById(R.id.Iexperience);
         difficulty = (TextView) findViewById(R.id.Idifficulty);
         offer = (TextView) findViewById(R.id.Ioffer);
@@ -34,10 +44,11 @@ public class InterviewPage extends AppCompatActivity {
         created = (TextView) findViewById(R.id.Icreated);
 
         // TODO: get info sent to fragment (comapny ID)
-        int interviewID = 2; // getArguments().getInt("interviewID");
-
+        //int interviewID = 2; // getArguments().getInt("interviewID");
+        Intent intent = getIntent();
+        String interviewID = intent.getStringExtra("interviewID");
         Map<String,String> interviewParams = new HashMap<>();
-        interviewParams.put("interview_reviewID", String.valueOf(interviewID));
+        interviewParams.put("interview_reviewID", interviewID);
 
         Kumulos.call("getInterview", interviewParams, new ResponseHandler() {
             @Override
@@ -61,17 +72,37 @@ public class InterviewPage extends AppCompatActivity {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String,Object>>) result;
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
-                        position.setText(object.get("position").toString());
-                        type.setText(object.get("type").toString());
-                        experience.setText(object.get("experience").toString());
+                        Log.d(TAG, object.toString());
+                        position.setText(object.get("job").toString());
+                        title.setText(object.get("title").toString());
+                        //type.setText(object.get("type").toString());
+                        experience.setText(object.get("interview_rating").toString());
                         difficulty.setText(object.get("difficulty").toString());
                         offer.setText(object.get("received_offer").toString());
                         body.setText(object.get("body").toString());
-                        user.setText(object.get("user").toString());
-                        created.setText(object.get("timeCreated").toString());
+                        user.setText(object.get("interviewee").toString());
+                        created.setText(formatDate(object.get("timeCreated").toString()));
+
                     }
                 }
             }
         });
+    }
+
+    private String formatDate(String original) {
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+
+        Date date = null;
+        String result = "";
+
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .parse(original);
+            result = format.format(date);
+        } catch (ParseException e) {
+            e.getStackTrace();
+        }
+        Log.d(TAG, "original: " + original + " new: " + result);
+        return result;
     }
 }

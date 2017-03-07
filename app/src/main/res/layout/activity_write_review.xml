@@ -2,137 +2,303 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.washington.glassdub.glassdub.WriteReview"
+    tools:context="edu.washington.glassdub.glassdub.WriteInterview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/colorBackground"
+    android:id="@+id/activity_write_review">
+
 
     <LinearLayout
-        android:id="@+id/activity_write_review"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
         <TextView
-            android:text="Job Review"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14" />
-
-        <android.support.design.widget.TextInputLayout
+            android:text="Interview Info"
+            android:textSize="@dimen/font_size_title"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/purple"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+            android:layout_height="0dip"
+            android:layout_weight="0.075"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="0.6"
+            style="@style/ScreenTheme"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Review For:"
+                style="@style/SubtitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/company"
-                android:hint="Company*" />
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/review_for_text"
+                android:background="@color/colorBackground"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/pjb"
-                android:hint="Job*" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal"
+                android:id="@+id/company_job_input_fields">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_review_company"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:hint="Company"
+                    style="@style/EditTextTheme"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    />
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_review_job"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:hint="Job"
+                    style="@style/EditTextTheme"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:background="@drawable/edittext_bottom_line"/>
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Start Date:    "
+                    android:id="@+id/write_review_start_date_title" />
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:id="@+id/write_review_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MMMM DD, YYYY "
+                    android:textColor="@color/purple"
+                    android:textStyle="normal"
+                    android:layout_toEndOf="@id/write_review_start_date_title" />
+
+                <ImageButton
+                    android:id="@+id/write_review_start_date_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_date_range_24dp"
+                    android:background="@color/white"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/purple"
+                    android:layout_toEndOf="@id/write_review_start_date"/>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:hint=" "
+                    android:id="@+id/write_review_start_date_error"
+                    android:focusable="false"
+                    android:background="@color/white"
+                    android:layout_toEndOf="@id/write_review_start_date_icon"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="End Date:    "
+                    android:id="@+id/write_review_end_date_title" />
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:id="@+id/write_review_end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MMMM DD, YYYY"
+                    android:textColor="@color/purple"
+                    android:textStyle="normal"
+                    android:layout_toEndOf="@id/write_review_end_date_title" />
+
+                <ImageButton
+                    android:id="@+id/write_review_end_date_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_date_range_24dp"
+                    android:background="@color/white"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/purple"
+                    android:layout_toEndOf="@id/write_review_end_date"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/rating"
-                android:hint="Rating (1-5)*" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+                <TextView
+                    android:text="Annual Salary:    $"
+                    style="@style/SubtitleTheme"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_review_salary"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:background="@drawable/edittext_bottom_line"/>
+
+                <Space
+                    android:layout_width="0dip"
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:textColor="@color/lightgrey">
+
+                <TextView
+                    android:text="Rating"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    style="@style/SubtitleTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/write_review_rating_title"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <include android:id="@+id/write_review_rating"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        layout="@layout/list_of_stars"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Title"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    style="@style/SubtitleTheme"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_review_title"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:maxLines="11"
+                    android:scrollHorizontally="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Comments"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        style="@style/SubtitleTheme"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.23"/>
+
+                    <TextView
+                        android:text="  (Pros, Cons, etc.)"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        style="@style/SubtitleTheme"
+                        android:textStyle="normal"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.6"/>
+
+                </LinearLayout>
+
+                <edu.washington.glassdub.glassdub.CustomEditText
+                    android:id="@+id/write_review_body"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_weight="0.7"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"/>
+            </LinearLayout>
+
+            <CheckBox
+                android:text="Include your NetID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/salary"
-                android:hint="Salary (estimated)" />
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/anonymous" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
+            <Button
+                android:text="Submit"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/startDate"
-                android:hint="StartDate*" />
-        </android.support.design.widget.TextInputLayout>
+                android:textColor="@color/white"
+                android:background="@color/mediumgrey"
+                android:id="@+id/write_review_submit_button" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/endDate"
-                android:hint="EndDate (if applicable)" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/title"
-                android:hint="Review Title*" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/body"
-                android:hint="Review Body*" />
-        </android.support.design.widget.TextInputLayout>
-
-        <CheckBox
-            android:text="Include your NetID*"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/anonymous" />
-
-        <Button
-            android:text="Submit Job  Review"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit"
-            android:background="#b7a57a"
-            android:textColor="#ffffff"/>
-
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

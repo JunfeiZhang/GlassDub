@@ -48,21 +48,26 @@ public class JobList extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_job_list, container, false);
+        String api_function;
 
         Map<String, String> jobParam = new HashMap<>();
-        jobParam.put("company", getArguments().getString("companyID"));
+        if (getArguments().getString("companyID") != null ) {
+            jobParam.put("company", getArguments().getString("companyID"));
+            api_function = "getJobsForCompany";
+        } else {
+            jobParam.put("title", getArguments().getString("user_query"));
+            api_function = "searchJob";
+        }
 
         noJobResults = (TextView) view.findViewById(R.id.noJobResults);
 
-        Kumulos.call("getJobsForCompany", jobParam, new ResponseHandler() {
-
+        Kumulos.call(api_function, jobParam, new ResponseHandler() {
             @Override
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
@@ -134,6 +139,5 @@ public class JobList extends Fragment {
     public void setCounts(int[] counts) {
         this.counts = counts;
     }
-
 
 }

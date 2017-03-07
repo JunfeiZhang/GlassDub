@@ -1,52 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_job_page"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.washington.glassdub.glassdub.JobPage"
-    android:orientation="vertical">
+    tools:context="edu.washington.glassdub.glassdub.JobPage">
 
-    <TextView
-        android:text="Position/Job/Role Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView14"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:text="Company"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView16" />
-
-    <TextView
-        android:text="Type (full, part, internship)"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView15"
-        android:text="Description" />
-
-    <TextView
-        android:text="Reviews"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView19"
-        android:paddingTop="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:id="@+id/company_listview" />
-</LinearLayout>
+        style="@style/ScreenTheme">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@style/CardTheme">
+
+            <ImageView
+                android:id="@+id/JPlogo"
+                android:layout_width="0dip"
+                android:layout_weight="0.15"
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_weight="0.85"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Google - Interaction Designer"
+                    android:textAppearance="@style/SubtitleTheme"
+                    android:textColor="@color/mediumgrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/JPtitle" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:text="1"
+                        android:id="@+id/JPrating"
+                        android:background="@drawable/ic_star_gold_24dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            style="@style/CardTheme">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                style="@style/SubtitleTheme"
+                android:textColor="@color/mediumgrey"/>
+
+            <TextView
+                android:text="Design and user experience (UX) are at the forefront of everything we do. The job of an Interaction Designer is to envision how people experience our products and bring that vision to life in a way that feels inspired, refined ..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/JPdescription"
+                style="@style/ContentTheme"/>
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/job_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CustomTabLayout"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/job_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+</FrameLayout>

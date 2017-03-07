@@ -16,9 +16,6 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static android.view.View.VISIBLE;
 
 
@@ -60,7 +57,7 @@ public class HomeFragment extends Fragment {
 
         query = "";
         searchView = (SearchView) view.findViewById(R.id.search);
-        hintText = (TextView) view.findViewById(R.id.textView5);
+        hintText = (TextView) view.findViewById(R.id.search_title);
         hintText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,17 +65,29 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
+        mViewPager = (ViewPager) view.findViewById(R.id.company_container);
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
 
-        //TODO: fill in both tabs with a last 5 recently added items
-        vpAdapter.addFragments(new BlankFragment(), "Companies");
-        vpAdapter.addFragments(new BlankFragment(), "Jobs");
-        
+
+        //First fill in both tabs with empty fragment
+//        vpAdapter.addFragments(new BlankFragment(), "Companies");
+
+        Fragment defaultCompanysFrag = new CompanyList();
+        Bundle bundle = new Bundle();
+        bundle.putString("user_query","none");
+        defaultCompanysFrag.setArguments(bundle);
+        vpAdapter.addFragments(defaultCompanysFrag,"Companies");
+
+
+        Fragment defaultJobsFrag = new jobListHome();
+        bundle.putString("job","none");
+        defaultJobsFrag.setArguments(bundle);
+        vpAdapter.addFragments(defaultJobsFrag, "Jobs");
 
         mViewPager.setAdapter(vpAdapter);
-        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) view.findViewById(R.id.company_tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -91,12 +100,12 @@ public class HomeFragment extends Fragment {
                 Bundle b = new Bundle();
                 b.putString("user_query", query);
                 newCompaniesFrag.setArguments(b);
-                //newJobsFrag.setArguments(b);
+                newJobsFrag.setArguments(b);
 
-                ViewPager afterSearch = (ViewPager) view.findViewById(R.id.container);
+                ViewPager afterSearch = (ViewPager) view.findViewById(R.id.company_container);
                 ViewPagerAdapter searchAdapter = new ViewPagerAdapter(getFragmentManager());
                 searchAdapter.addFragments(newCompaniesFrag, "Companies");
-                //searchAdapter.addFragments(newJobsFrag, "Jobs");
+                searchAdapter.addFragments(newJobsFrag, "Jobs");
                 afterSearch.setAdapter(searchAdapter);
                 tabLayout.setupWithViewPager(afterSearch);
                 return false;
@@ -154,4 +163,8 @@ public class HomeFragment extends Fragment {
         searchView.setQuery(query, false);
         hintText.setVisibility(VISIBLE);
     }
+
+
+
+
 }
