@@ -1,19 +1,16 @@
 package edu.washington.glassdub.glassdub;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -27,7 +24,8 @@ import java.util.Map;
 public class CompanyActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout tabLayout;
-    private TextView title, descr, rating;
+    private TextView title, descr;
+    private LinearLayout rating;
     private Activity act = this;
 
     @Override
@@ -38,7 +36,7 @@ public class CompanyActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String companyID = intent.getStringExtra("companyID");
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.company_container);
 
         Bundle b = new Bundle();
         b.putString("companyID", companyID);
@@ -59,12 +57,12 @@ public class CompanyActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(vpAdapter);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.company_tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         title = (TextView) findViewById(R.id.cTitle);
         descr = (TextView) findViewById(R.id.cDescr);
-        rating = (TextView) findViewById(R.id.textView3);
+        rating = (LinearLayout) findViewById(R.id.cRating);
 
         Map<String,String> companyParams = new HashMap<>();
         companyParams.put("companyID", companyID);
@@ -94,12 +92,19 @@ public class CompanyActivity extends AppCompatActivity {
                         title.setText(object.get("name").toString());
                         descr.setText(object.get("description").toString());
                         // TODO: Show rating with stars
-                        rating.setText(object.get("rating").toString());
+                        setRating(Integer.parseInt(object.get("rating").toString()));
                         // TODO: Do image stuff here
-                        String imgUrl = object.get("logo_url").toString();
+                        //String imgUrl = object.get("logo_url").toString();
                     }
                 }
             }
         });
+    }
+
+    private void setRating(int count) {
+        int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
+        for (int i = 0; i < count; i++) {
+            ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
+        }
     }
 }

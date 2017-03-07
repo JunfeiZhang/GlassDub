@@ -49,7 +49,7 @@ public class CustomAdapter extends ArrayAdapter<CustomItem> {
             holder = new CustomHolder();
             holder.title = (TextView) convertView.findViewById(R.id.list_item_title);
             holder.subtitle = (TextView) convertView.findViewById(R.id.list_item_subtitle);
-            holder.main = (TextView) convertView.findViewById(R.id.list_item_subtitle);
+            holder.main = (TextView) convertView.findViewById(R.id.list_item_main);
             holder.stars = (RelativeLayout) convertView.findViewById(R.id.stars);
             
             convertView.setTag(holder);

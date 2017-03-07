@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static android.view.View.VISIBLE;
 
 
@@ -52,9 +49,9 @@ public class HomeFragment extends Fragment {
 
         query = "";
         searchView = (SearchView) view.findViewById(R.id.search);
-        hintText = (TextView) view.findViewById(R.id.textView5);
+        hintText = (TextView) view.findViewById(R.id.search_title);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.container);
+        mViewPager = (ViewPager) view.findViewById(R.id.company_container);
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
 
         //First fill in both tabs with empty fragment
@@ -63,7 +60,7 @@ public class HomeFragment extends Fragment {
         
 
         mViewPager.setAdapter(vpAdapter);
-        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) view.findViewById(R.id.company_tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -79,7 +76,7 @@ public class HomeFragment extends Fragment {
                 newCompaniesFrag.setArguments(b);
                 //newJobsFrag.setArguments(b);
 
-                ViewPager afterSearch = (ViewPager) view.findViewById(R.id.container);
+                ViewPager afterSearch = (ViewPager) view.findViewById(R.id.company_container);
                 ViewPagerAdapter searchAdapter = new ViewPagerAdapter(getFragmentManager());
                 searchAdapter.addFragments(newCompaniesFrag, "Companies");
                 //searchAdapter.addFragments(newJobsFrag, "Jobs");
