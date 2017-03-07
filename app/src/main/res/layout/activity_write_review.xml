@@ -115,14 +115,14 @@
                     android:tint="@color/purple"
                     android:layout_toEndOf="@id/write_review_start_date"/>
 
-                <edu.washington.glassdub.glassdub.CustomEditText
-                    android:layout_width="30dp"
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint=" "
-                    android:id="@+id/write_review_start_date_error"
-                    android:focusable="false"
-                    android:background="@color/white"
-                    android:layout_toEndOf="@id/write_review_start_date_icon"/>
+                    android:layout_toEndOf="@id/write_review_start_date_icon"
+                    android:textColor="@color/white"
+                    android:text="E"
+                    android:id="@+id/write_review_start_date_error" />
 
             </RelativeLayout>
 
@@ -143,7 +143,7 @@
                     android:id="@+id/write_review_end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MMMM DD, YYYY"
+                    android:text="MMMM DD, YYYY "
                     android:textColor="@color/purple"
                     android:textStyle="normal"
                     android:layout_toEndOf="@id/write_review_end_date_title" />
@@ -254,18 +254,17 @@
                         android:paddingBottom="10dp"
                         style="@style/SubtitleTheme"
                         android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.23"/>
+                        android:layout_width="wrap_content"/>
 
                     <TextView
-                        android:text="  (Pros, Cons, etc.)"
+                        android:text="  (Pros, Cons, etc.)  "
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         style="@style/SubtitleTheme"
                         android:textStyle="normal"
                         android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.6"/>
+                        android:layout_width="wrap_content"
+                        android:id="@+id/write_review_subOverall"/>
 
                 </LinearLayout>
 
