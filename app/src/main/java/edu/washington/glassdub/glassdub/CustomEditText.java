@@ -29,16 +29,6 @@ public class CustomEditText extends TextInputEditText {
     }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (s.length() == 0) {
-            setTextColor(ResourcesCompat.getColor(getResources(), R.color.mediumgrey, null));
-        } else {
-            setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple, null));
-        }
-
-    }
-
-    @Override
     public void setError(CharSequence error, Drawable icon) {
         setCompoundDrawables(null, null, icon, null);
     }

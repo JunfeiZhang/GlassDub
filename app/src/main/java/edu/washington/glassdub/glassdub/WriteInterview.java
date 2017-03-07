@@ -36,7 +36,7 @@ public class WriteInterview extends AppCompatActivity {
 
     Calendar calendar;
 
-    String[] offer_list = {"yes", "no", "pending"};
+    String[] offer_list = {"Yes", "No", "Pending"};
 
     String company_job = null;
     String date = null;
@@ -136,10 +136,9 @@ public class WriteInterview extends AppCompatActivity {
     private boolean fetchData() {
         CustomEditText company_view = ((CustomEditText) findViewById(R.id.write_interview_company));
         CustomEditText job_view = ((CustomEditText) findViewById(R.id.write_interview_job));
-        CustomEditText content_view = ((CustomEditText) findViewById(R.id.write_interview_body));
         TextView date_view = ((TextView) findViewById(R.id.write_interview_date));
         Spinner offer_view = ((Spinner) findViewById(R.id.write_interview_offer));
-        CustomEditText comments_view = ((CustomEditText) findViewById(R.id.write_interview_body));
+        EditText comments_view = ((EditText) findViewById(R.id.write_interview_body));
 
 
         String company = company_view.getText().toString();

@@ -18,7 +18,8 @@ import android.widget.ListView;
  */
 
 /**
- * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched)
+ * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched or after user goes to a job page)
+ * TODO: If there are no interviews, make noInterviews textview visible.
  */
 
 public class InterviewList extends Fragment {
@@ -46,7 +47,7 @@ public class InterviewList extends Fragment {
         if ((titles.length == subtitles.length) && (titles.length == contents.length) &&
                 (titles.length == counts.length)) {
 
-            // Populate with data
+            // TODO: Populate with data
             CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData());
 
             ListView companyReviewList = (ListView) view.findViewById(R.id.interview_listview);
@@ -61,6 +62,7 @@ public class InterviewList extends Fragment {
             });
         } else {
             Log.d(TAG, "arrays don't have same length");
+
         }
         return view;
     }

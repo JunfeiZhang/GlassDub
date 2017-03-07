@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -29,6 +31,8 @@ public class CompanyActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private TextView title, descr, rating;
     private Activity act = this;
+    private ImageView companyImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class CompanyActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String companyID = intent.getStringExtra("companyID");
 
+        companyImage = (ImageView) findViewById(R.id.companyImage);
         mViewPager = (ViewPager) findViewById(R.id.container);
 
         Bundle b = new Bundle();
@@ -91,12 +96,24 @@ public class CompanyActivity extends AppCompatActivity {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String,Object>>) result;
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
-                        title.setText(object.get("name").toString());
+                        String companyName = object.get("name").toString();
+                        title.setText(companyName);
+                        if(companyName.equals("Amazon")) {
+                            companyImage.setImageResource(R.drawable.amazon);
+                        } else if (companyName.equals("Google")) {
+                            companyImage.setImageResource(R.drawable.google);
+                        } else if (companyName.equals("Tableau")) {
+                            companyImage.setImageResource(R.drawable.tableau);
+                        } else if (companyName.equals("Zillow")) {
+                            companyImage.setImageResource(R.drawable.zillow);
+                        } else if (companyName.equals("Starbucks")) {
+                            companyImage.setImageResource(R.drawable.starbucks);
+                        } else {
+                            companyImage.setImageResource(R.drawable.facebook);
+                        }
                         descr.setText(object.get("description").toString());
                         // TODO: Show rating with stars
                         rating.setText(object.get("rating").toString());
-                        // TODO: Do image stuff here
-                        String imgUrl = object.get("logo_url").toString();
                     }
                 }
             }

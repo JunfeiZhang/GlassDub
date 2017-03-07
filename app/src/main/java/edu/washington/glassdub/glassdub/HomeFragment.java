@@ -1,7 +1,9 @@
 package edu.washington.glassdub.glassdub;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -50,9 +53,20 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Log.i("test", settings.getString("username", "hi"));
+
+
         query = "";
         searchView = (SearchView) view.findViewById(R.id.search);
         hintText = (TextView) view.findViewById(R.id.textView5);
+        hintText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
+            }
+        });
 
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         vpAdapter = new ViewPagerAdapter(getFragmentManager());
