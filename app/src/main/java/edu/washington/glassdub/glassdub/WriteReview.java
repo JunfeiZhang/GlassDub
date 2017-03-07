@@ -116,7 +116,7 @@ public class WriteReview extends Activity {
             Kumulos.call("getCompanyByName", companyParams, new ResponseHandler() {
                 @Override
                 public void didCompleteWithResult(Object result) {
-                    ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
                     if (objects.size() == 0) {
                         // tell them something went wrong
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -171,6 +171,24 @@ public class WriteReview extends Activity {
                                 } else {
                                     Intent intent = new Intent(WriteReview.this, MainActivity.class);
                                     startActivity(intent);
+
+                                    Map<String, String> updateParams = new HashMap<>();
+
+                                    ArrayList<LinkedHashMap<String, Object>> jobResult  = (ArrayList<LinkedHashMap<String, Object>>) objects.get(0).get("companyID");
+                                    Log.d(TAG, "first object:" + objects.get(0).toString());
+                                    Log.d(TAG, jobResult.get(0).toString());
+                                    /*updateParams.put("jobID", jobResult.get(0).toString());
+                                    updateParams.put("rating", rating);
+
+                                    Kumulos.call("updateRating", updateParams, new ResponseHandler() {
+                                        @Override
+                                        public void didCompleteWithResult(Object result) {
+                                            ArrayList<LinkedHashMap<String, Object>> updateResult = (ArrayList<LinkedHashMap<String, Object>>) result;
+                                            if (updateResult.size() != 0) {
+                                                Log.d(TAG, "updated rating");
+                                            }
+                                        }
+                                    });*/
                                 }
                             }
                         });
