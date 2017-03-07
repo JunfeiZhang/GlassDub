@@ -30,10 +30,6 @@ import static android.view.View.VISIBLE;
  * A simple {@link Fragment} subclass.
  */
 
-/**
- * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched or after user goes to a job page)
- * TODO: If there are no interviews, make noInterviews textview visible.
- */
 
 public class InterviewList extends Fragment {
     private String[] titles = {"Interview 1", "Interview 2", "Interview 3"};

@@ -32,7 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * TODO: Save all the data user inputted onto Kumulos server
+ * TODO: Save username with the review
  */
 
 public class WriteReview extends Activity {

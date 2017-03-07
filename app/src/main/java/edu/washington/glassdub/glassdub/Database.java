@@ -37,7 +37,7 @@ public class Database {
 //                            .setCancelable(false)
 //                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 //                                public void onClick(DialogInterface dialog, int id) {
-//                                    // TODO: send them back to list of companies
+//                                    // send them back to list of companies
 //                                    dialog.cancel();
 //                                }
 //                            });

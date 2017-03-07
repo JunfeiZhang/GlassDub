@@ -31,10 +31,6 @@ import static android.view.View.VISIBLE;
  * A simple {@link Fragment} subclass.
  */
 
-/**
- * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched)
- */
-
 public class ReviewList extends Fragment {
     private String[] titles = {"Review 1", "Review 2", "Review 3"};
     private String[] subtitles = {"User 1 - Date 1", "User 2 - Date 2", "User 3 - Date 3"};

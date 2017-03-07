@@ -32,6 +32,7 @@ import java.util.Map;
 
 /**
  * TODO: Load the list of fetched jobs from Kumulos (after the user has searched)
+ * TODO: need to add companies for each listed jobs
  */
 
 public class JobList extends Fragment {

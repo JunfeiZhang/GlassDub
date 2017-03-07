@@ -25,7 +25,6 @@ import com.kumulos.android.ResponseHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import static android.view.View.GONE;
@@ -37,10 +36,6 @@ public class JobPage extends AppCompatActivity {
     private ProgressBar progressBar;
     private LinearLayout jobLayout;
     private BottomNavigationView botNavigation;
-
-//    private String[] jobReviews = new String[] {
-//            "Job Review 1", "Job Review 2", "Job Review 3"
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +92,6 @@ public class JobPage extends AppCompatActivity {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
                     // TODO: go through and update all the fields
                     if (objects.size() > 0) {
-
                         String[] jobReviews = new String[objects.size()];
                         int i =0;
                         for(LinkedHashMap object: objects){
@@ -142,17 +136,5 @@ public class JobPage extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, jobReviews);
-//        ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
-//        companyReviewList.setAdapter(adapter);
-
-
     }
-
-
-
-
 }

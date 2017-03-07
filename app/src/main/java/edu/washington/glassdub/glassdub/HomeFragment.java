@@ -28,8 +28,8 @@ import static android.view.View.VISIBLE;
 
 
 /*
- * TODO: Implement search query (save the user input from the search bar and pass it to SearchFragment) and set the filter for jobs/companies
- * TODO: Improve UI, make search bar retain search query, if time permits query on query text change
+ * TODO: Fetch search query job results (save the user input from the search bar) and set the filter for jobs/companies
+ * TODO: If time permits query on search bar text change
  */
 
 public class HomeFragment extends Fragment {

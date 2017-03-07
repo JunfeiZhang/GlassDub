@@ -30,8 +30,9 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * TODO: Save all the data user inputted onto Kumulos server
+ * TODO: Save username with the review
  */
+
 
 public class WriteInterview extends AppCompatActivity {
     private Button submit;
