@@ -14,9 +14,14 @@ import android.widget.TextView;
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ReviewPage extends AppCompatActivity {
@@ -81,7 +86,7 @@ public class ReviewPage extends AppCompatActivity {
                         end.setText(object.get("end_date").toString());
                         // TODO: if it is anonymous just print anonymous, otherwise print username
                         //anonymous.setText(object.get("anonymous").toString());
-                        created.setText(object.get("timeCreated").toString());
+                        created.setText(formatDate(object.get("timeCreated").toString()));
                     }
                 }
             }
@@ -93,5 +98,22 @@ public class ReviewPage extends AppCompatActivity {
         for (int i = 0; i < count; i++) {
             ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
         }
+    }
+
+    private String formatDate(String original) {
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+
+        Date date = null;
+        String result = "";
+
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .parse(original);
+            result = format.format(date);
+        } catch (ParseException e) {
+            e.getStackTrace();
+        }
+        Log.d(TAG, "original: " + original + " new: " + result);
+        return result;
     }
 }

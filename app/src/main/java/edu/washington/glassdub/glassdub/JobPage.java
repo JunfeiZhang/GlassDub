@@ -41,7 +41,7 @@ public class JobPage extends AppCompatActivity {
     TextView title;
     TextView rating;
     ImageView logo;
-    TextView description;
+    //TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@ public class JobPage extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         title = (TextView) findViewById(R.id.JPtitle);
-        description = (TextView) findViewById(R.id.JPdescription);
+        //description = (TextView) findViewById(R.id.JPdescription);
         logo = (ImageView) findViewById(R.id.JPlogo);
         rating = (TextView) findViewById(R.id.JPrating);
 

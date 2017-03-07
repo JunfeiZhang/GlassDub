@@ -22,5 +22,7 @@
         android:layout_height="wrap_content"
         style="@style/ContentTheme"
         android:textSize="@dimen/font_size_medium"
-        android:id="@+id/list_item_main"/>
+        android:id="@+id/list_item_main"
+        android:ellipsize="end"
+        android:maxLines="2"/>
 </LinearLayout>

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -112,7 +113,8 @@ public class JobList extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(), "", 5);
+            Log.d(TAG, "object: " + obj.toString());
+            data[i] = new CustomItem(obj.get("title").toString(), "", obj.get("type").toString(), new Random().nextInt(5) + 1);
         }
 
         return data;

@@ -68,7 +68,13 @@ public class CustomAdapter extends ArrayAdapter<CustomItem> {
         Log.d(TAG, "setContents");
         CustomItem item = data[position];
         holder.title.setText(item.getTitle());
-        holder.subtitle.setText(item.getSubtitle());
+        if (!item.getSubtitle().equals("")) {
+            holder.subtitle.setVisibility(View.VISIBLE);
+            holder.subtitle.setText(item.getSubtitle());
+        } else {
+            holder.subtitle.setVisibility(View.GONE);
+        }
+
         holder.main.setText(item.getMain());
 
         for (int i = 0; i < item.getStarCount(); i++) {

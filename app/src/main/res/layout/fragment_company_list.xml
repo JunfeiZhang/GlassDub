@@ -5,9 +5,9 @@
     tools:context="edu.washington.glassdub.glassdub.CompanyList">
 
     <ListView
+        android:id="@+id/JPlistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:id="@+id/JPlistview" />
+        android:paddingTop="10dp" />
 
 </FrameLayout>
