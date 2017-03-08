@@ -103,6 +103,7 @@ public class ReviewList extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), ReviewPage.class);
+                                Log.d(TAG, "object: " + objects.get(position).toString());
                                 intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
                                 startActivity(intent);
                             }
