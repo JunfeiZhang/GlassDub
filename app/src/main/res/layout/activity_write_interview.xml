@@ -356,19 +356,19 @@
                     android:paddingBottom="2dp"/>
 
                 <edu.washington.glassdub.glassdub.CustomEditText
-                    android:layout_gravity="center"
-                    android:padding="5dp"
-                    android:gravity="top|left"
-                    android:id ="@+id/write_interview_body"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:id="@+id/write_interview_body"
                     android:layout_width="match_parent"
-                    android:layout_height ="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/border"
+                    android:gravity="top|left"
                     android:inputType="textMultiLine"
-                    android:maxLines ="2000"
+                    android:maxLines="2000"
                     android:minLines="4"
-                    android:scrollHorizontally="false"
-                    android:background="@drawable/border"/>
+                    android:padding="5dp"
+                    android:scrollHorizontally="false" />
 
                 <TextView
                     android:text="  "
@@ -386,7 +386,7 @@
                 android:text="Include your NetID in your review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/checkBox"
+                android:id="@+id/anonymous"
                 android:layout_marginTop="5dp"/>
 
             <Button
