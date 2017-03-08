@@ -71,6 +71,7 @@ public class ReviewList extends Fragment {
             reviewParam.put("companyID", getArguments().getString("companyID"));
             api_function = "getReviewsForCompany";
         } else {
+            Log.i(TAG, getArguments().getString("job"));
             reviewParam.put("job", getArguments().getString("job"));
             api_function = "getReviewsForJob";
         }
@@ -95,6 +96,7 @@ public class ReviewList extends Fragment {
                     alertDialog.show();
                 } else {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                    Log.i(TAG, objects.toString());
 
                     if(objects.size() == 0) {
                         noReviews.setVisibility(VISIBLE);
