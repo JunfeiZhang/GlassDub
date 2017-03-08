@@ -64,7 +64,7 @@ public class ReviewPage extends AppCompatActivity {
         Intent intent = getIntent();
 
         String companyRevID = intent.getStringExtra("reviewID");
-
+        final String company = intent.getStringExtra("company");
         Map<String,String> revParams = new HashMap<>();
         revParams.put("job_reviewID", companyRevID);
 
@@ -111,7 +111,7 @@ public class ReviewPage extends AppCompatActivity {
                         review.setText(object.get("body").toString());
                         setRating(Integer.parseInt(object.get("rating").toString()));
                         salary.setText("$" + Math.round(Float.parseFloat(object.get("pay_rate").toString())));
-                        position.setText(object.get("job").toString());
+                        position.setText(company);
                         start.setText(object.get("start_date").toString());
                         // TODO: dont show this if the user didnt enter it
                         end.setText(object.get("end_date").toString());

@@ -62,6 +62,8 @@ public class ReviewList extends Fragment {
         noReviews = (TextView) view.findViewById(R.id.noReviews);
 
         final String companyID = getArguments().getString("companyID", "22");
+        final String company = getArguments().getString("company");
+        Log.i("listcompany", company);
 
         Map<String, String> reviewParam = new HashMap<>();
         reviewParam.put("companyID", companyID);
@@ -102,7 +104,7 @@ public class ReviewList extends Fragment {
                                 Intent intent = new Intent(getActivity(), ReviewPage.class);
                                 Log.d(TAG, "object: " + objects.get(position).toString());
                                 intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
-                                intent.putExtra("company", intent.getStringExtra("company"));
+                                intent.putExtra("company", company);
                                 startActivity(intent);
                             }
                         });
