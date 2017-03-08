@@ -41,6 +41,7 @@ public class CompanyActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private LinearLayout companyLayout;
     private BottomNavigationView botNavigation;
+    private String companyName;
 
 
     @Override
@@ -58,26 +59,6 @@ public class CompanyActivity extends AppCompatActivity {
         // initialize bundle
         final Bundle b = new Bundle();
         b.putString("companyID", companyID);
-
-        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
-        botNavigation.getMenu().getItem(1).setChecked(true);
-        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.jobItem) {
-                    Intent intent = new Intent(CompanyActivity.this, WriteReview.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.homeItem) {
-                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.interviewItem) {
-                    Intent intent = new Intent(CompanyActivity.this, WriteInterview.class);
-                    startActivity(intent);
-                }
-                return false;
-            }
-        });
-
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -105,6 +86,7 @@ public class CompanyActivity extends AppCompatActivity {
             }
         });
 
+
         Kumulos.call("getCompany", companyParams, new ResponseHandler() {
             @Override
             public void didCompleteWithResult(Object result) {
@@ -129,9 +111,7 @@ public class CompanyActivity extends AppCompatActivity {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         b.putString("tile",object.get("name").toString());
 
-                        String cName = object.get("name").toString();
-                        title.setText(cName);
-                        String companyName = object.get("name").toString();
+                        companyName = object.get("name").toString();
                         title.setText(companyName);
 
                         descr.setText(object.get("description").toString());
@@ -168,6 +148,28 @@ public class CompanyActivity extends AppCompatActivity {
 
         Fragment jobList = new JobList();
         jobList.setArguments(b);
+
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(CompanyActivity.this, WriteReview.class);
+                    intent.putExtra("company", companyName);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(CompanyActivity.this, WriteInterview.class);
+                    intent.putExtra("company", companyName);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
 
 
         ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());

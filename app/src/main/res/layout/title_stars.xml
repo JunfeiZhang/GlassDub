@@ -15,5 +15,6 @@
         android:ellipsize="end"
         android:maxLength="20"/>
 
-    <include layout="@layout/list_of_stars"/>
+    <include layout="@layout/list_of_stars"
+        android:visibility="gone"/>
 </RelativeLayout>

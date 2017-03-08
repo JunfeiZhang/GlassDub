@@ -37,6 +37,7 @@ public class JobPage extends AppCompatActivity {
     private LinearLayout jobLayout;
     private BottomNavigationView botNavigation;
     private TextView job, type,des;
+    private String companyName;
 
     LinearLayout rating;
     ImageView logo;
@@ -49,7 +50,7 @@ public class JobPage extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String jobID = intent.getStringExtra("jobID");
-        String companyName = intent.getStringExtra("companyName");
+        companyName = intent.getStringExtra("companyName");
         String typeJob = intent.getStringExtra("type");
         String jobName = intent.getStringExtra("title");
 
@@ -137,6 +138,7 @@ public class JobPage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.jobItem) {
                     Intent intent = new Intent(JobPage.this, WriteReview.class);
+                    intent.putExtra("company", companyName);
                     startActivity(intent);
                 } else if (item.getItemId() == R.id.homeItem) {
                     Intent intent = new Intent(JobPage.this, MainActivity.class);

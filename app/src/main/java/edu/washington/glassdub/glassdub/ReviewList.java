@@ -102,6 +102,7 @@ public class ReviewList extends Fragment {
                                 Intent intent = new Intent(getActivity(), ReviewPage.class);
                                 Log.d(TAG, "object: " + objects.get(position).toString());
                                 intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
+                                intent.putExtra("company", intent.getStringExtra("company"));
                                 startActivity(intent);
                             }
                         });
