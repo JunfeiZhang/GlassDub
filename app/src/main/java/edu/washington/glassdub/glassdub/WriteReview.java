@@ -288,7 +288,6 @@ public class WriteReview extends Activity {
             }
         }
 
-
         if (submit) {
             if (anonymous_view.isChecked()) {
                 anonymous = "true";
