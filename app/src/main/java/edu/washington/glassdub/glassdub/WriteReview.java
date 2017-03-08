@@ -185,9 +185,9 @@ public class WriteReview extends Activity {
 
                                         Map<String, String> updateParams = new HashMap<>();
 
-                                        ArrayList<LinkedHashMap<String, Object>> jobResult = (ArrayList<LinkedHashMap<String, Object>>) objects.get(0).get("companyID");
+                                        String jobResult =(String) objects.get(0).get("companyID");
                                         Log.d(TAG, "first object:" + objects.get(0).toString());
-                                        Log.d(TAG, jobResult.get(0).toString());
+                                        //Log.d(TAG, jobResult.get(0).toString());
                                     /*updateParams.put("jobID", jobResult.get(0).toString());
                                     updateParams.put("rating", rating);
 
@@ -311,7 +311,6 @@ public class WriteReview extends Activity {
                         ") is after your end date (" + end_date + ")");
             }
         }
-
 
         if (submit) {
             if (anonymous_view.isChecked()) {
