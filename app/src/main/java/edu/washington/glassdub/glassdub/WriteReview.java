@@ -72,6 +72,7 @@ public class WriteReview extends Activity {
     EditText review_title_view;
     EditText review_body_view;
     CheckBox anonymous_view;
+    ImageButton end_date_delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class WriteReview extends Activity {
         review_title_view = (EditText) findViewById(R.id.write_review_title);
         review_body_view = (EditText) findViewById(R.id.write_review_body);
         anonymous_view = (CheckBox) findViewById(R.id.anonymous);
+        end_date_delete = ((ImageButton) findViewById(R.id.write_review_end_date_delete));
 
 
         startCal = Calendar.getInstance();
@@ -96,7 +98,7 @@ public class WriteReview extends Activity {
         ((TextView) findViewById(R.id.write_review_end_date)).setOnTouchListener(endDateTouchListener);
         ((ImageButton) findViewById(R.id.write_review_start_date_icon)).setOnTouchListener(startDateTouchListener);
         ((ImageButton) findViewById(R.id.write_review_end_date_icon)).setOnTouchListener(endDateTouchListener);
-
+        end_date_delete.setOnTouchListener(endDateDeleteListener);
 
         lightgrey = ResourcesCompat.getColor(getResources(), R.color.lightgrey, null);
         purple = ResourcesCompat.getColor(getResources(), R.color.purple, null);
@@ -137,6 +139,7 @@ public class WriteReview extends Activity {
         public void onClick(View view) {
 
             boolean submit = fetchData();
+            Log.d(TAG, "start date: " + start_date + " end date: " + end_date);
 
             if (submit) {
                 Map<String, String> companyParams = new HashMap<>();
@@ -151,63 +154,79 @@ public class WriteReview extends Activity {
                             // tell them something went wrong
                             showAlert("Incorrect Company", "We don't have records for the company that you entered. If you want this company to be added to our system contact Dean at dean@ischool.edu.");
                         } else {
-                            Map<String, String> checkJob = new HashMap<>();
-                            checkJob.put("title", job);
-                            Kumulos.call("getJobByName", checkJob, new ResponseHandler() {
+                            Log.i("testing", objects.get(0).toString());
+                            companyID = objects.get(0).get("companyID").toString();
+                            GlassDub app = (GlassDub) getApplication();
+
+                            Log.d(TAG, "start date: " + start_date + " end date: " + end_date);
+
+                            Map<String, String> reviewParams = new HashMap<>();
+                            reviewParams.put("companyID", companyID);
+                            reviewParams.put("position", job);
+                            reviewParams.put("rating", rating);
+                            reviewParams.put("pay_rate", salary);
+                            reviewParams.put("start_date", start_date);
+                            reviewParams.put("end_date", end_date);
+                            reviewParams.put("title", review_title);
+                            reviewParams.put("body", review_body);
+                            reviewParams.put("employee", app.getUsernumber());
+                            reviewParams.put("anonymous", anonymous);
+
+                            Log.d(TAG, "reviewParams: " + reviewParams.toString());
+
+                            Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {
+
                                 @Override
                                 public void didCompleteWithResult(Object result) {
-                                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-                                    if (objects.size() == 0) {
-                                        showAlert("Incorrect Job", "We don't have records for the job that you entered. If you want this job to be added to our system contact Dean at dean@ischool.edu.");
-                                    } else {
-                                        Log.i("testing", objects.get(0).toString());
-                                        companyID = objects.get(0).get("companyID").toString();
-                                        GlassDub app = (GlassDub) getApplication();
+                                    Map<String, String> checkJob = new HashMap<>();
+                                    checkJob.put("title",job);
+                                    Kumulos.call("getJobByName",checkJob, new ResponseHandler() {
+                                        @Override
+                                        public void didCompleteWithResult(Object result) {
+                                            final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                                            if (objects.size() == 0) {
+                                                showAlert("Incorrect Job", "We don't have records for the job that you entered. If you want this job to be added to our system contact Dean at dean@ischool.edu.");
+                                            } else {
+                                                Intent intent = new Intent(WriteReview.this, MainActivity.class);
+                                                startActivity(intent);
 
-                                        Map<String, String> reviewParams = new HashMap<>();
-                                        reviewParams.put("companyID", companyID);
-                                        reviewParams.put("position", job);
-                                        reviewParams.put("rating", rating);
-                                        reviewParams.put("pay_rate", salary);
-                                        reviewParams.put("start_date", start_date);
-                                        reviewParams.put("end_date", end_date);
-                                        reviewParams.put("title", review_title);
-                                        reviewParams.put("body", review_body);
-                                        reviewParams.put("employee", app.getUsernumber());
-                                        reviewParams.put("anonymous", anonymous);
+                                                String jobResult = (String) objects.get(0).get("companyID");
+                                                Log.d(TAG, "first object:" + objects.get(0).toString());
+                                                Log.i("testing", objects.get(0).toString());
+                                                companyID = objects.get(0).get("companyID").toString();
+                                                GlassDub app = (GlassDub) getApplication();
 
-                                        Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {
-                                            @Override
-                                            public void didCompleteWithResult(Object result) {
-                                                Log.i("testing", result.toString());
-                                                // Do updates to UI/data models based on result
-                                                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
-                                                    showAlert("Error", "There was an error when creating your review. Try again.");
-                                                } else {
-                                                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
-                                                    startActivity(intent);
+                                                Map<String, String> reviewParams = new HashMap<>();
+                                                reviewParams.put("companyID", companyID);
+                                                reviewParams.put("position", job);
+                                                reviewParams.put("rating", rating);
+                                                reviewParams.put("pay_rate", salary);
+                                                reviewParams.put("start_date", start_date);
+                                                reviewParams.put("end_date", end_date);
+                                                reviewParams.put("title", review_title);
+                                                reviewParams.put("body", review_body);
+                                                reviewParams.put("employee", app.getUsernumber());
+                                                reviewParams.put("anonymous", anonymous);
 
-                                                    Map<String, String> updateParams = new HashMap<>();
+                                                Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {
+                                                    @Override
+                                                    public void didCompleteWithResult(Object result) {
+                                                        Log.i("testing", result.toString());
+                                                        // Do updates to UI/data models based on result
+                                                        if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                                                            showAlert("Error", "There was an error when creating your review. Try again.");
+                                                        } else {
+                                                            Intent intent = new Intent(WriteReview.this, MainActivity.class);
+                                                            startActivity(intent);
 
-                                                    String jobResult = (String) objects.get(0).get("companyID");
-                                                    Log.d(TAG, "first object:" + objects.get(0).toString());
-                                                    //Log.d(TAG, jobResult.get(0).toString());
-                                        /*updateParams.put("jobID", jobResult.get(0).toString());
-                                        updateParams.put("rating", rating);
-
-                                        Kumulos.call("updateRating", updateParams, new ResponseHandler() {
-                                            @Override
-                                            public void didCompleteWithResult(Object result) {
-                                                ArrayList<LinkedHashMap<String, Object>> updateResult = (ArrayList<LinkedHashMap<String, Object>>) result;
-                                                if (updateResult.size() != 0) {
-                                                    Log.d(TAG, "updated rating");
-                                                }
+                                                            String jobResult = (String) objects.get(0).get("companyID");
+                                                            Log.d(TAG, "first object:" + objects.get(0).toString());
+                                                        }
+                                                    }
+                                                });
                                             }
-                                        });*/
-                                                }
-                                            }
-                                        });
-                                    }
+                                        }
+                                    });
                                 }
                             });
                         }
@@ -219,48 +238,6 @@ public class WriteReview extends Activity {
 
     private boolean fetchData() {
         Log.d(TAG, "fetchData");
-
-        /*
-        try {
-            company = company_view.getText().toString();
-        } catch (Exception e) {
-            Log.d(TAG, "company" + e.toString());
-        }
-
-        try {
-            job = job_view.getText().toString();
-        } catch (Exception e) {
-            Log.d(TAG, "job_review" + e.toString());
-        }
-
-        try {
-            review_title = review_title_view.getText().toString();
-        } catch (Exception e) {
-            Log.d(TAG, "review_title" + e.toString());
-        }
-
-        try {
-            review_body = review_body_view.getText().toString();
-        } catch (Exception e) {
-            Log.d(TAG, "review_body" + e.toString());
-        }
-
-        try {
-        salary = salary_view.getText().toString();
-        } catch (Exception e) {
-            Log.d(TAG, "salary_view" + e.toString());
-        }
-
-        try {
-        start_date = start_date_view.getText().toString();
-        } catch (Exception e) {
-            Log.d(TAG, "start_date_view" + e.toString());
-        }
-
-        return false;
-        */
-
-
         boolean submit = true;
 
         company = company_view.getText().toString();
@@ -402,7 +379,20 @@ public class WriteReview extends Activity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         ((TextView) findViewById(textView)).setText(sdf.format(cal.getTime()));
+        if (cal == endCal) {
+            end_date_delete.setVisibility(View.VISIBLE);
+        }
     }
+
+    private View.OnTouchListener endDateDeleteListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                end_date_view.setText("MMMM DD, YYYY ");
+            }
+            return true;
+        }
+    };
 
     private View.OnClickListener ratingListener = new View.OnClickListener() {
         public void onClick(View v) {

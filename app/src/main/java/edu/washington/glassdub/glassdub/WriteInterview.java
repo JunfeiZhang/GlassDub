@@ -103,7 +103,7 @@ public class WriteInterview extends AppCompatActivity {
         }
 
         Spinner offer_spinner = ((Spinner) findViewById(R.id.write_interview_offer));
-        offer = offer_spinner.getItemAtPosition(0).toString();
+        offer = "yes";
         offer_spinner.setOnItemSelectedListener(spinnerListener);
 
         calendar = Calendar.getInstance();
@@ -149,6 +149,7 @@ public class WriteInterview extends AppCompatActivity {
         public void onClick(View view) {
 
             boolean submit = fetchData();
+            Log.d(TAG, "offer: " + offer);
 
             if (submit) {
                 Map<String, String> companyParams = new HashMap<>();
@@ -244,13 +245,6 @@ public class WriteInterview extends AppCompatActivity {
 
         boolean submit = true;
 
-        // check if values are valid - prevent submission if not
-        if (offer_view.getSelectedView() != null) {
-            offer = offer_view.getSelectedView().toString();
-        } else {
-            ((TextView) offer_view.getSelectedView()).setError("");
-            submit = false;
-        }
         if (company == null || company.trim().length() == 0) {
             company_view.setError("");
             submit = false;
