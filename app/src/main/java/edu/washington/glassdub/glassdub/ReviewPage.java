@@ -42,6 +42,7 @@ public class ReviewPage extends AppCompatActivity {
     private ProgressBar progressBar;
     private LinearLayout reviewLayout;
     private BottomNavigationView botNavigation;
+    private String jobName;
 
 
     @Override
@@ -63,6 +64,8 @@ public class ReviewPage extends AppCompatActivity {
 
         String companyRevID = intent.getStringExtra("reviewID");
         final String company = intent.getStringExtra("company");
+        jobName = intent.getStringExtra("jobTitle");
+
         Map<String,String> revParams = new HashMap<>();
         revParams.put("job_reviewID", companyRevID);
 
@@ -109,7 +112,14 @@ public class ReviewPage extends AppCompatActivity {
                         review.setText(object.get("body").toString());
                         setRating(Integer.parseInt(object.get("rating").toString()));
                         salary.setText("$" + Math.round(Float.parseFloat(object.get("pay_rate").toString())));
-                        position.setText(company);
+                        LinkedHashMap<String, Object> job =  (LinkedHashMap<String, Object>) object.get("job");
+                        if (job.size() > 0) {
+                            jobName = job.get("title").toString();
+                            position.setText(company + " - " + jobName);
+                        } else  {
+                            position.setText(company);
+                        }
+
                         created.setText(formatDate(object.get("timeCreated").toString()));
                         start.setText(object.get("start_date").toString());
                         end.setText(object.get("end_date").toString());

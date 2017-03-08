@@ -64,7 +64,7 @@ public class JobList extends Fragment {
             api_function = "searchJob";
         }
 
-        final String companyName = getArguments().getString("title");
+        final String companyName = getArguments().getString("company");
 
 
         noJobResults = (TextView) view.findViewById(R.id.noJobResults);
