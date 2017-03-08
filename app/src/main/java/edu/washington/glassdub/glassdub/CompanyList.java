@@ -104,6 +104,7 @@ public class CompanyList extends Fragment {
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), CompanyActivity.class);
                                 intent.putExtra("companyID", objects.get(position).get("companyID").toString());
+                                intent.putExtra("name",objects.get(position).get("name").toString());
                                 startActivity(intent);
                             }
                         });

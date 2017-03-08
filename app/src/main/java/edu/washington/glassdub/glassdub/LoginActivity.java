@@ -101,6 +101,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void createUser(String cookie) {
         final String c = cookie;
+        currentUser user = new currentUser();
+        user.setCurrentUser(cookie);
+
         final Map<String, String> userParams = new HashMap<>();
         userParams.put("username", cookie);
 

@@ -52,6 +52,8 @@ public class CompanyActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String companyID = intent.getStringExtra("companyID");  // companyID
+//        final String companyName = intent.getStringExtra("name");
+
 
         //companyImage = (ImageView) findViewById(R.id.companyImage);
         mViewPager = (ViewPager) findViewById(R.id.company_container);
