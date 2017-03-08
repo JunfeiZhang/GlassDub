@@ -6,12 +6,14 @@
     <TextView
         android:text="title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         style="@style/SubtitleTheme"
         android:textColor="@color/mediumgrey"
         android:id="@+id/list_item_title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical|start"
+        android:ellipsize="end"
+        android:maxLength="20"/>
 
     <include layout="@layout/list_of_stars"/>
 </RelativeLayout>

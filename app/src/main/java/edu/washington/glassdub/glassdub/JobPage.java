@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,11 +25,11 @@ import java.util.Map;
 
 public class JobPage extends AppCompatActivity {
     private Activity act = this;
-    private TextView company, type,des;
+    private TextView job, type,des;
 
-//    private String[] jobReviews = new String[] {
-//            "Job Review 1", "Job Review 2", "Job Review 3"
-//    };
+    LinearLayout rating;
+    ImageView logo;
+    //TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +39,23 @@ public class JobPage extends AppCompatActivity {
         Intent intent = getIntent();
         final String jobID = intent.getStringExtra("jobID");
         String companyName = intent.getStringExtra("companyName");
+        String typeJob = intent.getStringExtra("type");
+        String jobName = intent.getStringExtra("title");
 
         Map<String,String> jobParams = new HashMap<>();
         jobParams.put("job",jobID);
 
-        company = (TextView) findViewById(R.id.company);
-        type = (TextView) findViewById(R.id.type);
-        des = (TextView) findViewById(R.id.des);
+        job = (TextView) findViewById(R.id.JPjob);
+        type = (TextView) findViewById(R.id.JPtype);
+        des = (TextView) findViewById(R.id.JPdescription);
+        logo = (ImageView) findViewById(R.id.JPlogo);
+        rating = (LinearLayout) findViewById(R.id.JPrating);
 
-        company.setText(companyName);
-        type.setText(intent.getStringExtra("type"));
-
+        type.setText(typeJob);
+        job.setText(companyName + " - " + jobName);
+        updateRating(Integer.parseInt(intent.getStringExtra("rating")));
+        //type.setText(intent.getStringExtra("type"));
+        //description = (TextView) findViewById(R.id.JPdescription);
 
         Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
             @Override
@@ -97,6 +105,15 @@ public class JobPage extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void updateRating(int count) {
+        int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
+
+        for (int i = 0; i < count; i++) {
+            ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
+        }
+    }
+
 
 
 
@@ -105,9 +122,8 @@ public class JobPage extends AppCompatActivity {
 //        companyReviewList.setAdapter(adapter);
 
 
-    }
-
-
-
-
 }
+
+
+
+

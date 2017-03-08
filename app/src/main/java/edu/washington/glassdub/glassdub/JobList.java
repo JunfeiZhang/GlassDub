@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -89,7 +90,6 @@ public class JobList extends Fragment {
                     alertDialog.show();
                 } else {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-
                     if (objects.size() == 0) {
                         // TODO: show the user that there were no results
                         noJobResults.setVisibility(View.VISIBLE);
@@ -106,11 +106,14 @@ public class JobList extends Fragment {
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 // here goes to job page
                                 Intent intent = new Intent(getActivity(), JobPage.class);
+                                Log.d(TAG, objects.get(position).toString());
+
                                 intent.putExtra("jobID", objects.get(position).get("jobID").toString());
                                 intent.putExtra("title",objects.get(position).get("title").toString());
                                 intent.putExtra("type",objects.get(position).get("type").toString());
                                 intent.putExtra("companyID", getArguments().getString("companyID"));
-                                intent.putExtra("companyName",companyName);
+                                intent.putExtra("companyName", objects.get(position).get("company").toString());
+                                intent.putExtra("rating", objects.get(position).get("rating").toString());
                                 startActivity(intent);
                             }
                         });
@@ -126,7 +129,9 @@ public class JobList extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(), "", 5);
+            Log.d(TAG, "object: " + obj.toString());
+            data[i] = new CustomItem(obj.get("title").toString(),
+                    obj.get("type").toString(), obj.get("company").toString(), new Random().nextInt(5) + 1);
         }
 
         return data;

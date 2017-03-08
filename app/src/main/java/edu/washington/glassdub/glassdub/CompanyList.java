@@ -121,7 +121,7 @@ public class CompanyList extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("name").toString(), obj.get("description").toString(), obj.get("description").toString(), Integer.valueOf(obj.get("rating").toString()));
+            data[i] = new CustomItem(obj.get("name").toString(), "", obj.get("description").toString(), Integer.valueOf(obj.get("rating").toString()));
         }
 
         return data;
