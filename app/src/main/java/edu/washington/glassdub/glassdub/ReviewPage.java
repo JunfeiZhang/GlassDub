@@ -21,9 +21,14 @@ import android.widget.TextView;
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.view.View.GONE;
@@ -104,14 +109,14 @@ public class ReviewPage extends AppCompatActivity {
                         title.setText(object.get("title").toString());
                         review.setText(object.get("body").toString());
                         setRating(Integer.parseInt(object.get("rating").toString()));
-                        salary.setText(object.get("pay_rate").toString());
+                        salary.setText("$" + Math.round(Float.parseFloat(object.get("pay_rate").toString())));
                         position.setText(object.get("job").toString());
                         start.setText(object.get("start_date").toString());
                         // TODO: dont show this if the user didnt enter it
                         end.setText(object.get("end_date").toString());
                         // TODO: if it is anonymous just print anonymous, otherwise print username
                         //anonymous.setText(object.get("anonymous").toString());
-                        created.setText(object.get("timeCreated").toString());
+                        created.setText(formatDate(object.get("timeCreated").toString()));
                     }
                 }
             }
@@ -142,5 +147,22 @@ public class ReviewPage extends AppCompatActivity {
         for (int i = 0; i < count; i++) {
             ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
         }
+    }
+
+    private String formatDate(String original) {
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+
+        Date date = null;
+        String result = "";
+
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .parse(original);
+            result = format.format(date);
+        } catch (ParseException e) {
+            e.getStackTrace();
+        }
+        Log.d(TAG, "original: " + original + " new: " + result);
+        return result;
     }
 }

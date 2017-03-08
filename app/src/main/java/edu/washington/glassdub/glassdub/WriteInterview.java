@@ -2,11 +2,14 @@ package edu.washington.glassdub.glassdub;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +41,7 @@ public class WriteInterview extends AppCompatActivity {
     private Button submit;
     private BottomNavigationView botNavigation;
 
+    final Context context = this;
     Calendar calendar;
 
     String[] offer_list = {"Yes", "No", "Pending"};
@@ -162,7 +166,7 @@ public class WriteInterview extends AppCompatActivity {
             submit = false;
         }
         if (comments == null || comments.trim().length() == 0) {
-            comments_view.setError("");
+            ((TextView) findViewById(R.id.write_interview_subOverall)).setError("");
             submit = false;
         }
 
@@ -174,16 +178,39 @@ public class WriteInterview extends AppCompatActivity {
             ((TextView) findViewById(R.id.write_interview_experience_title)).setError("");
             submit = false;
         }
+        date = date_view.getText().toString();
+        if (date.equals("MMMM DD, YYYY ")) {
+            ((TextView) findViewById(R.id.write_interview_date_error)).setError("");
+            submit = false;
+            Log.d(TAG, "start date not filled");
+        } else if (calendar.getTime().after(Calendar.getInstance().getTime())) {
+            showAlert("Error", "Start date (" + date + ") has not occurred yet.");
+        }
 
         if (submit) {
             company_job = company + " - " + job;
-            date = date_view.getText().toString();
 
             Log.d(TAG, "fetchData:\n company:" + company + "\n job:" + job + "\n " + date +
                    "\n offer:" + offer + "\n comments:" + comments);
         }
 
         return submit;
+    }
+
+    private void showAlert(String title, String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        alertDialogBuilder
+                .setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
@@ -225,7 +252,7 @@ public class WriteInterview extends AppCompatActivity {
 
     private void updateLabel() {
 
-        String myFormat = "MMMM dd, yyyy";
+        String myFormat = "MMMM dd, yyyy ";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         ((TextView) findViewById(R.id.write_interview_date)).setText(sdf.format(calendar.getTime()));

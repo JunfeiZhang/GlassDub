@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,16 @@ public class jobListHome extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), JobPage.class);
-                                intent.putExtra("jobID", objects.get(position).get("jobID").toString());
+                                LinkedHashMap<String, Object> curr = objects.get(position);
+
+                                Log.d("jobListHome", curr.toString());
+                                intent.putExtra("jobID", curr.get("jobID").toString());
+                                intent.putExtra("type", curr.get("type").toString());
+                                intent.putExtra("title", curr.get("title").toString());
+                                intent.putExtra("rating", curr.get("rating").toString());
+                                LinkedHashMap<String, Object> company = (LinkedHashMap<String, Object>) curr.get("company");
+                                intent.putExtra("companyName", company.get("name").toString());
+                                intent.putExtra("companyID", company.get("companyID").toString());
                                 startActivity(intent);
                             }
                         });
@@ -103,7 +113,9 @@ public class jobListHome extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(), "", 5);
+            LinkedHashMap<String, Object> company = (LinkedHashMap<String, Object>) obj.get("company");
+            data[i] = new CustomItem(obj.get("title").toString(), obj.get("type").toString(),
+                    company.get("name").toString(),Integer.parseInt(company.get("rating").toString()));
         }
 
         return data;

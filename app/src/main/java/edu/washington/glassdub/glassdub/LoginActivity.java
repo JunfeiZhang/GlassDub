@@ -55,11 +55,15 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 
 public class LoginActivity extends AppCompatActivity {
+    private GlassDub app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        app = (GlassDub) getApplication();
+
         final String authUrl = "https://students.washington.edu/dianaw14/glassdub_auth/";
 
         WebView webview = new WebView(this);
@@ -81,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String[] temp1=ar1.split("=");
                                 cookieValue = temp1[1];
                                 createUser(cookieValue);
+                                app.setUsername(cookieValue);
 
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
@@ -120,7 +125,12 @@ public class LoginActivity extends AppCompatActivity {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
                     if (objects.size() == 0) {
                         createNewUser(userParams, c);
+                    } else {
+                        app.setUsernumber(objects.get(0).get("userID").toString());
                     }
+                    String notification = "Signed in as " + c;
+                    Toast t = Toast.makeText(getApplicationContext(), notification, Toast.LENGTH_SHORT);
+                    t.show();
                 }
             }
         });
@@ -148,9 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                     alertDialog.show();
                 } else {
                     // pop up a toast that says who they are
-                    String notification = "Signed in as " + c;
-                    Toast t = Toast.makeText(getApplicationContext(), notification, Toast.LENGTH_SHORT);
-                    t.show();
+                    app.setUsernumber(result.toString());
                 }
             }
         });

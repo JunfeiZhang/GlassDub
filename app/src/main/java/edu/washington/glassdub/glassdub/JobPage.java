@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -32,10 +33,14 @@ import static android.view.View.VISIBLE;
 
 public class JobPage extends AppCompatActivity {
     private Activity act = this;
-    private TextView company, type,des;
     private ProgressBar progressBar;
     private LinearLayout jobLayout;
     private BottomNavigationView botNavigation;
+    private TextView job, type,des;
+
+    LinearLayout rating;
+    ImageView logo;
+    //TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +50,17 @@ public class JobPage extends AppCompatActivity {
         Intent intent = getIntent();
         final String jobID = intent.getStringExtra("jobID");
         String companyName = intent.getStringExtra("companyName");
+        String typeJob = intent.getStringExtra("type");
+        String jobName = intent.getStringExtra("title");
 
         Map<String,String> jobParams = new HashMap<>();
         jobParams.put("job",jobID);
 
-        company = (TextView) findViewById(R.id.company);
-        type = (TextView) findViewById(R.id.type);
-        des = (TextView) findViewById(R.id.des);
-
-        company.setText(companyName);
-        type.setText(intent.getStringExtra("type"));
+        job = (TextView) findViewById(R.id.JPjob);
+        type = (TextView) findViewById(R.id.JPtype);
+//        des = (TextView) findViewById(R.id.JPdescription);
+        logo = (ImageView) findViewById(R.id.JPlogo);
+        rating = (LinearLayout) findViewById(R.id.JPrating);
 
         jobLayout = (LinearLayout) findViewById(R.id.jobLayout);
         jobLayout.setVisibility(View.INVISIBLE);
@@ -69,6 +75,12 @@ public class JobPage extends AppCompatActivity {
                 jobLayout.setVisibility(VISIBLE);
             }
         });
+
+        type.setText(typeJob);
+        job.setText(companyName + " - " + jobName);
+        updateRating(Integer.parseInt(intent.getStringExtra("rating")));
+        //type.setText(intent.getStringExtra("type"));
+        //description = (TextView) findViewById(R.id.JPdescription);
 
         Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
             @Override
@@ -99,7 +111,7 @@ public class JobPage extends AppCompatActivity {
                         }
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(act, android.R.layout.simple_list_item_1, jobReviews);
-                        ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
+                        ListView companyReviewList = (ListView) findViewById(R.id.job_listview);
                         companyReviewList.setAdapter(adapter);
 
 
@@ -137,4 +149,12 @@ public class JobPage extends AppCompatActivity {
             }
         });
     }
+    private void updateRating(int count) {
+        int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
+
+        for (int i = 0; i < count; i++) {
+            ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
+        }
+    }
+
 }

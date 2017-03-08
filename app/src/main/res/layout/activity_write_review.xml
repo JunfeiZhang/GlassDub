@@ -17,20 +17,18 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="Interview Info"
+            android:text="Job Review"
             android:textSize="@dimen/font_size_title"
             android:textStyle="bold"
             android:gravity="center"
             android:background="@color/purple"
             android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.075"/>
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
             style="@style/ScreenTheme"
             android:orientation="vertical">
 
@@ -118,14 +116,14 @@
                     android:tint="@color/purple"
                     android:layout_toEndOf="@id/write_review_start_date"/>
 
-                <edu.washington.glassdub.glassdub.CustomEditText
-                    android:layout_width="30dp"
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint=" "
-                    android:id="@+id/write_review_start_date_error"
-                    android:focusable="false"
-                    android:background="@color/white"
-                    android:layout_toEndOf="@id/write_review_start_date_icon"/>
+                    android:layout_toEndOf="@id/write_review_start_date_icon"
+                    android:textColor="@color/white"
+                    android:text="E"
+                    android:id="@+id/write_review_start_date_error" />
 
             </RelativeLayout>
 
@@ -146,7 +144,7 @@
                     android:id="@+id/write_review_end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MMMM DD, YYYY"
+                    android:text="MMMM DD, YYYY "
                     android:textColor="@color/purple"
                     android:textStyle="normal"
                     android:layout_toEndOf="@id/write_review_end_date_title" />
@@ -192,8 +190,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:textColor="@color/lightgrey">
 
@@ -222,8 +219,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
@@ -245,8 +241,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -260,29 +255,34 @@
                         android:paddingBottom="10dp"
                         style="@style/SubtitleTheme"
                         android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.23"/>
+                        android:layout_width="wrap_content"/>
 
                     <TextView
-                        android:text="  (Pros, Cons, etc.)"
+                        android:text="  (Pros, Cons, etc.)  "
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         style="@style/SubtitleTheme"
                         android:textStyle="normal"
                         android:layout_height="match_parent"
-                        android:layout_width="0dip"
-                        android:layout_weight="0.6"/>
+                        android:layout_width="wrap_content"
+                        android:id="@+id/write_review_subOverall"/>
 
                 </LinearLayout>
 
                 <edu.washington.glassdub.glassdub.CustomEditText
-                    android:id="@+id/write_review_body"
-                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:gravity="top|left"
+                    android:id ="@+id/write_review_body"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
-                    android:inputType="text"
-                    android:layout_weight="0.7"
-                    android:maxLines="100"
-                    android:scrollHorizontally="false"/>
+                    android:layout_height ="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:maxLines ="2000"
+                    android:minLines="4"
+                    android:scrollHorizontally="false"
+                    android:background="@drawable/border"/>
             </LinearLayout>
 
             <CheckBox

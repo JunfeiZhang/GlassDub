@@ -18,9 +18,14 @@ import android.widget.TextView;
 import com.kumulos.android.Kumulos;
 import com.kumulos.android.ResponseHandler;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.view.View.INVISIBLE;
@@ -112,10 +117,27 @@ public class ReviewList extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), obj.get("timeCreated").toString(), obj.get("body").toString(), Integer.valueOf(obj.get("rating").toString()));
+            data[i] = new CustomItem(obj.get("title").toString(), formatDate(obj.get("timeCreated").toString()).toString(), obj.get("body").toString(), Integer.valueOf(obj.get("rating").toString()));
         }
 
         return data;
+    }
+
+    private String formatDate(String original) {
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+
+        Date date = null;
+        String result = "";
+
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .parse(original);
+            result = format.format(date);
+        } catch (ParseException e) {
+            e.getStackTrace();
+        }
+        Log.d(TAG, "original: " + original + " new: " + result);
+        return result;
     }
 
     public void setTitles(String[] titles) {

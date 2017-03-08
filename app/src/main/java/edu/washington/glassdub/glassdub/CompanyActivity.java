@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class CompanyActivity extends AppCompatActivity {
@@ -100,6 +101,7 @@ public class CompanyActivity extends AppCompatActivity {
             public void onAnimationEnd(Animator animation) {
                 companyLayout.setVisibility(VISIBLE);
                 super.onAnimationEnd(animation);
+                progressBar.setVisibility(GONE);
             }
         });
 

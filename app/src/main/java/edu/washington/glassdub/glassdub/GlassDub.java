@@ -11,6 +11,8 @@ import com.kumulos.android.Kumulos;
 
 public class GlassDub extends Application {
     private static GlassDub instance = null;
+    private String username = null;
+    private String usernumber = null;
 
     public GlassDub() {
         Log.i("class", "App created");
@@ -29,5 +31,21 @@ public class GlassDub extends Application {
         Log.i("testing", "WE GOT HERE");
 
         Kumulos.initWithAPIKeyAndSecretKey("6573923c-cfb6-4b5f-9b3f-cfd2dd63ef6a", "D+lAysXBEw9+Xr+xkNbEZZjfXxJXoJ5XmRM2", this);
+    }
+
+    public void setUsername(String un) {
+        this.username = un;
+    }
+
+    public void setUsernumber(String num) {
+        this.usernumber = num;
+    }
+
+    public String getUsernumber() {
+        return this.usernumber;
+    }
+
+    public String getUsername() {
+        return this.username;
     }
 }

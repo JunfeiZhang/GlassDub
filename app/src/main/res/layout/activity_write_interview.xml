@@ -102,7 +102,7 @@
                     android:id="@+id/write_interview_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jan 1, 2017 "
+                    android:text="MMMM DD, YYYY "
                     android:textColor="@color/purple"
                     android:textStyle="normal"
                     android:layout_toEndOf="@id/write_interview_date_title" />
@@ -117,6 +117,15 @@
                     android:layout_alignParentBottom="true"
                     android:paddingBottom="8dp"
                     android:layout_toEndOf="@+id/write_interview_date" />
+
+                <TextView
+                    style="@style/WriteReviewSubtitleHalfTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E"
+                    android:textColor="@color/white"
+                    android:layout_toEndOf="@+id/write_interview_date_icon"
+                    android:id="@+id/write_interview_date_error" />
 
             </RelativeLayout>
 
@@ -148,7 +157,7 @@
                 android:paddingTop="10dp">
 
                 <TextView
-                    android:text="Overall Interview Experience?"
+                    android:text="Overall Interview Experience? "
                     style="@style/SubtitleTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -344,7 +353,8 @@
                     android:textStyle="normal"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:paddingBottom="2dp"/>
+                    android:paddingBottom="2dp"
+                    android:id="@+id/write_interview_subOverall"/>
 
                 <edu.washington.glassdub.glassdub.CustomEditText
                     android:layout_gravity="center"
