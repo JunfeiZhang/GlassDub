@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -50,7 +51,7 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
 
         Intent intent = getIntent();
-        String companyID = intent.getStringExtra("companyID");  // companyID
+        final String companyID = intent.getStringExtra("companyID");  // companyID
 
         //companyImage = (ImageView) findViewById(R.id.companyImage);
         mViewPager = (ViewPager) findViewById(R.id.company_container);
@@ -116,7 +117,8 @@ public class CompanyActivity extends AppCompatActivity {
 
                         descr.setText(object.get("description").toString());
                         // TODO: Show rating with stars
-                        setRating(Integer.parseInt(object.get("rating").toString()));
+                        getCompanyRating(companyID);
+                        //setRating(Integer.parseInt(object.get("rating").toString()));
                         // TODO: Do image stuff here
 //                        ImageView cImage = (ImageView) findViewById(R.id.cImage);
 //                        if(cName.equals("Facebook")) {
@@ -181,9 +183,39 @@ public class CompanyActivity extends AppCompatActivity {
     }
 
     private void setRating(int count) {
+        Log.i("rating", "" + count);
         int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
         for (int i = 0; i < count; i++) {
             ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
         }
+    }
+
+    private void getCompanyRating(String companyID) {
+        Map<String,String> companyParams = new HashMap<>();
+        companyParams.put("companyID", companyID);
+
+        Kumulos.call("getAverageCompany", companyParams, new ResponseHandler() {
+            @Override
+            public void didCompleteWithResult(Object result) {
+                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            act);
+                    alertDialogBuilder
+                            .setTitle("Error")
+                            .setMessage("We We were unable to retrieve information about the selected company. Try again.")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // TODO: send them back to list of companies
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    setRating((int) Math.round(Double.parseDouble(result.toString())));
+                }
+            }
+        });
     }
 }

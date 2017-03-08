@@ -10,6 +10,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,7 +42,6 @@ public class JobPage extends AppCompatActivity {
 
     LinearLayout rating;
     ImageView logo;
-    //TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +79,7 @@ public class JobPage extends AppCompatActivity {
 
         type.setText(typeJob);
         job.setText(companyName + " - " + jobName);
-        updateRating(Integer.parseInt(intent.getStringExtra("rating")));
-        //type.setText(intent.getStringExtra("type"));
-        //description = (TextView) findViewById(R.id.JPdescription);
+        getjobRating(jobID);
 
         Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
             @Override
@@ -152,11 +150,41 @@ public class JobPage extends AppCompatActivity {
         });
     }
     private void updateRating(int count) {
+        Log.i("rating", "" + count);
         int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
 
         for (int i = 0; i < count; i++) {
             ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
         }
+    }
+
+    private void getjobRating(String jobID) {
+        Map<String,String> ratingParams = new HashMap<>();
+        ratingParams.put("job", jobID);
+
+        Kumulos.call("getAverageRating", ratingParams, new ResponseHandler() {
+            @Override
+            public void didCompleteWithResult(Object result) {
+                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            act);
+                    alertDialogBuilder
+                            .setTitle("Error")
+                            .setMessage("We We were unable to retrieve information about the selected job. Try again.")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // TODO: send them back to list of companies
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    updateRating((int) Math.round(Double.parseDouble(result.toString())));
+                }
+            }
+        });
     }
 
 }
