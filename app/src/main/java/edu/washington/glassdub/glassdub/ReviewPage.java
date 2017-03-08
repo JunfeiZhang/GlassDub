@@ -112,12 +112,7 @@ public class ReviewPage extends AppCompatActivity {
                         position.setText(company);
                         created.setText(formatDate(object.get("timeCreated").toString()));
                         start.setText(object.get("start_date").toString());
-                        // TODO: dont show this if the user didnt enter it
-                        if (object.get("end_date").toString() == "N/A") {
-                            end.setVisibility(View.INVISIBLE);
-                        } else {
-                            end.setText(object.get("end_date").toString());
-                        }
+                        end.setText(object.get("end_date").toString());
                         if (object.get("anonymous").toString() == "true") {
                             anonymous.setText("Anonymous");
                         } else {
