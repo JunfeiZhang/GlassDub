@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             style="@style/ScreenTheme"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,7 +66,9 @@
                         android:id="@+id/JPtype"
                         style="@style/ContentTheme"/>
 
-                    <include android:id="@+id/JPrating" layout="@layout/list_of_stars"/>
+                    <include
+                        android:id="@+id/JPrating"
+                        layout="@layout/list_of_stars" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -91,23 +94,24 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"/>
 
-            <FrameLayout
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="top"
+                android:background="@drawable/shadow"/>
+
+            <android.support.design.widget.BottomNavigationView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:layout_gravity="top"
-                    android:background="@drawable/shadow"/>
-
-                <android.support.design.widget.BottomNavigationView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    design:menu="@menu/menu_navigation"
-                    android:id="@+id/bottomBar"/>
-            </FrameLayout>
-        </LinearLayout>
+                design:menu="@menu/menu_navigation"
+                android:id="@+id/bottomBar"/>
+        </FrameLayout>
     </LinearLayout>
 </FrameLayout>
