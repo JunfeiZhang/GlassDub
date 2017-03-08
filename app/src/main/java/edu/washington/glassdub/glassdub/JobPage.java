@@ -45,7 +45,7 @@ public class JobPage extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout tabLayout;
     private Bundle b;
-    private String companyName;
+    private String companyName, jobName;
 
     LinearLayout rating;
     ImageView logo;
@@ -59,7 +59,7 @@ public class JobPage extends AppCompatActivity {
         final String jobID = intent.getStringExtra("jobID");
         companyName = intent.getStringExtra("companyName");
         String typeJob = intent.getStringExtra("type");
-        String jobName = intent.getStringExtra("title");
+        jobName = intent.getStringExtra("title");
 
         Map<String,String> jobParams = new HashMap<>();
         jobParams.put("job",jobID);
@@ -67,19 +67,19 @@ public class JobPage extends AppCompatActivity {
         job = (TextView) findViewById(R.id.JPjob);
         type = (TextView) findViewById(R.id.JPtype);
         logo = (ImageView) findViewById(R.id.JPlogo);
-//        if(companyName.equals("Google")) {
-//            logo.setImageResource(R.drawable.google);
-//        } else if(companyName.equals("Facebook")) {
-//            logo.setImageResource(R.drawable.facebook);
-//        } else if(companyName.equals("Tableau")) {
-//            logo.setImageResource(R.drawable.tableau);
-//        } else if(companyName.equals("Zillow")) {
-//            logo.setImageResource(R.drawable.zillow);
-//        } else if(companyName.equals("Starbucks")) {
-//            logo.setImageResource(R.drawable.starbucks);
-//        } else if(companyName.equals("Amazon")) {
-//            logo.setImageResource(R.drawable.amazon);
-//        }
+        if(companyName.equals("Google")) {
+            logo.setImageResource(R.drawable.google);
+        } else if(companyName.equals("Facebook")) {
+            logo.setImageResource(R.drawable.facebook);
+        } else if(companyName.equals("Tableau")) {
+            logo.setImageResource(R.drawable.tableau);
+        } else if(companyName.equals("Zillow")) {
+            logo.setImageResource(R.drawable.zillow);
+        } else if(companyName.equals("Starbucks")) {
+            logo.setImageResource(R.drawable.starbucks);
+        } else if(companyName.equals("Amazon")) {
+            logo.setImageResource(R.drawable.amazon);
+        }
 
         rating = (LinearLayout) findViewById(R.id.JPrating);
 
