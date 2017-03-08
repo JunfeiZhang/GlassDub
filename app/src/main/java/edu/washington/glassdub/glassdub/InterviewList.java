@@ -99,7 +99,7 @@ public class InterviewList extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), InterviewPage.class);
-                                intent.putExtra("InterviewID", objects.get(position).get("interview_reviewID").toString());
+                                intent.putExtra("interviewID", objects.get(position).get("interview_reviewID").toString());
                                 startActivity(intent);
                             }
                         });
