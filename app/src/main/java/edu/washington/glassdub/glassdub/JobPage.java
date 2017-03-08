@@ -119,7 +119,7 @@ public class JobPage extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(JobPage.this, ReviewPage.class);
                                 intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
-//                                intent.putExtra("reviewID",jobID);
+                                intent.putExtra("company", companyName);
                                 startActivity(intent);
 
                             }
@@ -136,7 +136,6 @@ public class JobPage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.jobItem) {
                     Intent intent = new Intent(JobPage.this, WriteReview.class);
-                    intent.putExtra("company", companyName);
                     startActivity(intent);
                 } else if (item.getItemId() == R.id.homeItem) {
                     Intent intent = new Intent(JobPage.this, MainActivity.class);

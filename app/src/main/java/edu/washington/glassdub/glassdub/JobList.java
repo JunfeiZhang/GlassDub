@@ -57,6 +57,7 @@ public class JobList extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_job_list, container, false);
         String api_function;
+        final String comapnyName = getArguments().getString("company");
 
         Map<String, String> jobParam = new HashMap<>();
         if (getArguments().getString("companyID") != null ) {
@@ -112,7 +113,7 @@ public class JobList extends Fragment {
                                 intent.putExtra("title",objects.get(position).get("title").toString());
                                 intent.putExtra("type",objects.get(position).get("type").toString());
                                 intent.putExtra("companyID", getArguments().getString("companyID"));
-                                intent.putExtra("companyName", objects.get(position).get("company").toString());
+                                intent.putExtra("companyName", companyName);
                                 intent.putExtra("rating", objects.get(position).get("rating").toString());
                                 startActivity(intent);
                             }

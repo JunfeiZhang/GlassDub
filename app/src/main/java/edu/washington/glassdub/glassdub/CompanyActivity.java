@@ -113,6 +113,7 @@ public class CompanyActivity extends AppCompatActivity {
                         b.putString("tile",object.get("name").toString());
 
                         companyName = object.get("name").toString();
+                        b.putString("company", companyName);
                         title.setText(companyName);
 
                         descr.setText(object.get("description").toString());
@@ -134,6 +135,20 @@ public class CompanyActivity extends AppCompatActivity {
 //                        } else if (cName.equals("Starbucks")) {
 //                            cImage.setImageResource(R.drawable.starbucks);
 //                        }
+                        Fragment reviewList = new ReviewList();
+                        reviewList.setArguments(b);
+
+                        Fragment interviewList = new InterviewList();
+                        interviewList.setArguments(b);
+
+                        Fragment jobList = new JobList();
+                        jobList.setArguments(b);
+
+                        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+                        vpAdapter.addFragments(reviewList, "Reviews");
+                        vpAdapter.addFragments(interviewList, "Interviews");
+                        vpAdapter.addFragments(jobList, "Jobs");
+                        mViewPager.setAdapter(vpAdapter);
                     }
                 }
             }
@@ -142,14 +157,7 @@ public class CompanyActivity extends AppCompatActivity {
 
         // put bundle into three different fragments
 
-        Fragment reviewList = new ReviewList();
-        reviewList.setArguments(b);
 
-        Fragment interviewList = new InterviewList();
-        interviewList.setArguments(b);
-
-        Fragment jobList = new JobList();
-        jobList.setArguments(b);
 
 
         botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
@@ -159,7 +167,6 @@ public class CompanyActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.jobItem) {
                     Intent intent = new Intent(CompanyActivity.this, WriteReview.class);
-                    intent.putExtra("company", companyName);
                     startActivity(intent);
                 } else if (item.getItemId() == R.id.homeItem) {
                     Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
@@ -174,11 +181,7 @@ public class CompanyActivity extends AppCompatActivity {
         });
 
 
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        vpAdapter.addFragments(reviewList, "Reviews");
-        vpAdapter.addFragments(interviewList, "Interviews");
-        vpAdapter.addFragments(jobList, "Jobs");
-        mViewPager.setAdapter(vpAdapter);
+
 
     }
 
