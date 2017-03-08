@@ -5,12 +5,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,12 +33,13 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * TODO: Save all the data user inputted onto Kumulos server
+ * TODO: Save username with the review
  */
+
 
 public class WriteInterview extends AppCompatActivity {
     private Button submit;
-
+    private BottomNavigationView botNavigation;
 
     final Context context = this;
     Calendar calendar;
@@ -97,6 +101,25 @@ public class WriteInterview extends AppCompatActivity {
         calendar = Calendar.getInstance();
         ((TextView) findViewById(R.id.write_interview_date)).setOnTouchListener(dateTouchListener);
         ((ImageButton) findViewById(R.id.write_interview_date_icon)).setOnTouchListener(dateTouchListener);
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(2).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(WriteInterview.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(WriteInterview.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(WriteInterview.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
 
     private void fillOfferList() {

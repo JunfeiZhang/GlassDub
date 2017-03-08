@@ -8,7 +8,7 @@
         android:id="@+id/noInterviews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="There are no interview reviews for this (job or company)"
+        android:text="There are no interview reviews for this"
         android:gravity="center"
         android:visibility="invisible"/>
 

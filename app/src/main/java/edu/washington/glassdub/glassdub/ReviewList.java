@@ -28,15 +28,12 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 
 /**
  * A simple {@link Fragment} subclass.
- */
-
-/**
- * TODO: Load the list of fetched interview reviews from Kumulos (after the user has searched)
  */
 
 public class ReviewList extends Fragment {
@@ -91,9 +88,9 @@ public class ReviewList extends Fragment {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
                     if(objects.size() == 0) {
-                        // TODO: tell the user that there are no reviews for the company yet.
                         noReviews.setVisibility(VISIBLE);
                     } else {
+                        noReviews.setVisibility(INVISIBLE);
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
 
                         ListView companyReviewList = (ListView) view.findViewById(R.id.review_listview);

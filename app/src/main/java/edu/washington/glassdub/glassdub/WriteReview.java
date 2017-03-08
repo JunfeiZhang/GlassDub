@@ -7,11 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +38,7 @@ import java.util.*;
 import static java.lang.Math.round;
 
 /**
- * TODO: Save all the data user inputted onto Kumulos server
+ * TODO: Save username with the review
  */
 
 public class WriteReview extends Activity {
@@ -44,6 +47,7 @@ public class WriteReview extends Activity {
     private Button submit;
     final Context context = this;
     private String companyID;
+    private BottomNavigationView botNavigation;
 
     Calendar startCal;
     Calendar endCal;
@@ -110,6 +114,26 @@ public class WriteReview extends Activity {
 
         submit = (Button) findViewById(R.id.write_review_submit_button);
         submit.setOnClickListener(submitListener);
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(0).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(WriteReview.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(WriteReview.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
+
     }
 
     private View.OnClickListener submitListener = new View.OnClickListener() {
