@@ -37,10 +37,6 @@ import java.util.*;
 
 import static java.lang.Math.round;
 
-/**
- * TODO: Save username with the review
- */
-
 public class WriteReview extends Activity {
     private static final String TAG = "WriteReview";
 
@@ -168,7 +164,6 @@ public class WriteReview extends Activity {
                             reviewParams.put("end_date", end_date);
                             reviewParams.put("title", review_title);
                             reviewParams.put("body", review_body);
-                            // TODO: Get this from the application object once we have implemented login
                             reviewParams.put("employee", app.getUsernumber());
                             reviewParams.put("anonymous", anonymous);
 

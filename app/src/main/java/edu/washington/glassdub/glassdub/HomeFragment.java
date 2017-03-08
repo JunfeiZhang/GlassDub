@@ -29,7 +29,6 @@ import static android.view.View.VISIBLE;
 
 
 /*
- * TODO: Fetch search query job results (save the user input from the search bar) and set the filter for jobs/companies
  * TODO: If time permits query on search bar text change
  */
 
@@ -112,7 +111,6 @@ public class HomeFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 query = searchView.getQuery().toString().toLowerCase();
 
-                // TODO: Grab information from Kumulos and save it to fragment
                 Fragment newCompaniesFrag = new CompanyList();
                 Fragment newJobsFrag = new JobList();
                 Bundle b = new Bundle();

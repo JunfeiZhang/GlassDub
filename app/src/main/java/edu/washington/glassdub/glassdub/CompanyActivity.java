@@ -100,8 +100,9 @@ public class CompanyActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
@@ -117,7 +118,6 @@ public class CompanyActivity extends AppCompatActivity {
                         title.setText(companyName);
 
                         descr.setText(object.get("description").toString());
-                        // TODO: Show rating with stars
                         getCompanyRating(companyID);
                         //setRating(Integer.parseInt(object.get("rating").toString()));
                         // TODO: Do image stuff here
@@ -209,8 +209,9 @@ public class CompanyActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();

@@ -71,8 +71,6 @@ public class InterviewPage extends AppCompatActivity {
             }
         });
 
-        // TODO: get info sent to fragment (comapny ID)
-        //int interviewID = 2; // getArguments().getInt("interviewID");
         Intent intent = getIntent();
         String interviewID = intent.getStringExtra("interviewID");
         Log.d(TAG, "interviewID: "+ interviewID);
@@ -91,8 +89,9 @@ public class InterviewPage extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(InterviewPage.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();

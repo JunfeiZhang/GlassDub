@@ -93,15 +93,15 @@ public class JobPage extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(JobPage.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-                    // TODO: go through and update all the fields
                     if (objects.size() > 0) {
                         String[] jobReviews = new String[objects.size()];
                         int i =0;
@@ -173,8 +173,9 @@ public class JobPage extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(JobPage.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
