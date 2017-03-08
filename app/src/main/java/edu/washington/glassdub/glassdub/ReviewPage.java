@@ -64,6 +64,7 @@ public class ReviewPage extends AppCompatActivity {
         Intent intent = getIntent();
 
         String companyRevID = intent.getStringExtra("reviewID");
+
         Map<String,String> revParams = new HashMap<>();
         revParams.put("job_reviewID", companyRevID);
 

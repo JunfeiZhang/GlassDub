@@ -61,7 +61,7 @@ public class ReviewList extends Fragment {
 
         noReviews = (TextView) view.findViewById(R.id.noReviews);
 
-        String companyID = getArguments().getString("companyID", "22");
+        final String companyID = getArguments().getString("companyID", "22");
 
         Map<String, String> reviewParam = new HashMap<>();
         reviewParam.put("companyID", companyID);
