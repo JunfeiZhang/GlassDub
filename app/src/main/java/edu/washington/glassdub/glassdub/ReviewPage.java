@@ -60,10 +60,10 @@ public class ReviewPage extends AppCompatActivity {
         anonymous = "";
         created = (TextView) findViewById(R.id.CRcreated);
 
-        // TODO: get info sent to fragment (comapny ID)
         Intent intent = getIntent();
 
         String companyRevID = intent.getStringExtra("reviewID");
+        final String company = intent.getStringExtra("company");
         Map<String,String> revParams = new HashMap<>();
         revParams.put("job_reviewID", companyRevID);
 
@@ -94,15 +94,15 @@ public class ReviewPage extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(ReviewPage.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-                    // TODO: go through and update all the fields
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         Log.d(TAG, object.toString());
@@ -110,7 +110,7 @@ public class ReviewPage extends AppCompatActivity {
                         review.setText(object.get("body").toString());
                         setRating(Integer.parseInt(object.get("rating").toString()));
                         salary.setText("$" + Math.round(Float.parseFloat(object.get("pay_rate").toString())));
-                        position.setText(object.get("job").toString());
+                        position.setText(company);
                         start.setText(object.get("start_date").toString());
                         // TODO: dont show this if the user didnt enter it
                         end.setText(object.get("end_date").toString());

@@ -29,16 +29,13 @@ import static android.view.View.VISIBLE;
 
 
 /*
- * TODO: Fetch search query job results (save the user input from the search bar) and set the filter for jobs/companies
  * TODO: If time permits query on search bar text change
  */
 
 public class HomeFragment extends Fragment {
     private SearchView searchView;
     private TextView hintText;
-    private ViewPager mViewPager;
     private TabLayout tabLayout;
-    private ViewPagerAdapter vpAdapter;
     private String query;
     private View view;
     private BottomNavigationView botNavigation;
@@ -88,18 +85,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mViewPager = (ViewPager) view.findViewById(R.id.company_container);
-        vpAdapter = new ViewPagerAdapter(getFragmentManager());
+        final ViewPager mViewPager = (ViewPager) view.findViewById(R.id.company_container);
+        final ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getFragmentManager());
 
 
-        Fragment defaultCompanysFrag = new CompanyList();
-        Bundle bundle = new Bundle();
+        final Fragment defaultCompanysFrag = new CompanyList();
+        final Bundle bundle = new Bundle();
         bundle.putString("user_query","none");
         defaultCompanysFrag.setArguments(bundle);
         vpAdapter.addFragments(defaultCompanysFrag,"Companies");
 
 
-        Fragment defaultJobsFrag = new jobListHome();
+        final Fragment defaultJobsFrag = new jobListHome();
         bundle.putString("job","none");
         defaultJobsFrag.setArguments(bundle);
         vpAdapter.addFragments(defaultJobsFrag, "Jobs");
@@ -114,7 +111,6 @@ public class HomeFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 query = searchView.getQuery().toString().toLowerCase();
 
-                // TODO: Grab information from Kumulos and save it to fragment
                 Fragment newCompaniesFrag = new CompanyList();
                 Fragment newJobsFrag = new JobList();
                 Bundle b = new Bundle();
@@ -150,6 +146,8 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onClose(){
                 hintText.setVisibility(VISIBLE);
+                mViewPager.setAdapter(vpAdapter);
+                tabLayout.setupWithViewPager(mViewPager);
                 return false;
             }
         });

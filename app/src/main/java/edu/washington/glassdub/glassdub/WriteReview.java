@@ -37,10 +37,6 @@ import java.util.*;
 
 import static java.lang.Math.round;
 
-/**
- * TODO: Save username with the review
- */
-
 public class WriteReview extends Activity {
     private static final String TAG = "WriteReview";
 
@@ -168,7 +164,6 @@ public class WriteReview extends Activity {
                             reviewParams.put("end_date", end_date);
                             reviewParams.put("title", review_title);
                             reviewParams.put("body", review_body);
-                            // TODO: Get this from the application object once we have implemented login
                             reviewParams.put("employee", app.getUsernumber());
                             reviewParams.put("anonymous", anonymous);
 
@@ -185,9 +180,9 @@ public class WriteReview extends Activity {
 
                                         Map<String, String> updateParams = new HashMap<>();
 
-                                        ArrayList<LinkedHashMap<String, Object>> jobResult = (ArrayList<LinkedHashMap<String, Object>>) objects.get(0).get("companyID");
+                                        String jobResult =(String) objects.get(0).get("companyID");
                                         Log.d(TAG, "first object:" + objects.get(0).toString());
-                                        Log.d(TAG, jobResult.get(0).toString());
+                                        //Log.d(TAG, jobResult.get(0).toString());
                                     /*updateParams.put("jobID", jobResult.get(0).toString());
                                     updateParams.put("rating", rating);
 
@@ -277,7 +272,7 @@ public class WriteReview extends Activity {
             submit = false;
         }
         if (review_body == null || review_body.trim().length() == 0) {
-            ((TextView) findViewById(R.id.write_review_subOverall)).setError("");
+            ((TextView) findViewById(R.id.write_interview_subOverall)).setError("");
             submit = false;
         }
         if (salary == null || salary.trim().length() == 0) {
@@ -311,7 +306,6 @@ public class WriteReview extends Activity {
                         ") is after your end date (" + end_date + ")");
             }
         }
-
 
         if (submit) {
             if (anonymous_view.isChecked()) {

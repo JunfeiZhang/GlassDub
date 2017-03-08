@@ -32,11 +32,12 @@
             android:visibility="visible">
 
             <TextView
-                android:text="Google - Interaction Designer (Job)"
+                android:text="Title"
                 android:theme="@style/WriteReviewTitleTheme"
+                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/CRposition"/>
+                android:id="@+id/CRtitle"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,14 +50,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Difficult But Interesting"
+                        android:text="Job"
                         android:textAppearance="@style/SubtitleTheme"
                         android:theme="@style/DefaultTheme"
                         android:textColor="@color/darkpurple"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:id="@+id/CRtitle" />
+                        android:id="@+id/CRposition" />
 
                     <include android:id="@+id/CRrating" layout="@layout/list_of_stars"
                         android:layout_height="wrap_content"

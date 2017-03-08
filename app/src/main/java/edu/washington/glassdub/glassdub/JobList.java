@@ -31,10 +31,6 @@ import java.util.Random;
  * A simple {@link Fragment} subclass.
  */
 
-/**
- * TODO: Load the list of fetched jobs from Kumulos (after the user has searched)
- * TODO: need to add companies for each listed jobs
- */
 
 public class JobList extends Fragment {
     private String[] titles = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5", "Job 6"};
@@ -57,6 +53,7 @@ public class JobList extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_job_list, container, false);
         String api_function;
+        final String comapnyName = getArguments().getString("company");
 
         Map<String, String> jobParam = new HashMap<>();
         if (getArguments().getString("companyID") != null ) {
@@ -112,7 +109,7 @@ public class JobList extends Fragment {
                                 intent.putExtra("title",objects.get(position).get("title").toString());
                                 intent.putExtra("type",objects.get(position).get("type").toString());
                                 intent.putExtra("companyID", getArguments().getString("companyID"));
-                                intent.putExtra("companyName", objects.get(position).get("company").toString());
+                                intent.putExtra("companyName", companyName);
                                 intent.putExtra("rating", objects.get(position).get("rating").toString());
                                 startActivity(intent);
                             }
@@ -130,8 +127,8 @@ public class JobList extends Fragment {
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
             Log.d(TAG, "object: " + obj.toString());
-            data[i] = new CustomItem(obj.get("title").toString(),
-                    obj.get("type").toString(), obj.get("company").toString(), new Random().nextInt(5) + 1);
+            data[i] = new CustomItem(obj.get("title").toString(), "",
+                    obj.get("type").toString(), new Random().nextInt(5) + 1);
         }
 
         return data;

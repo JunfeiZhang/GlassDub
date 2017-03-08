@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,11 +27,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kumulos.android.Kumulos;
+import com.kumulos.android.ResponseHandler;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * TODO: Save username with the review
@@ -38,18 +45,28 @@ import java.util.Locale;
 
 
 public class WriteInterview extends AppCompatActivity {
+    private static final String TAG = "WriteInterview";
+
     private Button submit;
     private BottomNavigationView botNavigation;
-
     final Context context = this;
+    private String companyID;
+    private String company;
     Calendar calendar;
 
     String[] offer_list = {"Yes", "No", "Pending"};
 
-    String company_job = null;
-    String date = null;
-    String offer = null;
-    String comments = null;
+    CustomEditText company_view;
+    CustomEditText job_view;
+    EditText comments_view;
+    TextView date_view;
+    Spinner offer_view;
+    CheckBox anonymous_view;
+    String job;
+    String date;
+    String offer;
+    String comments;
+    String anonymous = "false";
 
     int difficulty = -1;
     int[] difficulty_ids = {R.id.difficulty_1, R.id.difficulty_2, R.id.difficulty_3,
@@ -61,8 +78,6 @@ public class WriteInterview extends AppCompatActivity {
     int grey;
     int purple;
 
-    public static final String TAG = "WriteInterview";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,21 +85,14 @@ public class WriteInterview extends AppCompatActivity {
 
         fillOfferList();
 
+//        company_view = (EditText) findViewById(R.id.write_interview_company);
+//        job_view = (EditText) findViewById(R.id.write_interview_job);
+
         grey =  ResourcesCompat.getColor(getResources(), R.color.mediumgrey, null);
         purple = ResourcesCompat.getColor(getResources(), R.color.purple, null);
 
         submit = (Button) findViewById(R.id.submit_interview_button);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean filled = fetchData();
-
-                if (filled) {
-                    Intent intent = new Intent(WriteInterview.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
+        submit.setOnClickListener(submitListener);
 
         for (int i = 0; i < difficulty_ids.length; i++) {
             ((Button) findViewById(difficulty_ids[i])).setOnClickListener(difficultyListener);
@@ -136,16 +144,90 @@ public class WriteInterview extends AppCompatActivity {
         ((Spinner) findViewById(R.id.write_interview_offer)).setAdapter(adapter);
     }
 
+    private View.OnClickListener submitListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            boolean submit = fetchData();
+
+            if (submit) {
+                Map<String, String> companyParams = new HashMap<>();
+                companyParams.put("name", company_view.getText().toString());
+
+                //make request to get companyID based on input company
+                Kumulos.call("getCompanyByName", companyParams, new ResponseHandler() {
+                    @Override
+                    public void didCompleteWithResult(Object result) {
+                        final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                        if (objects.size() == 0) {
+                            // tell them something went wrong
+                            showAlert("Incorrect Company", "We don't have records for the company that you entered. If you want this company to be added to our system contact Dean at dean@ischool.edu.");
+                        } else {
+                            Log.i("testing", objects.get(0).toString());
+                            companyID = objects.get(0).get("companyID").toString();
+                            GlassDub app = (GlassDub) getApplication();
+
+                            Map<String, String> reviewParams = new HashMap<>();
+                            reviewParams.put("companyID", companyID);
+                            reviewParams.put("job", job);
+                            reviewParams.put("received_offer", offer);
+                            reviewParams.put("interview_rating", experience);
+                            reviewParams.put("difficulty", Integer.toString(difficulty));
+                            reviewParams.put("title", "fake title");
+                            reviewParams.put("body", comments);
+                            // TODO: Get this from the application object once we have implemented login
+                            reviewParams.put("interviewee", app.getUsernumber());
+                            reviewParams.put("anonymous", anonymous);
+
+                            Kumulos.call("createInterviewReview", reviewParams, new ResponseHandler() {
+                                @Override
+                                public void didCompleteWithResult(Object result) {
+                                    Log.i("testing", result.toString());
+                                    // Do updates to UI/data models based on result
+                                    if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                                        showAlert("Error", "There was an error when creating your review. Try again.");
+                                    } else {
+                                        Intent intent = new Intent(WriteInterview.this, MainActivity.class);
+                                        startActivity(intent);
+
+                                        Map<String, String> updateParams = new HashMap<>();
+
+                                        String jobResult =(String) objects.get(0).get("companyID");
+                                        Log.d(TAG, "first object:" + objects.get(0).toString());
+                                        //Log.d(TAG, jobResult.get(0).toString());
+                                    /*updateParams.put("jobID", jobResult.get(0).toString());
+                                    updateParams.put("rating", rating);
+
+                                    Kumulos.call("updateRating", updateParams, new ResponseHandler() {
+                                        @Override
+                                        public void didCompleteWithResult(Object result) {
+                                            ArrayList<LinkedHashMap<String, Object>> updateResult = (ArrayList<LinkedHashMap<String, Object>>) result;
+                                            if (updateResult.size() != 0) {
+                                                Log.d(TAG, "updated rating");
+                                            }
+                                        }
+                                    });*/
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    };
+
     private boolean fetchData() {
-        CustomEditText company_view = ((CustomEditText) findViewById(R.id.write_interview_company));
-        CustomEditText job_view = ((CustomEditText) findViewById(R.id.write_interview_job));
-        TextView date_view = ((TextView) findViewById(R.id.write_interview_date));
-        Spinner offer_view = ((Spinner) findViewById(R.id.write_interview_offer));
-        EditText comments_view = ((EditText) findViewById(R.id.write_interview_body));
 
+        company_view = ((CustomEditText) findViewById(R.id.write_interview_company));
+        job_view = ((CustomEditText) findViewById(R.id.write_interview_job));
+        date_view = ((TextView) findViewById(R.id.write_interview_date));
+        offer_view = ((Spinner) findViewById(R.id.write_interview_offer));
+        comments_view = ((EditText) findViewById(R.id.write_interview_body));
+        anonymous_view = (CheckBox) findViewById(R.id.anonymous);
 
-        String company = company_view.getText().toString();
-        String job = job_view.getText().toString();
+        company = company_view.getText().toString();
+        job = job_view.getText().toString();
         comments = comments_view.getText().toString();
 
         boolean submit = true;
@@ -188,12 +270,17 @@ public class WriteInterview extends AppCompatActivity {
         }
 
         if (submit) {
-            company_job = company + " - " + job;
-
             Log.d(TAG, "fetchData:\n company:" + company + "\n job:" + job + "\n " + date +
                    "\n offer:" + offer + "\n comments:" + comments);
         }
-
+        if (submit) {
+            if (anonymous_view.isChecked()) {
+                anonymous = "true";
+            } else {
+                anonymous = "false";
+            }
+            Log.d(TAG, "\n anonymous:" + anonymous);
+        }
         return submit;
     }
 

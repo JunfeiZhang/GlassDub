@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,6 +42,7 @@ public class CompanyActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private LinearLayout companyLayout;
     private BottomNavigationView botNavigation;
+    private String companyName;
 
 
     @Override
@@ -49,7 +51,7 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
 
         Intent intent = getIntent();
-        String companyID = intent.getStringExtra("companyID");  // companyID
+        final String companyID = intent.getStringExtra("companyID");  // companyID
 
         //companyImage = (ImageView) findViewById(R.id.companyImage);
         mViewPager = (ViewPager) findViewById(R.id.company_container);
@@ -58,26 +60,6 @@ public class CompanyActivity extends AppCompatActivity {
         // initialize bundle
         final Bundle b = new Bundle();
         b.putString("companyID", companyID);
-
-        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
-        botNavigation.getMenu().getItem(1).setChecked(true);
-        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.jobItem) {
-                    Intent intent = new Intent(CompanyActivity.this, WriteReview.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.homeItem) {
-                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.interviewItem) {
-                    Intent intent = new Intent(CompanyActivity.this, WriteInterview.class);
-                    startActivity(intent);
-                }
-                return false;
-            }
-        });
-
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -105,6 +87,7 @@ public class CompanyActivity extends AppCompatActivity {
             }
         });
 
+
         Kumulos.call("getCompany", companyParams, new ResponseHandler() {
             @Override
             public void didCompleteWithResult(Object result) {
@@ -117,8 +100,9 @@ public class CompanyActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
@@ -129,12 +113,14 @@ public class CompanyActivity extends AppCompatActivity {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         b.putString("tile",object.get("name").toString());
 
-                        String companyName = object.get("name").toString();
+
+                        companyName = object.get("name").toString();
+                        b.putString("company", companyName);
                         title.setText(companyName);
 
                         descr.setText(object.get("description").toString());
-                        // TODO: Show rating with stars
-                        setRating(Integer.parseInt(object.get("rating").toString()));
+                        getCompanyRating(companyID);
+                        //setRating(Integer.parseInt(object.get("rating").toString()));
                         // TODO: Do image stuff here
 //                        ImageView cImage = (ImageView) findViewById(R.id.cImage);
 //                        if(cName.equals("Facebook")) {
@@ -150,6 +136,20 @@ public class CompanyActivity extends AppCompatActivity {
 //                        } else if (cName.equals("Starbucks")) {
 //                            cImage.setImageResource(R.drawable.starbucks);
 //                        }
+                        Fragment reviewList = new ReviewList();
+                        reviewList.setArguments(b);
+
+                        Fragment interviewList = new InterviewList();
+                        interviewList.setArguments(b);
+
+                        Fragment jobList = new JobList();
+                        jobList.setArguments(b);
+
+                        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+                        vpAdapter.addFragments(reviewList, "Reviews");
+                        vpAdapter.addFragments(interviewList, "Interviews");
+                        vpAdapter.addFragments(jobList, "Jobs");
+                        mViewPager.setAdapter(vpAdapter);
                     }
                 }
             }
@@ -158,28 +158,69 @@ public class CompanyActivity extends AppCompatActivity {
 
         // put bundle into three different fragments
 
-        Fragment reviewList = new ReviewList();
-        reviewList.setArguments(b);
-
-        Fragment interviewList = new InterviewList();
-        interviewList.setArguments(b);
-
-        Fragment jobList = new JobList();
-        jobList.setArguments(b);
 
 
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        vpAdapter.addFragments(reviewList, "Reviews");
-        vpAdapter.addFragments(interviewList, "Interviews");
-        vpAdapter.addFragments(jobList, "Jobs");
-        mViewPager.setAdapter(vpAdapter);
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(CompanyActivity.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(CompanyActivity.this, WriteInterview.class);
+                    intent.putExtra("company", companyName);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
+
+
+
 
     }
 
     private void setRating(int count) {
+        Log.i("rating", "" + count);
         int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
         for (int i = 0; i < count; i++) {
             ((ImageView) rating.findViewById(stars[i])).setImageResource(R.drawable.ic_star_gold_24dp);
         }
+    }
+
+    private void getCompanyRating(String companyID) {
+        Map<String,String> companyParams = new HashMap<>();
+        companyParams.put("companyID", companyID);
+
+        Kumulos.call("getAverageCompany", companyParams, new ResponseHandler() {
+            @Override
+            public void didCompleteWithResult(Object result) {
+                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            act);
+                    alertDialogBuilder
+                            .setTitle("Error")
+                            .setMessage("We We were unable to retrieve information about the selected company. Try again.")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    setRating((int) Math.round(Double.parseDouble(result.toString())));
+                }
+            }
+        });
     }
 }
