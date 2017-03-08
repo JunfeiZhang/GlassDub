@@ -175,7 +175,7 @@
                 style="@style/CardTheme">
 
                 <TextView
-                    android:text="Overall"
+                    android:text="Interview Review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/SubtitleTheme"/>

@@ -169,7 +169,7 @@
                 style="@style/CardTheme">
 
                 <TextView
-                    android:text="Overall"
+                    android:text="Job Review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/SubtitleTheme"/>

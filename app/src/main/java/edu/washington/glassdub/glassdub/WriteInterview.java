@@ -248,7 +248,7 @@ public class WriteInterview extends AppCompatActivity {
             submit = false;
         }
         if (comments == null || comments.trim().length() == 0) {
-            ((TextView) findViewById(R.id.write_interview_subOverall)).setError("");
+            //((TextView) findViewById(R.id.write_interview_subOverall)).setError("");
             submit = false;
         }
 

@@ -272,7 +272,7 @@ public class WriteReview extends Activity {
             submit = false;
         }
         if (review_body == null || review_body.trim().length() == 0) {
-            ((TextView) findViewById(R.id.write_interview_subOverall)).setError("");
+            ((TextView) findViewById(R.id.write_review_subOverall)).setError("");
             submit = false;
         }
         if (salary == null || salary.trim().length() == 0) {

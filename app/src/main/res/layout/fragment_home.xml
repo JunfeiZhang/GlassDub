@@ -15,26 +15,26 @@
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
             <SearchView
                 android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Search Companies and Jobs" />
+                android:queryHint="Search Companies and Jobs"
+                android:layout_marginTop="2dp"/>
 
             <TextView
                 android:id="@+id/search_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="23dp"
                 android:text="Search Companies and Jobs"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"/>
-                <!--android:layout_centerHorizontal="true"-->
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center" />
         </RelativeLayout>
 
 
@@ -42,14 +42,18 @@
             android:id="@+id/company_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/CustomTabLayout"/>
+            style="@style/CustomTabLayout"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginBottom="15dp" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/company_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"/>
 
 

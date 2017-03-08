@@ -158,9 +158,6 @@ public class CompanyActivity extends AppCompatActivity {
 
         // put bundle into three different fragments
 
-
-
-
         botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
         botNavigation.getMenu().getItem(1).setChecked(true);
         botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

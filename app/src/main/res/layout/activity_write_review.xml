@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="Review For:"
+                android:text="Job Review For:"
                 style="@style/SubtitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,6 +179,7 @@
                     android:layout_weight="0.3"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:hint="XXXXXX"
                     android:background="@drawable/edittext_bottom_line"/>
 
                 <Space
@@ -194,7 +195,7 @@
                 android:textColor="@color/lightgrey">
 
                 <TextView
-                    android:text="Rating"
+                    android:text="Overall Rating"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     style="@style/SubtitleTheme"
@@ -222,7 +223,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="Title"
+                    android:text="Review Title"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     style="@style/SubtitleTheme"
@@ -249,7 +250,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="Comments"
+                        android:text="Review Body"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         style="@style/SubtitleTheme"
@@ -257,7 +258,7 @@
                         android:layout_width="wrap_content"/>
 
                     <TextView
-                        android:text="  (Pros, Cons, etc.)  "
+                        android:text="  (Pros, Cons, Advice, etc.)  "
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         style="@style/SubtitleTheme"
@@ -285,38 +286,23 @@
             </LinearLayout>
 
             <CheckBox
-                android:text="Include your NetID"
+                android:text="Include your NetID in your review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/anonymous" />
+                android:id="@+id/anonymous"
+                android:layout_marginTop="5dp"/>
 
             <Button
-                android:text="Submit"
+                android:text="Submit Review"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:background="@color/mediumgrey"
-                android:id="@+id/write_review_submit_button" />
-
-
-            <!--<FrameLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom">-->
-
-                <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="4dp"-->
-                    <!--android:layout_gravity="top"-->
-                    <!--android:background="@drawable/shadow"/>-->
-
-                <!--<android.support.design.widget.BottomNavigationView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--design:menu="@menu/menu_navigation"-->
-                    <!--android:id="@+id/bottomBar"/>-->
-            <!--</FrameLayout>-->
+                android:id="@+id/write_review_submit_button"
+                android:layout_marginBottom="30dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -158,6 +158,7 @@
                 <TextView
                     android:text="Overall Interview Experience? "
                     style="@style/SubtitleTheme"
+                    android:paddingBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/write_interview_experience_title"/>
@@ -351,8 +352,7 @@
                     style="@style/SubtitleTheme"
                     android:textStyle="normal"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:paddingBottom="2dp"/>
+                    android:layout_width="wrap_content" />
 
                 <edu.washington.glassdub.glassdub.CustomEditText
                     android:id="@+id/write_interview_body"
@@ -368,17 +368,6 @@
                     android:minLines="4"
                     android:padding="5dp"
                     android:scrollHorizontally="false" />
-
-                <TextView
-                    android:text="  "
-                    style="@style/SubtitleTheme"
-                    android:textStyle="normal"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:id="@+id/write_interview_subOverall"/>
-
-
             </LinearLayout>
 
             <CheckBox
@@ -400,23 +389,6 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"/>
 
-            <!--<FrameLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom">-->
-
-                <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="4dp"-->
-                    <!--android:layout_gravity="top"-->
-                    <!--android:background="@drawable/shadow"/>-->
-
-                <!--<android.support.design.widget.BottomNavigationView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--design:menu="@menu/menu_navigation"-->
-                    <!--android:id="@+id/bottomBar"/>-->
-            <!--</FrameLayout>-->
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
