@@ -80,7 +80,7 @@ public class JobList extends Fragment {
                             getActivity());
                     alertDialogBuilder
                             .setTitle("Error")
-                            .setMessage("We were unable to fetch the jobs jobs. Try searching again.")
+                            .setMessage("We were unable to fetch the jobs. Try searching again.")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {

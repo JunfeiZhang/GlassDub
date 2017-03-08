@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:design="http://schemas.android.com/apk/res-auto"
-    tools:context="edu.washington.glassdub.glassdub.ReviewPage">
+    tools:context="edu.washington.glassdub.glassdub.ReviewPage"
+    android:fillViewport="true">
     
     <FrameLayout
         android:layout_width="match_parent"
@@ -180,10 +181,11 @@
                     android:id="@+id/CRbody"/>
             </LinearLayout>
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
 
                 <View
                     android:layout_width="match_parent"
@@ -196,7 +198,7 @@
                     android:layout_height="wrap_content"
                     design:menu="@menu/menu_navigation"
                     android:id="@+id/bottomBar"/>
-            </FrameLayout>
+            </RelativeLayout>
         </LinearLayout>
     </FrameLayout>
 </ScrollView>

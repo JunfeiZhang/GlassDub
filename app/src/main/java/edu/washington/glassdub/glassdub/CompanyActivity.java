@@ -129,8 +129,6 @@ public class CompanyActivity extends AppCompatActivity {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         b.putString("tile",object.get("name").toString());
 
-                        String cName = object.get("name").toString();
-                        title.setText(cName);
                         String companyName = object.get("name").toString();
                         title.setText(companyName);
 

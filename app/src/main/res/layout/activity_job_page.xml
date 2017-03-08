@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:design="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_job_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -68,32 +69,26 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical"-->
-            <!--style="@style/CardTheme">-->
+            <!--<ListView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:id="@+id/job_listview"-->
+                <!--android:layout_weight="1"/>-->
 
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Description"-->
-            <!--style="@style/SubtitleTheme"-->
-            <!--android:textColor="@color/mediumgrey"/>-->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/job_review_interview_tabs"
+                style="@style/CustomTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"/>
 
-            <!--<TextView-->
-            <!--android:text="Design and user experience (UX) are at the forefront of everything we do. The job of an Interaction Designer is to envision how people experience our products and bring that vision to life in a way that feels inspired, refined ..."-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/JPdescription"-->
-            <!--style="@style/ContentTheme"/>-->
-            <!--</LinearLayout>-->
-
-            <ListView
+            <android.support.v4.view.ViewPager
+                android:id="@+id/tab_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="10dp"
-                android:id="@+id/job_listview"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_margin="10dp"
                 android:layout_weight="1"/>
 
             <FrameLayout
