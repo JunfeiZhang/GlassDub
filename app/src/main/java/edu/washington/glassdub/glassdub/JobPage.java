@@ -85,6 +85,8 @@ public class JobPage extends AppCompatActivity {
 
         b = new Bundle();
         b.putString("job", jobID);
+        b.putString("company", companyName);
+        b.putString("jobTitle", jobName);
 
         jobLayout = (LinearLayout) findViewById(R.id.jobLayout);
         jobLayout.setVisibility(View.INVISIBLE);
