@@ -36,8 +36,7 @@ import static android.view.View.VISIBLE;
 
 public class ReviewPage extends AppCompatActivity {
     private Activity act = this;
-    private TextView title, salary, position, start, end, review, created;
-    private String anonymous;
+    private TextView title, salary, position, start, end, review, created, anonymous;
     private LinearLayout rating;
     private static final String TAG = "ReviewPage";
     private ProgressBar progressBar;
@@ -57,7 +56,7 @@ public class ReviewPage extends AppCompatActivity {
         start = (TextView) findViewById(R.id.CRstart);
         end = (TextView) findViewById(R.id.CRend);
         review = (TextView) findViewById(R.id.CRbody);
-        anonymous = "";
+        anonymous = (TextView) findViewById(R.id.CRanonymous);
         created = (TextView) findViewById(R.id.CRcreated);
 
         Intent intent = getIntent();
@@ -111,12 +110,36 @@ public class ReviewPage extends AppCompatActivity {
                         setRating(Integer.parseInt(object.get("rating").toString()));
                         salary.setText("$" + Math.round(Float.parseFloat(object.get("pay_rate").toString())));
                         position.setText(company);
+                        created.setText(formatDate(object.get("timeCreated").toString()));
                         start.setText(object.get("start_date").toString());
                         // TODO: dont show this if the user didnt enter it
-                        end.setText(object.get("end_date").toString());
-                        // TODO: if it is anonymous just print anonymous, otherwise print username
-                        //anonymous.setText(object.get("anonymous").toString());
-                        created.setText(formatDate(object.get("timeCreated").toString()));
+                        if (object.get("end_date").toString() == "N/A") {
+                            end.setVisibility(View.INVISIBLE);
+                        } else {
+                            end.setText(object.get("end_date").toString());
+                        }
+                        if (object.get("anonymous").toString() == "true") {
+                            anonymous.setText("Anonymous");
+                        } else {
+                            Map<String, String> userParams = new HashMap<>();
+                            userParams.put("userID", object.get("employee").toString());
+
+                            Kumulos.call("getUserName", userParams, new ResponseHandler() {
+                                @Override
+                                public void didCompleteWithResult(Object result) {
+                                    if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                                        anonymous.setText("Anonymous");
+                                    } else {
+                                        ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                                        if (objects.size() > 0) {
+                                            anonymous.setText(objects.get(0).get("username").toString());
+                                        } else {
+                                            anonymous.setText("Anonymous");
+                                        }
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
             }
