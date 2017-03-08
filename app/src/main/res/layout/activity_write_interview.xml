@@ -352,8 +352,7 @@
                     android:textStyle="normal"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:id="@+id/write_interview_subOverall"/>
+                    android:paddingBottom="2dp"/>
 
                 <edu.washington.glassdub.glassdub.CustomEditText
                     android:layout_gravity="center"
@@ -369,6 +368,17 @@
                     android:minLines="4"
                     android:scrollHorizontally="false"
                     android:background="@drawable/border"/>
+
+                <TextView
+                    android:text="  "
+                    style="@style/SubtitleTheme"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingBottom="2dp"
+                    android:id="@+id/write_interview_subOverall"/>
+
+
             </LinearLayout>
 
             <CheckBox
