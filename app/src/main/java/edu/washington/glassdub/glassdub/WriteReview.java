@@ -115,24 +115,24 @@ public class WriteReview extends Activity {
         submit = (Button) findViewById(R.id.write_review_submit_button);
         submit.setOnClickListener(submitListener);
 
-        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
-        botNavigation.getMenu().getItem(0).setChecked(true);
-        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.jobItem) {
-                    Intent intent = new Intent(WriteReview.this, WriteReview.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.homeItem) {
-                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.interviewItem) {
-                    Intent intent = new Intent(WriteReview.this, WriteInterview.class);
-                    startActivity(intent);
-                }
-                return false;
-            }
-        });
+//        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+//        botNavigation.getMenu().getItem(0).setChecked(true);
+//        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                if(item.getItemId() == R.id.jobItem) {
+//                    Intent intent = new Intent(WriteReview.this, WriteReview.class);
+//                    startActivity(intent);
+//                } else if (item.getItemId() == R.id.homeItem) {
+//                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
+//                    startActivity(intent);
+//                } else if (item.getItemId() == R.id.interviewItem) {
+//                    Intent intent = new Intent(WriteReview.this, WriteInterview.class);
+//                    startActivity(intent);
+//                }
+//                return false;
+//            }
+//        });
 
     }
 

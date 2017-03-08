@@ -102,24 +102,24 @@ public class WriteInterview extends AppCompatActivity {
         ((TextView) findViewById(R.id.write_interview_date)).setOnTouchListener(dateTouchListener);
         ((ImageButton) findViewById(R.id.write_interview_date_icon)).setOnTouchListener(dateTouchListener);
 
-        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
-        botNavigation.getMenu().getItem(2).setChecked(true);
-        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.jobItem) {
-                    Intent intent = new Intent(WriteInterview.this, WriteReview.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.homeItem) {
-                    Intent intent = new Intent(WriteInterview.this, MainActivity.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.interviewItem) {
-                    Intent intent = new Intent(WriteInterview.this, WriteInterview.class);
-                    startActivity(intent);
-                }
-                return false;
-            }
-        });
+//        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+//        botNavigation.getMenu().getItem(2).setChecked(true);
+//        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                if(item.getItemId() == R.id.jobItem) {
+//                    Intent intent = new Intent(WriteInterview.this, WriteReview.class);
+//                    startActivity(intent);
+//                } else if (item.getItemId() == R.id.homeItem) {
+//                    Intent intent = new Intent(WriteInterview.this, MainActivity.class);
+//                    startActivity(intent);
+//                } else if (item.getItemId() == R.id.interviewItem) {
+//                    Intent intent = new Intent(WriteInterview.this, WriteInterview.class);
+//                    startActivity(intent);
+//                }
+//                return false;
+//            }
+//        });
     }
 
     private void fillOfferList() {
