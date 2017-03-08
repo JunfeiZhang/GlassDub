@@ -29,7 +29,8 @@
             android:background="@color/colorBackground"
             style="@style/ScreenTheme"
             android:id="@+id/reviewLayout"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:paddingBottom="100dp">
 
             <TextView
                 android:text="Title"
