@@ -45,7 +45,7 @@ public class JobPage extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout tabLayout;
     private Bundle b;
-    private String companyName;
+    private String companyName, jobName;
 
     LinearLayout rating;
     ImageView logo;
@@ -59,7 +59,7 @@ public class JobPage extends AppCompatActivity {
         final String jobID = intent.getStringExtra("jobID");
         companyName = intent.getStringExtra("companyName");
         String typeJob = intent.getStringExtra("type");
-        String jobName = intent.getStringExtra("title");
+        jobName = intent.getStringExtra("title");
 
         Map<String,String> jobParams = new HashMap<>();
         jobParams.put("job",jobID);
