@@ -75,6 +75,7 @@ public class InterviewPage extends AppCompatActivity {
         //int interviewID = 2; // getArguments().getInt("interviewID");
         Intent intent = getIntent();
         String interviewID = intent.getStringExtra("interviewID");
+        Log.d(TAG, "interviewID: "+ interviewID);
         Map<String,String> interviewParams = new HashMap<>();
         interviewParams.put("interview_reviewID", interviewID);
 
@@ -102,7 +103,7 @@ public class InterviewPage extends AppCompatActivity {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         Log.d(TAG, object.toString());
                         position.setText(object.get("job").toString());
-                        title.setText(object.get("title").toString());
+                        //title.setText(object.get("title").toString());
                         //type.setText(object.get("type").toString());
                         experience.setText(object.get("interview_rating").toString());
                         difficulty.setText(object.get("difficulty").toString());
