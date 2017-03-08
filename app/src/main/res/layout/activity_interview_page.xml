@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:design="http://schemas.android.com/apk/res-auto"
-    tools:context="edu.washington.glassdub.glassdub.InterviewPage">
+    tools:context="edu.washington.glassdub.glassdub.InterviewPage"
+    android:fillViewport="true">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -30,7 +31,7 @@
             android:visibility="visible">
 
             <TextView
-                android:text="Google - Interaction Designer (Job)"
+                android:text="Company - Job Title"
                 android:theme="@style/WriteReviewTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +50,8 @@
                     android:textColor="@color/darkpurple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Ititle" />
+                    android:id="@+id/Ititle"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -173,7 +175,7 @@
                 style="@style/CardTheme">
 
                 <TextView
-                    android:text="Overall"
+                    android:text="Interview Review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/SubtitleTheme"/>
@@ -185,24 +187,24 @@
                     style="@style/ContentTheme"
                     android:id="@+id/Ibody"/>
             </LinearLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
 
-            <FrameLayout
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="top"
+                android:background="@drawable/shadow"/>
+
+            <android.support.design.widget.BottomNavigationView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:layout_gravity="top"
-                    android:background="@drawable/shadow"/>
-
-                <android.support.design.widget.BottomNavigationView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    design:menu="@menu/menu_navigation"
-                    android:id="@+id/bottomBar"/>
-            </FrameLayout>
-        </LinearLayout>
+                design:menu="@menu/menu_navigation"
+                android:id="@+id/bottomBar"/>
+        </RelativeLayout>
     </FrameLayout>
 </ScrollView>

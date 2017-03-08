@@ -61,14 +61,22 @@ public class ReviewList extends Fragment {
 
         noReviews = (TextView) view.findViewById(R.id.noReviews);
 
-        final String companyID = getArguments().getString("companyID", "22");
         final String company = getArguments().getString("company");
-        Log.i("listcompany", company);
+
 
         Map<String, String> reviewParam = new HashMap<>();
-        reviewParam.put("companyID", companyID);
+//        reviewParam.put("companyID", companyID);
 
-        Kumulos.call("getReviewsForCompany", reviewParam, new ResponseHandler() {
+        String api_function;
+        if (getArguments().getString("companyID") != null ) {
+            reviewParam.put("companyID", getArguments().getString("companyID"));
+            api_function = "getReviewsForCompany";
+        } else {
+            reviewParam.put("job", getArguments().getString("job"));
+            api_function = "getReviewsForJob";
+        }
+
+        Kumulos.call(api_function, reviewParam, new ResponseHandler() {
 
             @Override
             public void didCompleteWithResult(Object result) {
@@ -77,7 +85,7 @@ public class ReviewList extends Fragment {
                             getActivity());
                     alertDialogBuilder
                             .setTitle("Error")
-                            .setMessage("We were unable to fetch the reviews for this company.")
+                            .setMessage("We were unable to fetch the reviews. Please try again.")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -88,7 +96,6 @@ public class ReviewList extends Fragment {
                     alertDialog.show();
                 } else {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-
                     if(objects.size() == 0) {
                         noReviews.setVisibility(VISIBLE);
                     } else {

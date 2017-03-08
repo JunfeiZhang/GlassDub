@@ -63,9 +63,18 @@ public class InterviewList extends Fragment {
         String companyID = getArguments().getString("companyID", "22");
 
         Map<String, String> reviewParam = new HashMap<>();
-        reviewParam.put("companyID", companyID);
+        //reviewParam.put("companyID", companyID);
 
-        Kumulos.call("getInterviewsForCompany", reviewParam, new ResponseHandler() {
+        String api_function;
+        if (getArguments().getString("companyID") != null ) {
+            reviewParam.put("companyID", getArguments().getString("companyID"));
+            api_function = "getInterviewsForCompany";
+        } else {
+            reviewParam.put("job", getArguments().getString("job"));
+            api_function = "getInterviewsForJob";
+        }
+
+        Kumulos.call(api_function, reviewParam, new ResponseHandler() {
 
             @Override
             public void didCompleteWithResult(Object result) {
@@ -74,7 +83,7 @@ public class InterviewList extends Fragment {
                             getActivity());
                     alertDialogBuilder
                             .setTitle("Error")
-                            .setMessage("We were unable to fetch the reviews for this company.")
+                        .setMessage("We were unable to fetch the interviews. Please try again.")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -99,12 +108,12 @@ public class InterviewList extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), InterviewPage.class);
-                                intent.putExtra("interviewID", objects.get(position).get("interview_reviewID").toString());
+                                intent.putExtra("InterviewID", objects.get(position).get("interview_reviewID").toString());
                                 startActivity(intent);
-                            }
-                        });
-                    }
+                        }
+                    });
                 }
+            }
             }
         });
 
