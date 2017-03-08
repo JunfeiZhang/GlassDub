@@ -33,13 +33,10 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".WriteReview" />
-        <activity android:name=".WriteInterview" />
+        <activity android:name=".WriteInterview"/>
         <activity android:name=".InterviewPage" />
         <activity android:name=".ReviewPage" />
         <activity android:name=".JobPage" />
         <activity android:name=".CompanyActivity"></activity>
     </application>
 </manifest>
-
-
-    <!--android:windowSoftInputMode="adjustPan"-->

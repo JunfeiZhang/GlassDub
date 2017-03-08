@@ -63,48 +63,57 @@ public class InterviewList extends Fragment {
         String companyID = getArguments().getString("companyID", "22");
 
         Map<String, String> reviewParam = new HashMap<>();
-        reviewParam.put("companyID", companyID);
+        //reviewParam.put("companyID", companyID);
 
-        Kumulos.call("getInterviewsForCompany", reviewParam, new ResponseHandler() {
+        String api_function;
+        if (getArguments().getString("companyID") != null ) {
+            reviewParam.put("companyID", getArguments().getString("companyID"));
+            api_function = "getInterviewsForCompany";
+        } else {
+            reviewParam.put("job", getArguments().getString("job"));
+            api_function = "getInterviewsForJob";
+        }
+
+        Kumulos.call(api_function, reviewParam, new ResponseHandler() {
 
             @Override
             public void didCompleteWithResult(Object result) {
-                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            getActivity());
-                    alertDialogBuilder
-                            .setTitle("Error")
-                            .setMessage("We were unable to fetch the reviews for this company.")
-                            .setCancelable(false)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-                } else {
-                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-
-                    if(objects.size() == 0) {
-                        noInterviews.setVisibility(VISIBLE);
-                    } else {
-                        noInterviews.setVisibility(View.INVISIBLE);
-                        CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
-
-                        ListView InterviewList = (ListView) view.findViewById(R.id.interview_listview);
-                        InterviewList.setAdapter(adapter);
-
-                        InterviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                                Intent intent = new Intent(getActivity(), InterviewPage.class);
-                                intent.putExtra("InterviewID", objects.get(position).get("interview_reviewID").toString());
-                                startActivity(intent);
+            if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        getActivity());
+                alertDialogBuilder
+                        .setTitle("Error")
+                        .setMessage("We were unable to fetch the interviews. Please try again.")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
                             }
                         });
-                    }
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            } else {
+                final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+
+                if(objects.size() == 0) {
+                    noInterviews.setVisibility(VISIBLE);
+                } else {
+                    noInterviews.setVisibility(View.INVISIBLE);
+                    CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));
+
+                    ListView InterviewList = (ListView) view.findViewById(R.id.interview_listview);
+                    InterviewList.setAdapter(adapter);
+
+                    InterviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                            Intent intent = new Intent(getActivity(), InterviewPage.class);
+                            intent.putExtra("InterviewID", objects.get(position).get("interview_reviewID").toString());
+                            startActivity(intent);
+                        }
+                    });
                 }
+            }
             }
         });
 

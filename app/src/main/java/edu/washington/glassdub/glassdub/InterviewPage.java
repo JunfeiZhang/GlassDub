@@ -71,8 +71,6 @@ public class InterviewPage extends AppCompatActivity {
             }
         });
 
-        // TODO: get info sent to fragment (comapny ID)
-        //int interviewID = 2; // getArguments().getInt("interviewID");
         Intent intent = getIntent();
         String interviewID = intent.getStringExtra("interviewID");
         Map<String,String> interviewParams = new HashMap<>();
@@ -90,8 +88,9 @@ public class InterviewPage extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(InterviewPage.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
@@ -108,9 +107,29 @@ public class InterviewPage extends AppCompatActivity {
                         difficulty.setText(object.get("difficulty").toString());
                         offer.setText(object.get("received_offer").toString());
                         body.setText(object.get("body").toString());
-                        user.setText(object.get("interviewee").toString());
                         created.setText(formatDate(object.get("timeCreated").toString()));
+                        if (object.get("anonymous").toString() == "true") {
+                            user.setText("Anonymous");
+                        } else {
+                            Map<String, String> userParams = new HashMap<>();
+                            userParams.put("userID", object.get("interviewee").toString());
 
+                            Kumulos.call("getUserName", userParams, new ResponseHandler() {
+                                @Override
+                                public void didCompleteWithResult(Object result) {
+                                    if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                                        user.setText("Anonymous");
+                                    } else {
+                                        ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+                                        if (objects.size() > 0) {
+                                            user.setText(objects.get(0).get("username").toString());
+                                        } else {
+                                            user.setText("Anonymous");
+                                        }
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
             }

@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -37,7 +41,10 @@ public class JobPage extends AppCompatActivity {
     private ProgressBar progressBar;
     private LinearLayout jobLayout;
     private BottomNavigationView botNavigation;
-    private TextView job, type,des;
+    private TextView job, type;
+    private ViewPager mViewPager;
+    private TabLayout tabLayout;
+    private Bundle b;
     private String companyName;
 
     LinearLayout rating;
@@ -59,9 +66,25 @@ public class JobPage extends AppCompatActivity {
 
         job = (TextView) findViewById(R.id.JPjob);
         type = (TextView) findViewById(R.id.JPtype);
-//        des = (TextView) findViewById(R.id.JPdescription);
         logo = (ImageView) findViewById(R.id.JPlogo);
+//        if(companyName.equals("Google")) {
+//            logo.setImageResource(R.drawable.google);
+//        } else if(companyName.equals("Facebook")) {
+//            logo.setImageResource(R.drawable.facebook);
+//        } else if(companyName.equals("Tableau")) {
+//            logo.setImageResource(R.drawable.tableau);
+//        } else if(companyName.equals("Zillow")) {
+//            logo.setImageResource(R.drawable.zillow);
+//        } else if(companyName.equals("Starbucks")) {
+//            logo.setImageResource(R.drawable.starbucks);
+//        } else if(companyName.equals("Amazon")) {
+//            logo.setImageResource(R.drawable.amazon);
+//        }
+
         rating = (LinearLayout) findViewById(R.id.JPrating);
+
+        b = new Bundle();
+        b.putString("job", jobID);
 
         jobLayout = (LinearLayout) findViewById(R.id.jobLayout);
         jobLayout.setVisibility(View.INVISIBLE);
@@ -77,57 +100,112 @@ public class JobPage extends AppCompatActivity {
             }
         });
 
+
+        mViewPager = (ViewPager) findViewById(R.id.tab_container);
+        tabLayout = (TabLayout) findViewById(R.id.job_review_interview_tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+
         type.setText(typeJob);
         job.setText(companyName + " - " + jobName);
+        updateRating(Integer.parseInt(intent.getStringExtra("rating")));
+
+//        Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
+//            @Override
+//            public void didCompleteWithResult(Object result) {
+//                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                            act);
+//                    alertDialogBuilder
+//                            .setTitle("Error")
+//                            .setMessage("We were unable to retrieve information about the selected review. Try again.")
+//                            .setCancelable(false)
+//                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    // TODO: send them back to list of companies
+//                                    dialog.cancel();
+//                                }
+//                            });
+//                    AlertDialog alertDialog = alertDialogBuilder.create();
+//                    alertDialog.show();
+//                } else {
+//                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+//                    // TODO: go through and update all the fields
+//                    if (objects.size() > 0) {
+//                        String[] jobReviews = new String[objects.size()];
+//                        int i =0;
+//                        for(LinkedHashMap object: objects){
+//                            jobReviews[i++] = object.get("title").toString();
+//                        }
+
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<>(act, android.R.layout.simple_list_item_1, jobReviews);
+//                        ListView companyReviewList = (ListView) findViewById(R.id.job_listview);
+//                        companyReviewList.setAdapter(adapter);
+
+//
+//                        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+//                                Intent intent = new Intent(JobPage.this, ReviewPage.class);
+//                                intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
+////                                intent.putExtra("reviewID",jobID);
+//                                startActivity(intent);
+//
+//                            }
+//                        });
+//                    }
+//                }
+//            }
+//        });
         getjobRating(jobID);
 
-        Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
-            @Override
-            public void didCompleteWithResult(Object result) {
-                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            act);
-                    alertDialogBuilder
-                            .setTitle("Error")
-                            .setMessage("We were unable to retrieve information about the selected review. Try again.")
-                            .setCancelable(false)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-                } else {
-                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-                    // TODO: go through and update all the fields
-                    if (objects.size() > 0) {
-                        String[] jobReviews = new String[objects.size()];
-                        int i =0;
-                        for(LinkedHashMap object: objects){
-                            jobReviews[i++] = object.get("title").toString();
-                        }
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(act, android.R.layout.simple_list_item_1, jobReviews);
-                        ListView companyReviewList = (ListView) findViewById(R.id.job_listview);
-                        companyReviewList.setAdapter(adapter);
-
-
-                        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                                Intent intent = new Intent(JobPage.this, ReviewPage.class);
-                                intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
-                                intent.putExtra("company", companyName);
-                                startActivity(intent);
-
-                            }
-                        });
-                    }
-                }
-            }
-        });
+//        Kumulos.call("getReviewsForJob", jobParams, new ResponseHandler() {
+//            @Override
+//            public void didCompleteWithResult(Object result) {
+//                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                            act);
+//                    alertDialogBuilder
+//                            .setTitle("Error")
+//                            .setMessage("We were unable to retrieve information about the selected review. Try again.")
+//                            .setCancelable(false)
+//                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    dialog.cancel();
+//                                    Intent intent = new Intent(JobPage.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                            });
+//                    AlertDialog alertDialog = alertDialogBuilder.create();
+//                    alertDialog.show();
+//                } else {
+//                    final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
+//                    if (objects.size() > 0) {
+//                        String[] jobReviews = new String[objects.size()];
+//                        int i =0;
+//                        for(LinkedHashMap object: objects){
+//                            jobReviews[i++] = object.get("title").toString();
+//                        }
+//
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<>(act, android.R.layout.simple_list_item_1, jobReviews);
+//                        ListView companyReviewList = (ListView) findViewById(R.id.job_listview);
+//                        companyReviewList.setAdapter(adapter);
+//
+//
+//                        companyReviewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+//                                Intent intent = new Intent(JobPage.this, ReviewPage.class);
+//                                intent.putExtra("reviewID", objects.get(position).get("job_reviewID").toString());
+//                                intent.putExtra("company", companyName);
+//                                startActivity(intent);
+//
+//                            }
+//                        });
+//                    }
+//                }
+//            }
+//        });
 
         botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
         botNavigation.getMenu().getItem(1).setChecked(true);
@@ -147,6 +225,19 @@ public class JobPage extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        Fragment reviewList = new ReviewList();
+        reviewList.setArguments(b);
+
+        Fragment interviewList = new InterviewList();
+        interviewList.setArguments(b);
+
+
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        vpAdapter.addFragments(reviewList, "Reviews");
+        vpAdapter.addFragments(interviewList, "Interviews");
+        mViewPager.setAdapter(vpAdapter);
     }
     private void updateRating(int count) {
         Log.i("rating", "" + count);
@@ -166,17 +257,18 @@ public class JobPage extends AppCompatActivity {
             public void didCompleteWithResult(Object result) {
                 if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            act);
+                        act);
                     alertDialogBuilder
-                            .setTitle("Error")
-                            .setMessage("We We were unable to retrieve information about the selected job. Try again.")
-                            .setCancelable(false)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
-                                    dialog.cancel();
-                                }
-                            });
+                        .setTitle("Error")
+                        .setMessage("We We were unable to retrieve information about the selected job. Try again.")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                Intent intent = new Intent(JobPage.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else {

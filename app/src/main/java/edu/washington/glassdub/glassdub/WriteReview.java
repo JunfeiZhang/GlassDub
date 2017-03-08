@@ -37,10 +37,6 @@ import java.util.*;
 
 import static java.lang.Math.round;
 
-/**
- * TODO: Save username with the review
- */
-
 public class WriteReview extends Activity {
     private static final String TAG = "WriteReview";
 
@@ -115,24 +111,24 @@ public class WriteReview extends Activity {
         submit = (Button) findViewById(R.id.write_review_submit_button);
         submit.setOnClickListener(submitListener);
 
-        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
-        botNavigation.getMenu().getItem(0).setChecked(true);
-        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.jobItem) {
-                    Intent intent = new Intent(WriteReview.this, WriteReview.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.homeItem) {
-                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
-                    startActivity(intent);
-                } else if (item.getItemId() == R.id.interviewItem) {
-                    Intent intent = new Intent(WriteReview.this, WriteInterview.class);
-                    startActivity(intent);
-                }
-                return false;
-            }
-        });
+//        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+//        botNavigation.getMenu().getItem(0).setChecked(true);
+//        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                if(item.getItemId() == R.id.jobItem) {
+//                    Intent intent = new Intent(WriteReview.this, WriteReview.class);
+//                    startActivity(intent);
+//                } else if (item.getItemId() == R.id.homeItem) {
+//                    Intent intent = new Intent(WriteReview.this, MainActivity.class);
+//                    startActivity(intent);
+//                } else if (item.getItemId() == R.id.interviewItem) {
+//                    Intent intent = new Intent(WriteReview.this, WriteInterview.class);
+//                    startActivity(intent);
+//                }
+//                return false;
+//            }
+//        });
 
     }
 
@@ -168,7 +164,6 @@ public class WriteReview extends Activity {
                             reviewParams.put("end_date", end_date);
                             reviewParams.put("title", review_title);
                             reviewParams.put("body", review_body);
-                            // TODO: Get this from the application object once we have implemented login
                             reviewParams.put("employee", app.getUsernumber());
                             reviewParams.put("anonymous", anonymous);
 
@@ -277,7 +272,7 @@ public class WriteReview extends Activity {
             submit = false;
         }
         if (review_body == null || review_body.trim().length() == 0) {
-            ((TextView) findViewById(R.id.write_interview_subOverall)).setError("");
+            ((TextView) findViewById(R.id.write_review_subOverall)).setError("");
             submit = false;
         }
         if (salary == null || salary.trim().length() == 0) {

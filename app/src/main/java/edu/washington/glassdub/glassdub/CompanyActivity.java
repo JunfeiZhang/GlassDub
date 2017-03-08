@@ -100,8 +100,9 @@ public class CompanyActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
@@ -112,29 +113,29 @@ public class CompanyActivity extends AppCompatActivity {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         b.putString("tile",object.get("name").toString());
 
+
                         companyName = object.get("name").toString();
                         b.putString("company", companyName);
                         title.setText(companyName);
 
                         descr.setText(object.get("description").toString());
-                        // TODO: Show rating with stars
                         getCompanyRating(companyID);
                         //setRating(Integer.parseInt(object.get("rating").toString()));
                         // TODO: Do image stuff here
-//                        ImageView cImage = (ImageView) findViewById(R.id.cImage);
-//                        if(cName.equals("Facebook")) {
-//                            cImage.setImageResource(R.drawable.facebook);
-//                        } else if (cName.equals("Amazon")) {
-//                            cImage.setImageResource(R.drawable.amazon);
-//                        } else if (cName.equals("Google")) {
-//                            cImage.setImageResource(R.drawable.google);
-//                        } else if (cName.equals("Tableau")) {
-//                            cImage.setImageResource(R.drawable.tableau);
-//                        } else if (cName.equals("Zillow")) {
-//                            cImage.setImageResource(R.drawable.zillow);
-//                        } else if (cName.equals("Starbucks")) {
-//                            cImage.setImageResource(R.drawable.starbucks);
-//                        }
+                        ImageView cImage = (ImageView) findViewById(R.id.cImage);
+                        if(companyName.equals("Facebook")) {
+                            cImage.setImageResource(R.drawable.facebook);
+                        } else if (companyName.equals("Amazon")) {
+                            cImage.setImageResource(R.drawable.amazon);
+                        } else if (companyName.equals("Google")) {
+                            cImage.setImageResource(R.drawable.google);
+                        } else if (companyName.equals("Tableau")) {
+                            cImage.setImageResource(R.drawable.tableau);
+                        } else if (companyName.equals("Zillow")) {
+                            cImage.setImageResource(R.drawable.zillow);
+                        } else if (companyName.equals("Starbucks")) {
+                            cImage.setImageResource(R.drawable.starbucks);
+                        }
                         Fragment reviewList = new ReviewList();
                         reviewList.setArguments(b);
 
@@ -156,9 +157,6 @@ public class CompanyActivity extends AppCompatActivity {
 
 
         // put bundle into three different fragments
-
-
-
 
         botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
         botNavigation.getMenu().getItem(1).setChecked(true);
@@ -209,8 +207,9 @@ public class CompanyActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(CompanyActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();

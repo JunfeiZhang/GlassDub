@@ -31,10 +31,6 @@ import java.util.Random;
  * A simple {@link Fragment} subclass.
  */
 
-/**
- * TODO: Load the list of fetched jobs from Kumulos (after the user has searched)
- * TODO: need to add companies for each listed jobs
- */
 
 public class JobList extends Fragment {
     private String[] titles = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5", "Job 6"};
@@ -81,7 +77,7 @@ public class JobList extends Fragment {
                             getActivity());
                     alertDialogBuilder
                             .setTitle("Error")
-                            .setMessage("We were unable to fetch the jobs jobs. Try searching again.")
+                            .setMessage("We were unable to fetch the jobs. Try searching again.")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {

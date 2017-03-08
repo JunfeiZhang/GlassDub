@@ -75,7 +75,6 @@ public class jobListHome extends Fragment {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
                     if (objects.size() == 0) {
-                        // TODO: show the user that there were no results
                         // Probably don't need this
                     } else {
                         // Populate with data
