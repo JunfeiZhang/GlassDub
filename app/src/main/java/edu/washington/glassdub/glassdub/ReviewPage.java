@@ -60,7 +60,6 @@ public class ReviewPage extends AppCompatActivity {
         anonymous = "";
         created = (TextView) findViewById(R.id.CRcreated);
 
-        // TODO: get info sent to fragment (comapny ID)
         Intent intent = getIntent();
 
         String companyRevID = intent.getStringExtra("reviewID");
@@ -95,15 +94,15 @@ public class ReviewPage extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: send them back to list of companies
                                     dialog.cancel();
+                                    Intent intent = new Intent(ReviewPage.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } else {
                     ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
-                    // TODO: go through and update all the fields
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         Log.d(TAG, object.toString());
