@@ -32,6 +32,8 @@ import com.kumulos.android.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static java.lang.Math.round;
+
 /**
  * TODO: Save all the data user inputted onto Kumulos server
  */
@@ -234,7 +236,7 @@ public class WriteReview extends Activity {
         job = job_view.getText().toString();
         review_title = review_title_view.getText().toString();
         review_body = review_body_view.getText().toString();
-        salary = salary_view.getText().toString();
+        salary = salary_view.getText().toString() + "";
         start_date = start_date_view.getText().toString();
 
         // check if values are valid - prevent submission if not

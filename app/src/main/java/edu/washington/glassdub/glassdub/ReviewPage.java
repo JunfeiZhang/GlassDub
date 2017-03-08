@@ -80,7 +80,7 @@ public class ReviewPage extends AppCompatActivity {
                         title.setText(object.get("title").toString());
                         review.setText(object.get("body").toString());
                         setRating(Integer.parseInt(object.get("rating").toString()));
-                        salary.setText(object.get("pay_rate").toString());
+                        salary.setText("$" + Math.round(Float.parseFloat(object.get("pay_rate").toString())));
                         position.setText(object.get("job").toString());
                         start.setText(object.get("start_date").toString());
                         // TODO: dont show this if the user didnt enter it
