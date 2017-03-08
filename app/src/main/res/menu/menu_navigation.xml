@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Job Review"
+        android:icon="@drawable/ic_create"
+        android:id="@+id/jobItem"/>
+
+    <item
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+        android:id="@+id/homeItem"/>
+
+    <item
+        android:title="Interview Review"
+        android:icon="@drawable/ic_mode_edit"
+        android:id="@+id/interviewItem"/>
+</menu>

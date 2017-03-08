@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:visibility="invisible"
-        android:text="There are no job reviews for this (company or job)." />
+        android:text="There are no job reviews for this" />
 
     <ListView
         android:layout_width="match_parent"

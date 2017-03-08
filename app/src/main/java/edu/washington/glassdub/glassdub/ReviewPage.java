@@ -1,14 +1,21 @@
 package edu.washington.glassdub.glassdub;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -24,12 +31,19 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class ReviewPage extends AppCompatActivity {
     private Activity act = this;
     private TextView title, salary, position, start, end, review, created;
     private String anonymous;
     private LinearLayout rating;
     private static final String TAG = "ReviewPage";
+    private ProgressBar progressBar;
+    private LinearLayout reviewLayout;
+    private BottomNavigationView botNavigation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +66,21 @@ public class ReviewPage extends AppCompatActivity {
         String companyRevID = intent.getStringExtra("reviewID");
         Map<String,String> revParams = new HashMap<>();
         revParams.put("job_reviewID", companyRevID);
+
+        reviewLayout = (LinearLayout) findViewById(R.id.reviewLayout);
+        reviewLayout.setVisibility(View.INVISIBLE);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(VISIBLE);
+
+        progressBar.animate().setDuration(shortAnimTime).alpha(true ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                reviewLayout.setVisibility(VISIBLE);
+                super.onAnimationEnd(animation);
+            }
+        });
 
         Kumulos.call("getCompanyReview", revParams, new ResponseHandler() {
             @Override
@@ -90,6 +119,25 @@ public class ReviewPage extends AppCompatActivity {
                         created.setText(formatDate(object.get("timeCreated").toString()));
                     }
                 }
+            }
+        });
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(ReviewPage.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(ReviewPage.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(ReviewPage.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
             }
         });
     }

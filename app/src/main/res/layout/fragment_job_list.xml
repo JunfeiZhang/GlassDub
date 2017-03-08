@@ -12,7 +12,7 @@
             android:id="@+id/noJobResults"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your search did not match any Job titles"
+            android:text="Your search did not match any job titles"
             android:textAlignment="center"
             android:visibility="invisible"
             android:layout_alignParentStart="true"

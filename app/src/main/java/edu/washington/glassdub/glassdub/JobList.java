@@ -33,6 +33,7 @@ import java.util.Random;
 
 /**
  * TODO: Load the list of fetched jobs from Kumulos (after the user has searched)
+ * TODO: need to add companies for each listed jobs
  */
 
 public class JobList extends Fragment {
@@ -91,7 +92,6 @@ public class JobList extends Fragment {
                 } else {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
                     if (objects.size() == 0) {
-                        // TODO: show the user that there were no results
                         noJobResults.setVisibility(View.VISIBLE);
                     } else {
                         noJobResults.setVisibility(View.INVISIBLE);

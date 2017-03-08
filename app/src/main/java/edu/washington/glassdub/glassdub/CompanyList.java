@@ -91,7 +91,6 @@ public class CompanyList extends Fragment {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
 
                     if (objects.size() == 0) {
-                        // TODO: tell the user that their query didn't return any results
                         noSearchResults.setVisibility(View.VISIBLE);
                     } else {
                         noSearchResults.setVisibility(View.INVISIBLE);

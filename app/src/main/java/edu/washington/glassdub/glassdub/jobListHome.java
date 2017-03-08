@@ -76,6 +76,7 @@ public class jobListHome extends Fragment {
 
                     if (objects.size() == 0) {
                         // TODO: show the user that there were no results
+                        // Probably don't need this
                     } else {
                         // Populate with data
                         CustomAdapter adapter = new CustomAdapter(getActivity(), R.layout.list_item, getData(objects));

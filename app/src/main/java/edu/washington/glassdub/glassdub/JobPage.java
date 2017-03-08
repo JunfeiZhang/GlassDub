@@ -1,17 +1,23 @@
 package edu.washington.glassdub.glassdub;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -20,11 +26,16 @@ import com.kumulos.android.ResponseHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class JobPage extends AppCompatActivity {
     private Activity act = this;
+    private ProgressBar progressBar;
+    private LinearLayout jobLayout;
+    private BottomNavigationView botNavigation;
     private TextView job, type,des;
 
     LinearLayout rating;
@@ -47,9 +58,23 @@ public class JobPage extends AppCompatActivity {
 
         job = (TextView) findViewById(R.id.JPjob);
         type = (TextView) findViewById(R.id.JPtype);
-        des = (TextView) findViewById(R.id.JPdescription);
+//        des = (TextView) findViewById(R.id.JPdescription);
         logo = (ImageView) findViewById(R.id.JPlogo);
         rating = (LinearLayout) findViewById(R.id.JPrating);
+
+        jobLayout = (LinearLayout) findViewById(R.id.jobLayout);
+        jobLayout.setVisibility(View.INVISIBLE);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.animate().setDuration(shortAnimTime).alpha(true ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                progressBar.setVisibility(GONE);
+                jobLayout.setVisibility(VISIBLE);
+            }
+        });
 
         type.setText(typeJob);
         job.setText(companyName + " - " + jobName);
@@ -79,7 +104,6 @@ public class JobPage extends AppCompatActivity {
                     final ArrayList<LinkedHashMap<String, Object>> objects = (ArrayList<LinkedHashMap<String, Object>>) result;
                     // TODO: go through and update all the fields
                     if (objects.size() > 0) {
-
                         String[] jobReviews = new String[objects.size()];
                         int i =0;
                         for(LinkedHashMap object: objects){
@@ -87,7 +111,7 @@ public class JobPage extends AppCompatActivity {
                         }
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(act, android.R.layout.simple_list_item_1, jobReviews);
-                        ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
+                        ListView companyReviewList = (ListView) findViewById(R.id.job_listview);
                         companyReviewList.setAdapter(adapter);
 
 
@@ -105,6 +129,25 @@ public class JobPage extends AppCompatActivity {
                 }
             }
         });
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(JobPage.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(JobPage.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(JobPage.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
     private void updateRating(int count) {
         int[] stars = {R.id.star_1, R.id.star_2, R.id.star_3, R.id.star_4, R.id.star_5};
@@ -114,16 +157,4 @@ public class JobPage extends AppCompatActivity {
         }
     }
 
-
-
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, jobReviews);
-//        ListView companyReviewList = (ListView) findViewById(R.id.company_listview);
-//        companyReviewList.setAdapter(adapter);
-
-
 }
-
-
-
-

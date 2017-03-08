@@ -1,12 +1,20 @@
 package edu.washington.glassdub.glassdub;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kumulos.android.Kumulos;
@@ -22,11 +30,16 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static android.view.View.VISIBLE;
+
 public class InterviewPage extends AppCompatActivity {
     private static final String TAG = "InterviewPage";
 
     private TextView position, title, type, experience, difficulty, offer, body, user, created;
     private Activity act = this;
+    private ProgressBar progressBar;
+    private LinearLayout interviewLayout;
+    private BottomNavigationView botNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +55,21 @@ public class InterviewPage extends AppCompatActivity {
         body = (TextView) findViewById(R.id.Ibody);
         user = (TextView) findViewById(R.id.Iuser);
         created = (TextView) findViewById(R.id.Icreated);
+
+
+        interviewLayout = (LinearLayout) findViewById(R.id.interviewLayout);
+        interviewLayout.setVisibility(View.INVISIBLE);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_longAnimTime);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(VISIBLE);
+        progressBar.animate().setDuration(shortAnimTime).alpha(true ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                interviewLayout.setVisibility(VISIBLE);
+                super.onAnimationEnd(animation);
+            }
+        });
 
         // TODO: get info sent to fragment (comapny ID)
         //int interviewID = 2; // getArguments().getInt("interviewID");
@@ -85,6 +113,25 @@ public class InterviewPage extends AppCompatActivity {
 
                     }
                 }
+            }
+        });
+
+        botNavigation = (BottomNavigationView) findViewById(R.id.bottomBar);
+        botNavigation.getMenu().getItem(1).setChecked(true);
+        botNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.jobItem) {
+                    Intent intent = new Intent(InterviewPage.this, WriteReview.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.homeItem) {
+                    Intent intent = new Intent(InterviewPage.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.interviewItem) {
+                    Intent intent = new Intent(InterviewPage.this, WriteInterview.class);
+                    startActivity(intent);
+                }
+                return false;
             }
         });
     }
