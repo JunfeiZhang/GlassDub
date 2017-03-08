@@ -107,7 +107,7 @@ public class InterviewPage extends AppCompatActivity {
                         String userName = currentuser.getCurrentUserName();
 
                         position.setText(companyName);
-                        //title.setText(object.get("title").toString());
+                        title.setText(object.get("title").toString());
                         //type.setText(object.get("type").toString());
                         if(object.get("anonymous").equals("true")){
                             user.setText("anonymous");
