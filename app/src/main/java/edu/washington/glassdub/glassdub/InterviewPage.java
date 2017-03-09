@@ -101,7 +101,13 @@ public class InterviewPage extends AppCompatActivity {
                     if (objects.size() > 0) {
                         LinkedHashMap<String, Object> object = objects.get(0);
                         Log.d(TAG, object.toString());
-                        position.setText(companyName );
+                        LinkedHashMap<String, Object> job =  (LinkedHashMap<String, Object>) object.get("job");
+                        if (job.size() > 0) {
+                            String jobName = job.get("title").toString();
+                            position.setText(companyName + " - " + jobName);
+                        } else  {
+                            position.setText(companyName);
+                        }
 
                         //title.setText(object.get("title").toString());
                         //type.setText(object.get("type").toString());
