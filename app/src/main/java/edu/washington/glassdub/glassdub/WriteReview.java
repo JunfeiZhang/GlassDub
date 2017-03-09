@@ -193,7 +193,7 @@ public class WriteReview extends Activity {
                                                 String jobResult = (String) objects.get(0).get("companyID");
                                                 Log.d(TAG, "first object:" + objects.get(0).toString());
                                                 Log.i("testing", objects.get(0).toString());
-                                                companyID = objects.get(0).get("companyID").toString();
+                                                companyID = objects.get(0).get("company").toString();
                                                 GlassDub app = (GlassDub) getApplication();
 
                                                 Map<String, String> reviewParams = new HashMap<>();
@@ -389,6 +389,7 @@ public class WriteReview extends Activity {
         public boolean onTouch(View v, MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
                 end_date_view.setText("MMMM DD, YYYY ");
+                end_date_delete.setVisibility(View.INVISIBLE);
             }
             return true;
         }
