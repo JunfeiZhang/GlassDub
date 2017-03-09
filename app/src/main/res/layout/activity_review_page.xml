@@ -59,33 +59,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:id="@+id/CRposition" />
-
-                    <include android:id="@+id/CRrating" layout="@layout/list_of_stars"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentRight="true"/>
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <include android:id="@+id/CRrating" layout="@layout/list_of_stars"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:textSize="@dimen/font_size_large"
-                    android:theme="@style/DefaultTheme">
-
-                    <TextView
-                        android:text="Anonymous:    "
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/CRanonymous" />
-
-                    <TextView
-                        android:text="- Feb 22, 2017"
-                        android:fontFamily="@string/font_family_light"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/CRcreated" />
-                </LinearLayout>
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,6 +76,33 @@
                     android:paddingBottom="5dp"
                     android:layout_marginBottom="0dp"
                     android:layout_marginTop="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:textSize="@dimen/font_size_large"
+                        android:theme="@style/DefaultTheme">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gold"
+                            android:text="Created By:   "/>
+
+                        <TextView
+                            android:text="Anonymous "
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/CRanonymous" />
+
+                        <TextView
+                            android:text="- Feb 22, 2017"
+                            android:fontFamily="@string/font_family_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/CRcreated" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -146,7 +151,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:text="Salary:    "
+                            android:text="Salary:         "
                             android:textColor="@color/gold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
