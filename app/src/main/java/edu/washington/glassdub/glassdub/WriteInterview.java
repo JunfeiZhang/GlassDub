@@ -174,7 +174,7 @@ public class WriteInterview extends AppCompatActivity {
                                         showAlert("Incorrect Job", "We don't have records for the job that you entered. If you want this job to be added to our system contact Dean at dean@ischool.edu.");
                                     } else{
                                         Log.i("testing", objects.get(0).toString());
-                                        companyID = objects.get(0).get("companyID").toString();
+                                        companyID = objects.get(0).get("company").toString();
                                         GlassDub app = (GlassDub) getApplication();
 
                                         Map<String, String> reviewParams = new HashMap<>();
