@@ -127,7 +127,7 @@ public class InterviewList extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), formatDate(obj.get("timeCreated").toString()), obj.get("body").toString(), Integer.valueOf(obj.get("interview_rating").toString()));
+            data[i] = new CustomItem(obj.get("body").toString(), "", formatDate(obj.get("timeCreated").toString()), Integer.valueOf(obj.get("interview_rating").toString()));
         }
 
         return data;

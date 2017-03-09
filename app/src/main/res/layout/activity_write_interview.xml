@@ -17,11 +17,11 @@
 
         <TextView
             android:text="Interview Review"
-            android:textSize="@dimen/font_size_title"
+            android:textSize="24dp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="@color/purple"
-            android:textColor="@color/white"
+            android:background="@color/white"
+            android:textColor="@color/purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"/>
