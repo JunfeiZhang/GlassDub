@@ -177,34 +177,45 @@ public class WriteInterview extends AppCompatActivity {
                                         companyID = objects.get(0).get("company").toString();
                                         GlassDub app = (GlassDub) getApplication();
 
-                                        Map<String, String> reviewParams = new HashMap<>();
-                                        reviewParams.put("companyID", companyID);
-                                        reviewParams.put("job", job);
-                                        reviewParams.put("received_offer", offer);
-                                        reviewParams.put("interview_rating", experience);
-                                        reviewParams.put("difficulty", Integer.toString(difficulty));
-                                        reviewParams.put("title", "fake title");
-                                        reviewParams.put("body", comments);
-                                        // TODO: Get this from the application object once we have implemented login
-                                        reviewParams.put("interviewee", app.getUsernumber());
-                                        reviewParams.put("anonymous", anonymous);
 
-                                        Kumulos.call("createInterviewReview", reviewParams, new ResponseHandler() {
-                                            @Override
-                                            public void didCompleteWithResult(Object result) {
-                                                Log.i("testing", result.toString());
-                                                // Do updates to UI/data models based on result
-                                                if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
-                                                    showAlert("Error", "There was an error when creating your review. Try again.");
+                                        int jobIndex = -1;
+                                        for (int i = 0; i < objects.size(); i++) {
+                                            if (objects.get(i).get("company").toString().equals(companyID)) {
+                                                jobIndex = i;
+                                                job = objects.get(jobIndex).get("jobID").toString();
+
+                                                Log.i(TAG, "job: " + job);
+                                                if (jobIndex == -1) {
+                                                    showAlert("Incorrect Job", "We don't have records for the job that you entered. If you want this job to be added to our system contact Dean at dean@ischool.edu.");
                                                 } else {
-                                                    Intent intent = new Intent(WriteInterview.this, MainActivity.class);
-                                                    startActivity(intent);
+                                                    Map<String, String> reviewParams = new HashMap<>();
+                                                    reviewParams.put("companyID", companyID);
+                                                    reviewParams.put("job", job);
+                                                    reviewParams.put("received_offer", offer);
+                                                    reviewParams.put("interview_rating", experience);
+                                                    reviewParams.put("difficulty", Integer.toString(difficulty));
+                                                    reviewParams.put("title", "fake title");
+                                                    reviewParams.put("body", comments);
+                                                    // TODO: Get this from the application object once we have implemented login
+                                                    reviewParams.put("interviewee", app.getUsernumber());
+                                                    reviewParams.put("anonymous", anonymous);
 
-                                                    Map<String, String> updateParams = new HashMap<>();
+                                                    Kumulos.call("createInterviewReview", reviewParams, new ResponseHandler() {
+                                                        @Override
+                                                        public void didCompleteWithResult(Object result) {
+                                                            Log.i("testing", result.toString());
+                                                            // Do updates to UI/data models based on result
+                                                            if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                                                                showAlert("Error", "There was an error when creating your review. Try again.");
+                                                            } else {
+                                                                Intent intent = new Intent(WriteInterview.this, MainActivity.class);
+                                                                startActivity(intent);
 
-                                                    String jobResult =(String) objects.get(0).get("companyID");
-                                                    Log.d(TAG, "first object:" + objects.get(0).toString());
-                                                    //Log.d(TAG, jobResult.get(0).toString());
+                                                                Map<String, String> updateParams = new HashMap<>();
+
+                                                                String jobResult =(String) objects.get(0).get("companyID");
+                                                                Log.d(TAG, "first object:" + objects.get(0).toString());
+                                                                //Log.d(TAG, jobResult.get(0).toString());
                                     /*updateParams.put("jobID", jobResult.get(0).toString());
                                     updateParams.put("rating", rating);
 
@@ -217,10 +228,16 @@ public class WriteInterview extends AppCompatActivity {
                                             }
                                         }
                                     });*/
+                                                            }
+                                                        }
+                                                    });
                                                 }
+                                                break;
                                             }
-                                        });
+                                        }
+
                                     }
+
                                 }
                             });
                         }

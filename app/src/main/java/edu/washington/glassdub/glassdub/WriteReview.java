@@ -49,7 +49,7 @@ public class WriteReview extends Activity {
     Calendar endCal;
 
     String company;
-    String job;
+    private String job;
     String salary;
     String start_date;
     String end_date;
@@ -194,34 +194,50 @@ public class WriteReview extends Activity {
                                                 Log.i("testing", objects.get(0).toString());
                                                 GlassDub app = (GlassDub) getApplication();
 
-                                                Map<String, String> reviewParams = new HashMap<>();
-                                                reviewParams.put("companyID", companyID);
-                                                reviewParams.put("position", job);
-                                                reviewParams.put("rating", rating);
-                                                reviewParams.put("pay_rate", salary);
-                                                reviewParams.put("start_date", start_date);
-                                                reviewParams.put("end_date", end_date);
-                                                reviewParams.put("title", review_title);
-                                                reviewParams.put("body", review_body);
-                                                reviewParams.put("employee", app.getUsernumber());
-                                                reviewParams.put("anonymous", anonymous);
+                                                int jobIndex = -1;
+                                                for (int i = 0; i < objects.size(); i++) {
+                                                    if(objects.get(i).get("company").toString().equals(companyID)){
+                                                        jobIndex = i;
+                                                        job = objects.get(jobIndex).get("jobID").toString();
 
-                                                Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {
-                                                    @Override
-                                                    public void didCompleteWithResult(Object result) {
-                                                        Log.i("testing", result.toString());
-                                                        // Do updates to UI/data models based on result
-                                                        if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
-                                                            showAlert("Error", "There was an error when creating your review. Try again.");
-                                                        } else {
-                                                            Intent intent = new Intent(WriteReview.this, MainActivity.class);
-                                                            startActivity(intent);
+                                                        Log.i(TAG, "job: "+job);
+                                                        if(jobIndex == -1){
+                                                            showAlert("Incorrect Job", "We don't have records for the job that you entered. If you want this job to be added to our system contact Dean at dean@ischool.edu.");
+                                                        }else{
+                                                            Map<String, String> reviewParams = new HashMap<>();
+                                                            reviewParams.put("companyID", companyID);
+                                                            reviewParams.put("job", job);
+                                                            reviewParams.put("rating", rating);
+                                                            reviewParams.put("pay_rate", salary);
+                                                            reviewParams.put("start_date", start_date);
+                                                            reviewParams.put("end_date", end_date);
+                                                            reviewParams.put("title", review_title);
+                                                            reviewParams.put("body", review_body);
+                                                            reviewParams.put("employee", app.getUsernumber());
+                                                            reviewParams.put("anonymous", anonymous);
 
-                                                            String jobResult = (String) objects.get(0).get("companyID");
-                                                            Log.d(TAG, "first object:" + objects.get(0).toString());
+                                                            Kumulos.call("createJobReview", reviewParams, new ResponseHandler() {
+                                                                @Override
+                                                                public void didCompleteWithResult(Object result) {
+                                                                    Log.i("testing", result.toString());
+                                                                    // Do updates to UI/data models based on result
+                                                                    if (result.toString().equals("32") || result.toString().equals("64") || result.toString().equals("128")) {
+                                                                        showAlert("Error", "There was an error when creating your review. Try again.");
+                                                                    } else {
+                                                                        Intent intent = new Intent(WriteReview.this, MainActivity.class);
+                                                                        startActivity(intent);
+
+                                                                        String jobResult = (String) objects.get(0).get("companyID");
+                                                                        Log.d(TAG, "first object:" + objects.get(0).toString());
+                                                                    }
+                                                                }
+                                                            });
                                                         }
+
+                                                        break;
                                                     }
-                                                });
+                                                }
+
                                             }
                                         }
                                     });
