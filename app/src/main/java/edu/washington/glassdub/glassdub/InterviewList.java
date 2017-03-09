@@ -61,6 +61,7 @@ public class InterviewList extends Fragment {
 
         noInterviews = (TextView) view.findViewById(R.id.noInterviews);
         String companyID = getArguments().getString("companyID", "22");
+        final String companyName = getArguments().getString("company");
 
         Map<String, String> reviewParam = new HashMap<>();
         //reviewParam.put("companyID", companyID);
@@ -109,6 +110,7 @@ public class InterviewList extends Fragment {
                             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                                 Intent intent = new Intent(getActivity(), InterviewPage.class);
                                 intent.putExtra("InterviewID", objects.get(position).get("interview_reviewID").toString());
+                                intent.putExtra("companyName", companyName);
                                 startActivity(intent);
                         }
                     });
@@ -125,7 +127,7 @@ public class InterviewList extends Fragment {
 
         for (int i = 0; i < objects.size(); i++) {
             LinkedHashMap<String, Object> obj = objects.get(i);
-            data[i] = new CustomItem(obj.get("title").toString(), formatDate(obj.get("timeCreated").toString()), obj.get("body").toString(), Integer.valueOf(obj.get("interview_rating").toString()));
+            data[i] = new CustomItem(obj.get("body").toString(), "", formatDate(obj.get("timeCreated").toString()), Integer.valueOf(obj.get("interview_rating").toString()));
         }
 
         return data;

@@ -154,8 +154,9 @@ public class WriteReview extends Activity {
                             // tell them something went wrong
                             showAlert("Incorrect Company", "We don't have records for the company that you entered. If you want this company to be added to our system contact Dean at dean@ischool.edu.");
                         } else {
-                            Log.i("testing", objects.get(0).toString());
-                            companyID = objects.get(0).get("companyID").toString();
+                            LinkedHashMap<String, Object> obj = objects.get(0);
+                            Log.i("testing", obj.toString());
+                            companyID = obj.get("companyID").toString();
                             GlassDub app = (GlassDub) getApplication();
 
                             Log.d(TAG, "start date: " + start_date + " end date: " + end_date);
@@ -189,11 +190,8 @@ public class WriteReview extends Activity {
                                             } else {
                                                 Intent intent = new Intent(WriteReview.this, MainActivity.class);
                                                 startActivity(intent);
-
-                                                String jobResult = (String) objects.get(0).get("companyID");
                                                 Log.d(TAG, "first object:" + objects.get(0).toString());
                                                 Log.i("testing", objects.get(0).toString());
-                                                companyID = objects.get(0).get("companyID").toString();
                                                 GlassDub app = (GlassDub) getApplication();
 
                                                 Map<String, String> reviewParams = new HashMap<>();
@@ -389,6 +387,7 @@ public class WriteReview extends Activity {
         public boolean onTouch(View v, MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
                 end_date_view.setText("MMMM DD, YYYY ");
+                end_date_delete.setVisibility(View.INVISIBLE);
             }
             return true;
         }
