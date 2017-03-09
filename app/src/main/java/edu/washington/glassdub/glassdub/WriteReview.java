@@ -387,6 +387,7 @@ public class WriteReview extends Activity {
         public boolean onTouch(View v, MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
                 end_date_view.setText("MMMM DD, YYYY ");
+                end_date_delete.setVisibility(View.INVISIBLE);
             }
             return true;
         }
